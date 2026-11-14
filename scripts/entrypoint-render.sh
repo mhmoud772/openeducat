@@ -58,6 +58,16 @@ else
     echo "✅ Database '$DB_NAME' is already initialized with all modules!"
 fi
 
+# Auto-unpack filestore attachments if missing
+FILESTORE_TAR="/mnt/extra-addons/openeducat/scripts/filestore.tar.gz"
+TARGET_DIR="/var/lib/odoo/filestore/$DB_NAME"
+if [ -f "$FILESTORE_TAR" ] && [ ! -d "$TARGET_DIR" ]; then
+    echo "📁 Unpacking filestore attachments into $TARGET_DIR..."
+    mkdir -p "$TARGET_DIR"
+    tar -xzf "$FILESTORE_TAR" -C "$TARGET_DIR"
+    echo "✅ Filestore attachments unpacked successfully!"
+fi
+
 # Temporarily unset PORT so Odoo entrypoint doesn't confuse it with postgres port
 unset PORT
 
