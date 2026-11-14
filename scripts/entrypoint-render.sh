@@ -53,4 +53,12 @@ export USER="$DB_USER"
 export PASSWORD="$DB_PASSWORD"
 export PGPORT="$DB_PORT"
 
-exec /entrypoint.sh odoo --http-port="$HTTP_PORT" "$@"
+# Filter out 'odoo' from arguments so it is not passed twice to /entrypoint.sh
+ARGS=()
+for arg in "$@"; do
+    if [ "$arg" != "odoo" ]; then
+        ARGS+=("$arg")
+    fi
+done
+
+exec /entrypoint.sh odoo --http-port="$HTTP_PORT" "${ARGS[@]}"
