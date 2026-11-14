@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: openeducat
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: HOST
+        fromDatabase:
+          name: openeducat-db
+          property: host
+      - key: USER
+        fromDatabase:
+          name: openeducat-db
+          property: user
+      - key: PASSWORD
+        fromDatabase:
+          name: openeducat-db
+          property: password
+      - key: DB_PORT
+        fromDatabase:
+          name: openeducat-db
+          property: port
+
+databases:
+  - name: openeducat-db
+    databaseName: openeducat
+    user: odoo
+    plan: free
+    region: frankfurt
