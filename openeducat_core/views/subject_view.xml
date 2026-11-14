@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_op_subject_tree" model="ir.ui.view">
+            <field name="name">op.subject.list</field>
+            <field name="model">op.subject</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="المواد والمقررات الدراسية" multi_edit="1">
+                    <field name="code" string="رمز المادة" optional="show"/>
+                    <field name="name" string="اسم المادة"/>
+                    <field name="type" string="النوع" optional="show"/>
+                    <field name="subject_type" string="تصنيف المادة" widget="badge" decoration-info="subject_type == 'compulsory'" decoration-warning="subject_type == 'elective'" optional="show"/>
+                    <field name="grade_weightage" string="الوزن النسبي" optional="show"/>
+                    <field name="department_id" string="القسم التعليمي" groups="openeducat_core.group_multi_department" optional="show"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_subject_form" model="ir.ui.view">
+            <field name="name">op.subject.form</field>
+            <field name="model">op.subject</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="المادة الدراسية">
+                    <header/>
+                    <sheet>
+                        <field name="active" invisible="True"/>
+                        <widget name="web_ribbon" title="مؤرشف" bg_color="bg-danger"
+                                invisible = "active == True"/>
+                        <div class="oe_title">
+                            <label for="name" string="اسم المادة الدراسية"/>
+                            <h1><field name="name" placeholder="مثال: الرياضيات / لغتي الجميلة"/></h1>
+                        </div>
+                        <group>
+                            <group string="بيانات المادة">
+                                <field name="code" string="رمز المادة"/>
+                                <field name="department_id" string="القسم التعليمي" groups="openeducat_core.group_multi_department"/>
+                            </group>
+                            <group string="الإعدادات ونظام التقييم">
+                                <field name="type" string="نوع المادة"/>
+                                <field name="subject_type" string="تصنيف المادة" widget="radio" options="{'horizontal': true}"/>
+                                <field name="grade_weightage" string="الوزن النسبي / الساعات"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_subject_search" model="ir.ui.view">
+            <field name="name">op.subject.search</field>
+            <field name="model">op.subject</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="البحث في المواد والمقررات">
+                    <field name="name" string="المادة الدراسية" filter_domain="['|',('name','ilike',self),('code','ilike',self)]"/>
+                    <field name="code" string="رمز المادة"/>
+                    <field name="type" string="النوع"/>
+                    <field name="subject_type" string="تصنيف المادة"/>
+                    <field name="department_id" string="القسم التعليمي"/>
+                    <separator/>
+                    <filter string="المؤرشفة" name="inactive" domain="[('active', '=', False)]"/>
+                    <newline/>
+                    <group>
+                        <filter name="group_by_subject_type"
+                                string="نوع المادة" domain="[]"
+                                context="{'group_by':'type'}"/>
+                        <filter name="group_by_subject_category"
+                                string="تصنيف المادة" domain="[]"
+                                context="{'group_by':'subject_type'}"/>
+                        <filter name="group_by_department"
+                                string="القسم الأكاديمي" domain="[]"
+                                context="{'group_by':'department_id'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="type" string="النوع" icon="fa-bookmark" enable_counters="1"/>
+                        <field name="subject_type" string="التصنيف" icon="fa-tag" enable_counters="1"/>
+                        <field name="department_id" string="القسم" icon="fa-building-o" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_subject_view">
+            <field name="name">المواد والمقررات الدراسية</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.subject</field>
+            <field name="path">subject</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_op_subject_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_subject_view_form">
+            <field name="act_window_id" ref="act_open_op_subject_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_subject_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_subject_view_tree">
+            <field name="act_window_id" ref="act_open_op_subject_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_subject_tree"/>
+        </record>
+
+</odoo>

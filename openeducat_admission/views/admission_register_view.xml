@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="view_op_admission_register_tree" model="ir.ui.view">
+            <field name="name">op.admission.register.list</field>
+            <field name="model">op.admission.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="فترات وتوجيهات القبول والتسجيل">
+                    <field name="name" string="مسمى فترة القبول"/>
+                    <field name="course_id" string="المرحلة / الصف"/>
+                    <field name="start_date" string="تاريخ البدء"/>
+                    <field name="end_date" string="تاريخ النهاية"/>
+                    <field name="min_count" string="الحد الأدنى للطلاب"/>
+                    <field name="max_count" string="الطاقة الاستيعابية"/>
+                    <field name="company_id" string="المدرسة" groups="base.group_multi_company" optional="show"/>
+                    <field name="state" string="حالة الفترة" widget="badge" decoration-info="state == 'application'" decoration-success="state == 'admission'"/>
+                    <field name="minimum_age_criteria" string="السن الأدنى (بالسنوات)" optional="hide"/>
+                    <field name="academic_years_id" string="العام الدراسي" optional="hide"/>
+                    <field name="academic_term_id" string="الفصل الدراسي" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_admission_register_form" model="ir.ui.view">
+            <field name="name">op.admission.register.form</field>
+            <field name="model">op.admission.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="فترة تسجيل وقبول">
+                    <header>
+                        <button name="confirm_register" invisible="state != 'draft'" type="object" string="تأكيد فتح الفترة"
+                                class="oe_highlight"/>
+                        <button name="start_application" invisible="state != 'confirm'" type="object"
+                                string="بدء استقبال طلبات التقديم"
+                                class="oe_highlight"/>
+                        <button name="start_admission" invisible="state != 'application'" type="object"
+                                string="بدء فرز واعتماد المقبولين"
+                                class="oe_highlight"/>
+                        <button name="close_register" invisible="state != 'admission'" type="object" string="إغلاق الفترة وإنهاء القبول"
+                                class="oe_highlight"/>
+                        <button name="cancel_register" invisible="state not in ('draft', 'confirm')" string="إلغاء الفترة"
+                                type="object"/>
+                        <button name="set_to_draft" invisible="state != 'cancel'" string="إعادة كمسودة" type="object"/>
+                        <button name="action_reset_to_draft"
+                                invisible="state in ('draft', 'cancel')"
+                                string="إعادة تعيين كمسودة" type="object"
+                                confirm="هل ترغب حقاً بإعادة ضبط هذه الفترة كمسودة؟ لن يتم التأثير على طلبات القبول المرتبطة بها."/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,application,admission"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="open_student_application"
+                                    type="object" icon="fa-id-card" style="border-right: 1px solid;">
+                                <field string="طلبات الالتحاق" name="application_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <field name="active" invisible="True"/>
+                        <widget name="web_ribbon" title="مؤرشف" bg_color="bg-danger"
+                                invisible="active == True"/>
+                        <group>
+                            <group string="المعلومات الأساسية للفترة">
+                                <field name="name" string="مسمى فترة القبول" readonly="state != 'draft'"/>
+                                <field name="academic_years_id" string="العام الدراسي" readonly="state != 'draft'"/>
+                                <field name="academic_term_id" string="الفصل الدراسي" readonly="state != 'draft'"/>
+                                <field name="start_date" string="تاريخ بدء التقديم" readonly="state != 'draft'"/>
+                                <field name="end_date" string="تاريخ انتهاء التقديم" readonly="state != 'draft'"/>
+                                <field name="max_count" string="الحد الأقصى للمقاعد" readonly="state != 'draft'"/>
+                                <field name="min_count" string="الحد الأدنى لفتح الشعبة" readonly="state != 'draft'"/>
+                            </group>
+                            <group string="الاشتراطات والمرحلة المستهدفة">
+                                <field name="admission_base" string="أساس القبول" readonly="state != 'draft'"/>
+                                <field name="course_id" string="المرحلة / الصف" readonly="state != 'draft'"
+                                       invisible="admission_base != 'course'"
+                                       required="admission_base == 'course'"/>
+                                <field name="program_id" string="البرنامج الأكاديمي" readonly="state != 'draft'"
+                                       invisible="admission_base != 'program'"
+                                       required="admission_base == 'program'"/>
+                                <field name="product_id" string="بند الرسوم المدرسية" context="{'default_type': 'service'}"
+                                       readonly="state != 'draft'" required="admission_base != 'program'"
+                                       invisible="admission_base == 'program'"/>
+                                <field name="minimum_age_criteria" string="السن الأدنى للقبول (بالسنوات)" readonly="state != 'draft'"/>
+                                <field name="company_id" string="المدرسة / الفرع" groups="base.group_multi_company" readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="admission_schemes" string="مخطط القبول والمراحل الدراسية">
+                                <field name="admission_fees_line_ids" readonly="state != 'draft'">
+                                    <list string="مخطط القبول" editable="bottom">
+                                        <field name="course_id" string="المرحلة / الصف"
+                                               options="{'no_open': True, 'no_create': True}"/>
+                                        <field name="course_fees_product_id" string="بند رسوم المرحلة"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_admission_register_search" model="ir.ui.view">
+            <field name="name">op.admission.register.search</field>
+            <field name="model">op.admission.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="البحث في فترات القبول">
+                    <field name="name" string="مسمى الفترة"/>
+                    <field name="course_id" string="المرحلة / الصف"/>
+                    <field name="product_id" string="بند الرسوم"/>
+                    <separator/>
+                    <group>
+                        <filter string="المرحلة الدراسية" name="group_by_adm_reg_course_id"
+                                domain="[]" context="{'group_by':'course_id'}"/>
+                        <filter string="بند الرسوم" name="group_by_adm_reg_product_id"
+                                domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="حالة الفترة" name="group_by_adm_reg_state"
+                                domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="المؤرشفة" name="inactive" domain="[('active', '=', False)]"/>
+                        <filter string="المفضلة" name="group_by_adm_reg_favorite"
+                                domain="[('is_favorite', '=', True)]"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_op_admission_register_pivot" model="ir.ui.view">
+            <field name="name">op.admission.register.pivot</field>
+            <field name="model">op.admission.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="فترات القبول والمقاعد">
+                    <field name="name"/>
+                    <field name="course_id" type="row"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="min_count"/>
+                    <field name="max_count"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_admission_register_view">
+            <field name="name">فترات وتوجيهات القبول</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.admission.register</field>
+            <field name="path">admission-register</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_op_admission_register_search"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_admission_register_view_form">
+            <field name="act_window_id" ref="act_open_op_admission_register_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_admission_register_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_admission_register_view_tree">
+            <field name="act_window_id" ref="act_open_op_admission_register_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_admission_register_tree"/>
+        </record>
+</odoo>

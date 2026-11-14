@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="smartedu_login_layout" inherit_id="website.login_layout" priority="50" name="SmartEdu Login Layout">
+        <xpath expr="//t[@t-call='website.layout']" position="replace">
+            <t t-call="website.layout">
+                <t t-set="no_header" t-value="True"/>
+                <t t-set="no_footer" t-value="True"/>
+                <t t-set="body_classname" t-value="'smartedu-login-body'"/>
+                <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+
+                <style>
+                    /* Global Login Reset and Background */
+                    header#top, footer#bottom, .o_footer, .o_header_standard {
+                        display: none !important;
+                    }
+                    body.smartedu-login-body {
+                        min-height: 100vh !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        background: radial-gradient(circle at 20% 20%, rgba(30, 58, 138, 0.15) 0%, transparent 50%),
+                                    radial-gradient(circle at 80% 80%, rgba(217, 119, 6, 0.10) 0%, transparent 50%),
+                                    linear-gradient(135deg, #0F172A 0%, #1E293B 100%) !important;
+                        background-attachment: fixed !important;
+                        font-family: 'Cairo', 'Tajawal', sans-serif !important;
+                    }
+                    #wrapwrap {
+                        background: transparent !important;
+                        min-height: 100vh !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        justify-content: center !important;
+                        align-items: center !important;
+                    }
+                    main {
+                        flex-grow: 1 !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        width: 100% !important;
+                        padding: 24px 16px !important;
+                    }
+                    .smartedu-login-wrapper {
+                        width: 100%;
+                        max-width: 440px;
+                        margin: 0 auto;
+                    }
+                    .smartedu-login-card {
+                        background: #ffffff !important;
+                        border-radius: 20px !important;
+                        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+                        padding: 38px 34px 28px 34px !important;
+                        position: relative !important;
+                        overflow: hidden !important;
+                        direction: rtl !important;
+                        text-align: right !important;
+                    }
+                    .smartedu-login-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 5px;
+                        background: linear-gradient(90deg, #1E3A8A 0%, #2563EB 50%, #D97706 100%);
+                    }
+                    .smartedu-brand-emblem {
+                        width: 72px;
+                        height: 72px;
+                        border-radius: 18px;
+                        background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+                        border: 2px solid #2563EB;
+                        box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 14px;
+                    }
+                    .smartedu-brand-emblem i {
+                        font-size: 36px;
+                        color: #F8FAFC;
+                    }
+                    .smartedu-brand-title {
+                        color: #0F172A !important;
+                        font-weight: 800 !important;
+                        font-size: 26px !important;
+                        margin-bottom: 4px !important;
+                        letter-spacing: -0.5px;
+                    }
+                    .smartedu-brand-title span {
+                        color: #2563EB !important;
+                    }
+                    .smartedu-brand-subtitle {
+                        color: #64748B !important;
+                        font-size: 13px !important;
+                        font-weight: 600 !important;
+                        margin-bottom: 24px !important;
+                    }
+                    .smartedu-form-container label {
+                        font-size: 13px !important;
+                        font-weight: 600 !important;
+                        color: #1E293B !important;
+                        margin-bottom: 6px !important;
+                    }
+                    .smartedu-form-container input.form-control {
+                        border-radius: 10px !important;
+                        border: 1.5px solid #CBD5E1 !important;
+                        padding: 10px 14px !important;
+                        font-size: 14px !important;
+                        transition: all 0.2s ease !important;
+                        background: #F8FAFC !important;
+                    }
+                    .smartedu-form-container input.form-control:focus {
+                        background: #ffffff !important;
+                        border-color: #2563EB !important;
+                        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+                    }
+                    .smartedu-form-container .input-group button.o_show_password {
+                        background: #F8FAFC !important;
+                        border: 1.5px solid #CBD5E1 !important;
+                        border-left: none !important;
+                        border-radius: 10px 0 0 10px !important;
+                        color: #64748B !important;
+                    }
+                    .smartedu-form-container .btn-link {
+                        color: #2563EB !important;
+                        font-size: 12px !important;
+                        font-weight: 700 !important;
+                        text-decoration: none !important;
+                        padding: 0 !important;
+                    }
+                    .smartedu-form-container .btn-link:hover {
+                        color: #1E3A8A !important;
+                        text-decoration: underline !important;
+                    }
+                    .smartedu-form-container .oe_login_buttons button.btn-primary {
+                        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%) !important;
+                        border: none !important;
+                        color: #ffffff !important;
+                        border-radius: 12px !important;
+                        padding: 12px 20px !important;
+                        font-size: 15px !important;
+                        font-weight: 700 !important;
+                        box-shadow: 0 8px 20px rgba(30, 58, 138, 0.35) !important;
+                        transition: all 0.25s ease !important;
+                        width: 100% !important;
+                    }
+                    .smartedu-form-container .oe_login_buttons button.btn-primary:hover {
+                        box-shadow: 0 12px 28px rgba(30, 58, 138, 0.45) !important;
+                        transform: translateY(-2px);
+                    }
+                    .smartedu-form-container .passkey_login_link {
+                        border-radius: 10px !important;
+                        border: 1.5px solid #E2E8F0 !important;
+                        font-size: 13px !important;
+                        color: #475569 !important;
+                        transition: all 0.2s ease !important;
+                    }
+                    .smartedu-form-container .passkey_login_link:hover {
+                        background: #F8FAFC !important;
+                        border-color: #CBD5E1 !important;
+                    }
+                    /* Hide database selector completely */
+                    .smartedu-form-container div.mb-3:has(#db) {
+                        display: none !important;
+                    }
+                    .smartedu-footer {
+                        border-top: 1px solid #E2E8F0;
+                        margin-top: 22px;
+                        padding-top: 16px;
+                        text-align: center;
+                    }
+                    .smartedu-footer .system-name {
+                        color: #475569;
+                        font-size: 12px;
+                        font-weight: 700;
+                        margin-bottom: 2px;
+                    }
+                    .smartedu-footer .copyright-text {
+                        color: #94A3B8;
+                        font-size: 11px;
+                        font-weight: 500;
+                    }
+                </style>
+
+                <div class="smartedu-login-wrapper">
+                    <div class="smartedu-login-card">
+                        <!-- Branding Header -->
+                        <div class="text-center mb-3">
+                            <div class="smartedu-brand-emblem">
+                                <i class="fa fa-graduation-cap" title="SmartEdu Logo"/>
+                            </div>
+                            <h1 class="smartedu-brand-title">سمارت <span>إديو</span></h1>
+                            <div class="smartedu-brand-subtitle">SmartEdu | بوابة التعليم الذكي المتكاملة</div>
+                        </div>
+
+                        <!-- Login Form Injection -->
+                        <div class="smartedu-form-container">
+                            <div class="oe_website_login_container" t-out="0"/>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="smartedu-footer">
+                            <div class="system-name">نظام سمارت إديو للأنظمة التعليمية المتكاملة</div>
+                            <div class="copyright-text">SmartEdu ERP Suite © 2026 • جميع الحقوق محفوظة</div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <menuitem id="menu_op_attendance_root"
+                  name="الحضور والغياب"
+                  sequence="290"
+                  web_icon="openeducat_attendance,static/description/icon.png"
+                  groups="openeducat_attendance.group_op_attendance_user,openeducat_attendance.group_op_attendance_manager"/>
+
+        <menuitem id="menu_op_attendance"
+                  name="سجلات وكشوف الحضور"
+                  parent="menu_op_attendance_root"
+                  sequence="10"/>
+
+        <menuitem id="menu_op_attendance_register_sub"
+                  name="سجلات الحضور المدرسية"
+                  parent="menu_op_attendance"
+                  sequence="10"
+                  action="act_open_op_attendance_register_view"
+                  groups="openeducat_attendance.group_op_attendance_user,openeducat_attendance.group_op_attendance_manager"/>
+
+        <menuitem id="menu_op_attendance_sheet_sub"
+                  name="كشوف الحضور اليومية"
+                  parent="menu_op_attendance"
+                  sequence="20"
+                  action="act_open_op_attendance_sheet_view"
+                  groups="openeducat_attendance.group_op_attendance_user,openeducat_attendance.group_op_attendance_manager"/>
+
+        <menuitem id="menu_op_attendance_line_sub"
+                  name="تفاصيل حضور الطلاب"
+                  parent="menu_op_attendance"
+                  sequence="30"
+                  action="act_open_op_attendance_line_view"
+                  groups="openeducat_attendance.group_op_attendance_manager,openeducat_attendance.group_op_attendance_user"/>
+
+        <menuitem id="menu_op_attendance_config"
+                  parent="menu_op_attendance_root"
+                  name="التهيئة والإعدادات"
+                  sequence="40"/>
+
+        <menuitem name="الإعدادات العامة"
+                  id="menu_attendance_config"
+                  parent="menu_op_attendance_config"
+                  action="openeducat_core.action_openeducat_configuration"
+                  groups="base.group_system"
+                  sequence="1"/>
+
+        <menuitem id="menu_op_attendance_type"
+                  name="حالات وتصنيفات الحضور"
+                  parent="menu_op_attendance_config"
+                  sequence="30"
+                  action="act_open_op_attendance_type_view"
+                  groups="openeducat_attendance.group_op_attendance_manager"/>
+
+</odoo>

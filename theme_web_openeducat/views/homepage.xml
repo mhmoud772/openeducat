@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="homepage" inherit_id="website.homepage" name="SmartEdu Educational Platform Homepage" priority="99">
+        <xpath expr="." position="replace">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty homepage theme_web_openeducat" style="background-color: #FAF9F6; color: #0F172A;">
+
+                    <!-- 1. HERO SECTION: CLEAN, PRESTIGIOUS, CENTERED INSTITUTIONAL -->
+                    <section class="smartedu-human-hero">
+                        <div class="container position-relative text-center py-4" style="z-index: 2;">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10 col-xl-9">
+                                    <h1 class="smartedu-hero-title mb-4">
+                                        المنظومة السحابية المتكاملة <br/>
+                                        <span class="smartedu-text-gradient-navy">
+                                            لإدارة المدارس والمنشآت التعليمية
+                                        </span>
+                                    </h1>
+
+                                    <p class="lead mb-4 fs-5 mx-auto" style="color: #475569; max-width: 720px; line-height: 1.9;">
+                                        حل مدرسي مؤسسي يوحّد كافة العمليات الأكاديمية والإدارية: القبول والتسجيل، رصد الحضور الذكي، الجداول المدرسية، بنك الاختبارات والدرجات، والفوترة، مع بوابة تفاعلية مباشرة لولي الأمر والطالب.
+                                    </p>
+
+                                    <!-- Action Buttons -->
+                                    <div class="d-flex flex-wrap gap-3 justify-content-center pt-2">
+                                        <a href="/my" class="btn smartedu-btn-primary btn-lg d-inline-flex align-items-center text-white" style="color: #ffffff !important;">
+                                            <i class="fa fa-users me-2 fs-5 text-white" style="color: #ffffff !important;"/>
+                                            <span class="text-white" style="color: #ffffff !important;">بوابة أولياء الأمور والطلاب</span>
+                                        </a>
+                                        <a href="/web/login" class="btn smartedu-btn-secondary btn-lg d-inline-flex align-items-center">
+                                            <i class="fa fa-sign-in me-2 fs-5"/>
+                                            لوحة إدارة المدرسة
+                                        </a>
+                                        <a href="/contactus" class="btn smartedu-btn-ghost btn-lg d-inline-flex align-items-center">
+                                            <i class="fa fa-calendar-check-o me-2 text-dark"/>
+                                            طلب عرض توضيحي (Demo)
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. SOCIAL PROOF & SCALE STRIP: ELEGANT INTEGRATED METRIC BAR -->
+                    <section class="smartedu-proof-strip">
+                        <div class="container">
+                            <div class="row g-0 text-center text-md-end">
+                                <div class="col-6 col-md-3 smartedu-proof-item">
+                                    <div class="smartedu-proof-num">+2,500</div>
+                                    <div class="smartedu-proof-label">طالب وطالبة مسجلين</div>
+                                    <div class="smartedu-proof-sub">سجلات أكاديمية موحدة ومؤرشفة</div>
+                                </div>
+                                <div class="col-6 col-md-3 smartedu-proof-item">
+                                    <div class="smartedu-proof-num">150+</div>
+                                    <div class="smartedu-proof-label">معلم وكادر إداري</div>
+                                    <div class="smartedu-proof-sub">جداول أسبوعية مؤتمتة بلا تعارض</div>
+                                </div>
+                                <div class="col-6 col-md-3 smartedu-proof-item">
+                                    <div class="smartedu-proof-num">99.8%</div>
+                                    <div class="smartedu-proof-label">دقة رصد الحضور والانضباط</div>
+                                    <div class="smartedu-proof-sub">متابعة لحظية وإشعارات فورية</div>
+                                </div>
+                                <div class="col-6 col-md-3 smartedu-proof-item">
+                                    <div class="smartedu-proof-num">100%</div>
+                                    <div class="smartedu-proof-label">حوكمة وأتمتة خالية من الأوراق</div>
+                                    <div class="smartedu-proof-sub">تقارير وبطاقات معتمدة بالباركود</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 3. EDUCATIONAL STAGES: ASYMMETRICAL INFORMATIVE BENTO GRID -->
+                    <section id="stages" class="py-5" style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+                        <div class="container py-4">
+                            <div class="text-center mb-5">
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-bold mb-2">
+                                    المسارات والمراحل الأكاديمية
+                                </span>
+                                <h2 class="fw-bolder fs-1 text-dark">تغطية تعليمية وتربوية مصممة لكل مرحلة</h2>
+                                <p class="text-muted mx-auto fs-6" style="max-width: 640px;">
+                                    منهجية تربوية تراعي التطور العمري للطالب، من مرحلة التأسيس والاكتشاف وحتى التأهيل الجامعي المتميز.
+                                </p>
+                            </div>
+
+                            <!-- Bento Grid Layout -->
+                            <div class="row g-4">
+                                
+                                <!-- Card 1: High School (Featured Wide Bento Card) -->
+                                <div class="col-lg-7">
+                                    <div class="smartedu-bento-card featured-card h-100 p-4 p-md-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="smartedu-feature-tag">المرحلة الثانوية • القسم العلمي والأدبي</span>
+                                            <span class="badge bg-danger text-white">الشهادة الثانوية العامة</span>
+                                        </div>
+                                        <h3 class="fw-bold mb-3 fs-3 text-white">التأهيل الأكاديمي المتقدم والاختبارات الوزارية</h3>
+                                        <p class="text-muted mb-4 fs-6" style="line-height: 1.8;">
+                                            إدارة دقيقة للقسمين العلمي والأدبي في المرحلة الثانوية، مع تدريب مكثف على نماذج اختبارات الشهادة العامة الوزارية السابقة، ودعم المعامل العلمية والتطبيقية لإعداد الطلاب للالتحاق بأرقى التخصصات الجامعية.
+                                        </p>
+                                        <div class="p-3 rounded-3" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                            <div class="d-flex flex-wrap gap-2 mb-2">
+                                                <span class="badge bg-white text-dark">القسم العلمي والمعامل</span>
+                                                <span class="badge bg-white text-dark">القسم الأدبي واللغات</span>
+                                                <span class="badge bg-white text-dark">نماذج الامتحانات الوزارية</span>
+                                            </div>
+                                            <div class="text-white-50 small">
+                                                <i class="fa fa-line-chart text-success me-1"/>
+                                                معدل تفوق ونسب نجاح متقدمة في امتحانات الشهادة الثانوية
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Preparatory / Basic 7-9 (Bento Card) -->
+                                <div class="col-lg-5">
+                                    <div class="smartedu-bento-card h-100 p-4 p-md-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="smartedu-feature-tag">المرحلة الأساسية (7 - 9)</span>
+                                            <span class="badge bg-info-subtle text-info border">الصف السابع إلى التاسع</span>
+                                        </div>
+                                        <h4 class="fw-bold text-dark mb-3">الاستعداد للشهادة الأساسية وتنمية المهارات</h4>
+                                        <p class="text-muted mb-4 small" style="line-height: 1.8;">
+                                            تأهيل منهجي متكامل لاجتياز اختبارات الشهادة الأساسية (الصف التاسع) بتفوق، وربط المواد بالمعامل التفاعلية والحوسبة والأنشطة المدرسية.
+                                        </p>
+                                        <div class="p-3 rounded-3 bg-light border">
+                                            <div class="fw-bold text-dark small mb-1">
+                                                <i class="fa fa-laptop text-primary me-1"/> معمل الحاسوب والعلوم
+                                            </div>
+                                            <div class="text-muted small">تطبيقات عملية ومهام بحثية معتمدة لكل طالب خلال الفصل الدراسي.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3: Elementary / Basic 1-6 (Bento Card) -->
+                                <div class="col-lg-6">
+                                    <div class="smartedu-bento-card h-100 p-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="smartedu-feature-tag">المرحلة الأساسية (1 - 6)</span>
+                                            <span class="badge bg-success-subtle text-success border">الصفوف: الأول إلى السادس الأساسي</span>
+                                        </div>
+                                        <h4 class="fw-bold text-dark mb-2">ترسيخ الكفايات الأساسية والقرآن الكريم</h4>
+                                        <p class="text-muted mb-3 small" style="line-height: 1.8;">
+                                            إتقان القراءة واللغة والرياضيات مع عناية خاصة بحفظ وتلاوة القرآن الكريم، وسجل تقييم مستمر يرصد تقدم التلميذ ويرسل تقريراً دورياً للأسرة.
+                                        </p>
+                                        <div class="d-flex gap-2">
+                                            <span class="badge bg-light text-dark border"><i class="fa fa-check text-success me-1"/> إتقان القراءة والحساب</span>
+                                            <span class="badge bg-light text-dark border"><i class="fa fa-check text-success me-1"/> القرآن الكريم والعلوم</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 4: Kindergarten & Early Childhood (Bento Card) -->
+                                <div class="col-lg-6">
+                                    <div class="smartedu-bento-card h-100 p-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="smartedu-feature-tag">الطفولة المبكرة ورياض الأطفال</span>
+                                            <span class="badge bg-warning-subtle text-warning border">الصفوف: تمهيدي 1 و 2</span>
+                                        </div>
+                                        <h4 class="fw-bold text-dark mb-2">بيئة تأسيسية آمنة واكتشاف المواهب المبكرة</h4>
+                                        <p class="text-muted mb-3 small" style="line-height: 1.8;">
+                                            تنمية المهارات الاجتماعية والسلوكية والحركية للطفل، مع توثيق مصور للأنشطة واليوميات المدرسية يُشارك مباشرة مع الأسرة.
+                                        </p>
+                                        <div class="d-flex gap-2">
+                                            <span class="badge bg-light text-dark border"><i class="fa fa-heart text-danger me-1"/> متابعة صحية ونفسية</span>
+                                            <span class="badge bg-light text-dark border"><i class="fa fa-smile-o text-warning me-1"/> أنشطة تفاعلية واكتشاف الميول</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. CORE EDTECH PILLARS (THE 6 FOUNDATIONS) -->
+                    <section id="features" class="py-5 bg-white">
+                        <div class="container py-4">
+                            <div class="text-center mb-5">
+                                <span class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill fw-bold mb-2">
+                                    الركائز التقنية المتكاملة
+                                </span>
+                                <h2 class="fw-bolder fs-1 text-dark">كل ما تحتاجه المؤسسة التعليمية في منصة واحدة</h2>
+                                <p class="text-muted mx-auto fs-6" style="max-width: 640px;">
+                                    أدوات إدارية وأكاديمية صُممت وفق أفضل الممارسات لتحقيق أعلى درجات الانضباط والحوكمة المؤسسية.
+                                </p>
+                            </div>
+
+                            <div class="row g-4">
+                                <!-- Pillar 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="smartedu-pillar-card">
+                                        <div class="smartedu-icon-craft smartedu-icon-coral mb-3">
+                                            <i class="fa fa-users"/>
+                                        </div>
+                                        <h5 class="fw-bold text-dark mb-2">بوابة أولياء الأمور والطلاب</h5>
+                                        <p class="text-muted small mb-0" style="line-height: 1.8;">
+                                            حساب تفاعلي يُمكّن ولي الأمر من متابعة جميع أبنائه المسجلين، جداول الحصص، رصد الحضور اليومي، والتواصل التربوي المباشر مع المدرسة من أي جهاز.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 2 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="smartedu-pillar-card">
+                                        <div class="smartedu-icon-craft smartedu-icon-emerald mb-3">
+                                            <i class="fa fa-check-square-o"/>
+                                        </div>
+                                        <h5 class="fw-bold text-dark mb-2">الرصد الآلي للحضور والانضباط</h5>
+                                        <p class="text-muted small mb-0" style="line-height: 1.8;">
+                                            رصد إلكتروني فوري للغياب والتأخير للحصص واليوم الدراسي عبر الباركود، مع إرسال إشعارات فورية لولي الأمر وإصدار تقارير الحضور المعتمدة.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 3 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="smartedu-pillar-card">
+                                        <div class="smartedu-icon-craft smartedu-icon-blue mb-3">
+                                            <i class="fa fa-calendar"/>
+                                        </div>
+                                        <h5 class="fw-bold text-dark mb-2">الجداول الدراسية المؤتمتة</h5>
+                                        <p class="text-muted small mb-0" style="line-height: 1.8;">
+                                            محرك ذكي لتوزيع الحصص الأسبوعية والمعلمين والقاعات الدراسية، ومنع أي تعارض في أوقات الكادر، مع طباعة الجداول وتصديرها بصيغة PDF معتمدة.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 4 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="smartedu-pillar-card">
+                                        <div class="smartedu-icon-craft smartedu-icon-amber mb-3">
+                                            <i class="fa fa-graduation-cap"/>
+                                        </div>
+                                        <h5 class="fw-bold text-dark mb-2">الاختبارات ورصد الدرجات والتقارير</h5>
+                                        <p class="text-muted small mb-0" style="line-height: 1.8;">
+                                            تخطيط لجان وفترات الاختبارات، كشوف رصد الدرجات الأكاديمية، إصدار الشهادات وبطاقات الطلاب الذكية المزودة بالباركود الأمني لمنع التزوير.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 5 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="smartedu-pillar-card">
+                                        <div class="smartedu-icon-craft smartedu-icon-navy mb-3">
+                                            <i class="fa fa-credit-card"/>
+                                        </div>
+                                        <h5 class="fw-bold text-dark mb-2">إدارة الرسوم والفوترة المدرسية</h5>
+                                        <p class="text-muted small mb-0" style="line-height: 1.8;">
+                                            هيكلة الرسوم الدراسية وأقساط الطلاب، إصدار الفواتير وسندات القبض، ومتابعة المدفوعات بشفافية تامة وسهولة متناهية لولي الأمر وإدارة الحسابات.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 6 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="smartedu-pillar-card">
+                                        <div class="smartedu-icon-craft smartedu-icon-blue mb-3">
+                                            <i class="fa fa-book"/>
+                                        </div>
+                                        <h5 class="fw-bold text-dark mb-2">المكتبة المدرسية الرقمية</h5>
+                                        <p class="text-muted small mb-0" style="line-height: 1.8;">
+                                            فهرسة ذكية للمراجع والكتب الدراسية والإثرائية، تنظيم حركات الإعارة والاسترجاع بالباركود، وتفعيل الأنشطة الثقافية والمسابقات المدرسية.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. PARENT & STUDENT ACCESS BANNER (LUXURY EXECUTIVE NAVY) -->
+                    <section class="container py-4">
+                        <div class="smartedu-cta-banner">
+                            <div class="row align-items-center g-4">
+                                <div class="col-lg-8 text-center text-lg-end">
+                                    <span class="badge bg-white text-dark px-3 py-2 rounded-pill fw-bold mb-3">
+                                        بوابة الخدمة الذاتية الموحدة
+                                    </span>
+                                    <h3 class="fw-bolder mb-3 text-white fs-2">هل أنت ولي أمر أو طالب مسجل في المنظومة؟</h3>
+                                    <p class="text-white-50 mb-0 fs-6" style="line-height: 1.85;">
+                                        يمكنك الآن الدخول إلى بوابتك الرقمية لمتابعة الحضور اليومي، الجداول الأسبوعية، استعراض الملاحظات الأكاديمية والدرجات، والتواصل الفوري مع إدارة المدرسة.
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 text-center text-lg-start">
+                                    <a href="/my" class="btn smartedu-btn-secondary btn-lg px-4 py-3 d-inline-flex align-items-center">
+                                        <i class="fa fa-user-circle me-2 fs-5"/>
+                                        الانتقال إلى بوابتي الخاصة
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 6. HIGH-CONVERTING CALL TO ACTION FOR SCHOOL EXECUTIVES -->
+                    <section class="py-5" style="background: #F8FAFC;">
+                        <div class="container py-3">
+                            <div class="p-5 rounded-4 bg-white border text-center shadow-sm">
+                                <h2 class="fw-bolder text-dark mb-3 fs-2">جاهز لنقل مدرستك إلى المعايير الأكاديمية العالمية؟</h2>
+                                <p class="text-muted mx-auto mb-4 fs-6" style="max-width: 620px; line-height: 1.8;">
+                                    فريق سمارت إديو الاستشاري جاهز لتقديم عرض توضيحي مباشر (Demo) وتدريب الكادر الإداري والتعليمي لمدرستك لضمان انطلاقة رقمية رائدة ومستدامة.
+                                </p>
+                                <div class="d-flex justify-content-center flex-wrap gap-3">
+                                    <a href="/contactus" class="btn smartedu-btn-primary btn-lg">
+                                        <i class="fa fa-paper-plane me-2"/>
+                                        تواصل معنا لطلب المنظومة
+                                    </a>
+                                    <a href="/web/login" class="btn smartedu-btn-secondary btn-lg">
+                                        <i class="fa fa-sign-in me-2"/>
+                                        تسجيل الدخول للنظام
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

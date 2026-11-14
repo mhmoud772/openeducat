@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- ============================================================ -->
+    <!-- 1. المستويات التعليمية (Program Levels)                       -->
+    <!-- ============================================================ -->
+    <record id="level_kindergarten" model="op.program.level">
+        <field name="name">رياض الأطفال (Kindergarten)</field>
+    </record>
+
+    <record id="level_primary" model="op.program.level">
+        <field name="name">المرحلة الابتدائية (Primary Stage)</field>
+    </record>
+
+    <record id="level_middle" model="op.program.level">
+        <field name="name">المرحلة المتوسطة / الإعدادية (Middle Stage)</field>
+    </record>
+
+    <record id="level_secondary" model="op.program.level">
+        <field name="name">المرحلة الثانوية (Secondary Stage)</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 2. البرامج الدراسية (Programs)                               -->
+    <!-- ============================================================ -->
+    <record id="prog_kg" model="op.program">
+        <field name="name">برنامج رياض الأطفال والتعليم المبكر</field>
+        <field name="code">KG-PROG</field>
+        <field name="program_level_id" ref="level_kindergarten"/>
+    </record>
+
+    <record id="prog_primary" model="op.program">
+        <field name="name">برنامج التعليم الابتدائي العام</field>
+        <field name="code">PRI-PROG</field>
+        <field name="program_level_id" ref="level_primary"/>
+    </record>
+
+    <record id="prog_middle" model="op.program">
+        <field name="name">برنامج التعليم المتوسط / الإعدادي</field>
+        <field name="code">MID-PROG</field>
+        <field name="program_level_id" ref="level_middle"/>
+    </record>
+
+    <record id="prog_sec_gen" model="op.program">
+        <field name="name">برنامج الثانوية العامة - المسار العام</field>
+        <field name="code">SEC-GEN</field>
+        <field name="program_level_id" ref="level_secondary"/>
+    </record>
+
+    <record id="prog_sec_tech" model="op.program">
+        <field name="name">برنامج الثانوية - مسار علوم الحاسب والهندسة</field>
+        <field name="code">SEC-TECH</field>
+        <field name="program_level_id" ref="level_secondary"/>
+    </record>
+
+    <record id="prog_sec_health" model="op.program">
+        <field name="name">برنامج الثانوية - مسار الصحة والحياة</field>
+        <field name="code">SEC-HLTH</field>
+        <field name="program_level_id" ref="level_secondary"/>
+    </record>
+
+    <record id="prog_sec_business" model="op.program">
+        <field name="name">برنامج الثانوية - مسار إدارة الأعمال</field>
+        <field name="code">SEC-BUS</field>
+        <field name="program_level_id" ref="level_secondary"/>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 3. المواد الدراسية الوطنية الأساسية (Subjects)               -->
+    <!-- ============================================================ -->
+    <record id="subj_quran" model="op.subject">
+        <field name="name">القرآن الكريم والدراسات الإسلامية</field>
+        <field name="code">ISL-101</field>
+        <field name="type">theory</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_arabic" model="op.subject">
+        <field name="name">اللغة العربية (لغتي الجميلة)</field>
+        <field name="code">ARB-101</field>
+        <field name="type">theory</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_math" model="op.subject">
+        <field name="name">الرياضيات</field>
+        <field name="code">MTH-101</field>
+        <field name="type">theory</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_science" model="op.subject">
+        <field name="name">العلوم العامة</field>
+        <field name="code">SCI-101</field>
+        <field name="type">both</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_english" model="op.subject">
+        <field name="name">اللغة الإنجليزية (English Language)</field>
+        <field name="code">ENG-101</field>
+        <field name="type">theory</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_social" model="op.subject">
+        <field name="name">الدراسات الاجتماعية والمواطنة</field>
+        <field name="code">SOC-101</field>
+        <field name="type">theory</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_digital" model="op.subject">
+        <field name="name">المهارات الرقمية والحاسب الآلي</field>
+        <field name="code">DIG-101</field>
+        <field name="type">practical</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_pe" model="op.subject">
+        <field name="name">التربية البدنية والدفاع عن النفس</field>
+        <field name="code">PED-101</field>
+        <field name="type">practical</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_art" model="op.subject">
+        <field name="name">التربية الفنية</field>
+        <field name="code">ART-101</field>
+        <field name="type">practical</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_physics" model="op.subject">
+        <field name="name">الفيزياء</field>
+        <field name="code">PHY-201</field>
+        <field name="type">both</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_chemistry" model="op.subject">
+        <field name="name">الكيمياء</field>
+        <field name="code">CHM-201</field>
+        <field name="type">both</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_biology" model="op.subject">
+        <field name="name">علم الأحياء</field>
+        <field name="code">BIO-201</field>
+        <field name="type">both</field>
+        <field name="subject_type">compulsory</field>
+    </record>
+
+    <record id="subj_ai_data" model="op.subject">
+        <field name="name">علم البيانات والذكاء الاصطناعي</field>
+        <field name="code">AI-301</field>
+        <field name="type">both</field>
+        <field name="subject_type">elective</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 4. الصفوف والمراحل الدراسية الفعلية (Courses / Grades)        -->
+    <!-- ============================================================ -->
+
+    <!-- رياض الأطفال -->
+    <record id="course_kg1" model="op.course">
+        <field name="name">روضة أولى (KG 1)</field>
+        <field name="code">KG-01</field>
+        <field name="program_id" ref="prog_kg"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_kg2" model="op.course">
+        <field name="name">روضة ثانية (KG 2)</field>
+        <field name="code">KG-02</field>
+        <field name="program_id" ref="prog_kg"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_kg3" model="op.course">
+        <field name="name">تمهيدي (KG 3 / Pre-K)</field>
+        <field name="code">KG-03</field>
+        <field name="program_id" ref="prog_kg"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_english'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <!-- المرحلة الابتدائية -->
+    <record id="course_p1" model="op.course">
+        <field name="name">الصف الأول الابتدائي</field>
+        <field name="code">PRI-G01</field>
+        <field name="program_id" ref="prog_primary"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_p2" model="op.course">
+        <field name="name">الصف الثاني الابتدائي</field>
+        <field name="code">PRI-G02</field>
+        <field name="program_id" ref="prog_primary"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_p3" model="op.course">
+        <field name="name">الصف الثالث الابتدائي</field>
+        <field name="code">PRI-G03</field>
+        <field name="program_id" ref="prog_primary"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_p4" model="op.course">
+        <field name="name">الصف الرابع الابتدائي</field>
+        <field name="code">PRI-G04</field>
+        <field name="program_id" ref="prog_primary"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_social'), ref('subj_digital'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_p5" model="op.course">
+        <field name="name">الصف الخامس الابتدائي</field>
+        <field name="code">PRI-G05</field>
+        <field name="program_id" ref="prog_primary"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_social'), ref('subj_digital'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_p6" model="op.course">
+        <field name="name">الصف السادس الابتدائي</field>
+        <field name="code">PRI-G06</field>
+        <field name="program_id" ref="prog_primary"/>
+        <field name="evaluation_type">normal</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_social'), ref('subj_digital'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <!-- المرحلة المتوسطة / الإعدادية -->
+    <record id="course_m1" model="op.course">
+        <field name="name">الصف الأول المتوسط / الإعدادي</field>
+        <field name="code">MID-G01</field>
+        <field name="program_id" ref="prog_middle"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_social'), ref('subj_digital'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_m2" model="op.course">
+        <field name="name">الصف الثاني المتوسط / الإعدادي</field>
+        <field name="code">MID-G02</field>
+        <field name="program_id" ref="prog_middle"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_social'), ref('subj_digital'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <record id="course_m3" model="op.course">
+        <field name="name">الصف الثالث المتوسط / الإعدادي</field>
+        <field name="code">MID-G03</field>
+        <field name="program_id" ref="prog_middle"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_science'), ref('subj_english'), ref('subj_social'), ref('subj_digital'), ref('subj_art'), ref('subj_pe')])]"/>
+    </record>
+
+    <!-- المرحلة الثانوية (نظام المسارات الحديث) -->
+    <record id="course_s1" model="op.course">
+        <field name="name">الصف الأول الثانوي (السنة الأولى المشتركة)</field>
+        <field name="code">SEC-G01</field>
+        <field name="program_id" ref="prog_sec_gen"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_physics'), ref('subj_chemistry'), ref('subj_biology'), ref('subj_english'), ref('subj_digital'), ref('subj_social')])]"/>
+    </record>
+
+    <record id="course_s2_gen" model="op.course">
+        <field name="name">الصف الثاني الثانوي - مسار عام</field>
+        <field name="code">SEC-G02-GEN</field>
+        <field name="program_id" ref="prog_sec_gen"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_physics'), ref('subj_chemistry'), ref('subj_english')])]"/>
+    </record>
+
+    <record id="course_s2_tech" model="op.course">
+        <field name="name">الصف الثاني الثانوي - مسار علوم الحاسب والهندسة</field>
+        <field name="code">SEC-G02-TECH</field>
+        <field name="program_id" ref="prog_sec_tech"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_math'), ref('subj_physics'), ref('subj_digital'), ref('subj_ai_data'), ref('subj_english')])]"/>
+    </record>
+
+    <record id="course_s2_health" model="op.course">
+        <field name="name">الصف الثاني الثانوي - مسار الصحة والحياة</field>
+        <field name="code">SEC-G02-HLTH</field>
+        <field name="program_id" ref="prog_sec_health"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_chemistry'), ref('subj_biology'), ref('subj_physics'), ref('subj_math'), ref('subj_english')])]"/>
+    </record>
+
+    <record id="course_s3_gen" model="op.course">
+        <field name="name">الصف الثالث الثانوي - مسار عام</field>
+        <field name="code">SEC-G03-GEN</field>
+        <field name="program_id" ref="prog_sec_gen"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_quran'), ref('subj_arabic'), ref('subj_math'), ref('subj_physics'), ref('subj_english')])]"/>
+    </record>
+
+    <record id="course_s3_tech" model="op.course">
+        <field name="name">الصف الثالث الثانوي - مسار علوم الحاسب والهندسة</field>
+        <field name="code">SEC-G03-TECH</field>
+        <field name="program_id" ref="prog_sec_tech"/>
+        <field name="evaluation_type">GPA</field>
+        <field name="subject_ids" eval="[(6, 0, [ref('subj_math'), ref('subj_physics'), ref('subj_ai_data'), ref('subj_digital'), ref('subj_english')])]"/>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 5. العام الدراسي والفصول الدراسية (Academic Year & Terms)     -->
+    <!-- ============================================================ -->
+    <record id="academic_year_current" model="op.academic.year">
+        <field name="name">العام الدراسي 2026-2027 (1448 هـ)</field>
+        <field name="start_date">2026-08-20</field>
+        <field name="end_date">2027-06-25</field>
+        <field name="term_structure">three_sem</field>
+    </record>
+
+    <record id="academic_term_1" model="op.academic.term">
+        <field name="name">الفصل الدراسي الأول (Term 1)</field>
+        <field name="term_start_date">2026-08-20</field>
+        <field name="term_end_date">2026-11-20</field>
+        <field name="academic_year_id" ref="academic_year_current"/>
+    </record>
+
+    <record id="academic_term_2" model="op.academic.term">
+        <field name="name">الفصل الدراسي الثاني (Term 2)</field>
+        <field name="term_start_date">2026-11-25</field>
+        <field name="term_end_date">2027-02-25</field>
+        <field name="academic_year_id" ref="academic_year_current"/>
+    </record>
+
+    <record id="academic_term_3" model="op.academic.term">
+        <field name="name">الفصل الدراسي الثالث (Term 3)</field>
+        <field name="term_start_date">2027-03-05</field>
+        <field name="term_end_date">2027-06-25</field>
+        <field name="academic_year_id" ref="academic_year_current"/>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 6. الشُعب والفصول الدراسية (Batches)                          -->
+    <!-- ============================================================ -->
+    <record id="batch_kg1_a" model="op.batch">
+        <field name="name">شعبة (أ) - روضة أولى</field>
+        <field name="code">KG1-A</field>
+        <field name="start_date">2026-08-20</field>
+        <field name="end_date">2027-06-25</field>
+        <field name="course_id" ref="course_kg1"/>
+    </record>
+
+    <record id="batch_p1_a" model="op.batch">
+        <field name="name">شعبة (أ) - الصف الأول الابتدائي</field>
+        <field name="code">P1-A</field>
+        <field name="start_date">2026-08-20</field>
+        <field name="end_date">2027-06-25</field>
+        <field name="course_id" ref="course_p1"/>
+    </record>
+
+    <record id="batch_p1_b" model="op.batch">
+        <field name="name">شعبة (ب) - الصف الأول الابتدائي</field>
+        <field name="code">P1-B</field>
+        <field name="start_date">2026-08-20</field>
+        <field name="end_date">2027-06-25</field>
+        <field name="course_id" ref="course_p1"/>
+    </record>
+
+    <record id="batch_m1_a" model="op.batch">
+        <field name="name">شعبة (أ) - الأول المتوسط</field>
+        <field name="code">M1-A</field>
+        <field name="start_date">2026-08-20</field>
+        <field name="end_date">2027-06-25</field>
+        <field name="course_id" ref="course_m1"/>
+    </record>
+
+    <record id="batch_s1_a" model="op.batch">
+        <field name="name">شعبة (أ) - الأول الثانوي</field>
+        <field name="code">S1-A</field>
+        <field name="start_date">2026-08-20</field>
+        <field name="end_date">2027-06-25</field>
+        <field name="course_id" ref="course_s1"/>
+    </record>
+
+</odoo>

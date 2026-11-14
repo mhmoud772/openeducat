@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_session_confirmation_form" model="ir.ui.view">
+            <field name="name">session.confirmation.form</field>
+            <field name="model">session.confirmation</field>
+            <field name="arch" type="xml">
+                <form string="تأكيد اعتماد الحصص">
+                    <h2 class="text-primary my-3">هل أنت متأكد من رغبتك في اعتماد الحصص والمحاضرات المحددة؟</h2>
+                    <footer>
+                        <span class="w-100" groups="base.group_user">
+                            <button string="نعم، تأكيد الاعتماد" type="object" name="state_confirmation" class="oe_highlight btn-primary m-2"/>
+                            <button special="cancel" string="إلغاء" type="object" class="btn-secondary"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="session_confirmation_form_view_act" model="ir.actions.act_window">
+            <field name="name">تأكيد اعتماد الحصص</field>
+            <field name="res_model">session.confirmation</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="path">session-confirmation</field>
+            <field name="binding_model_id" ref="model_op_session"/>
+        </record>
+
+</odoo>

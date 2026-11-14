@@ -1,0 +1,550 @@
+/*
+ * OpenEduCat — RTL Arabic Support Stylesheet
+ * دعم الاتجاه من اليمين إلى اليسار للغة العربية وتطبيق خطوط كيرو وتجوال
+ */
+
+$arabic-font: 'Cairo', 'Tajawal', 'Almarai', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+/* ============================================
+   1. RTL Base — الاتجاه والخطوط الأساسية
+   ============================================ */
+html[lang^="ar"] .o_web_client,
+html[dir="rtl"] .o_web_client,
+.o_web_client[lang^="ar"],
+.o_web_client[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+    font-family: $arabic-font !important;
+
+    h1, h2, h3, h4, h5, h6,
+    .o_main_navbar,
+    .o_control_panel,
+    .o_breadcrumb,
+    .btn,
+    .nav-tabs,
+    .o_form_sheet,
+    .oe_title,
+    .modal-title,
+    .dropdown-menu,
+    .dropdown-item,
+    .o_searchview,
+    .o_search_panel {
+        font-family: $arabic-font !important;
+    }
+
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    .o_field_monetary input,
+    .o_field_float input,
+    .o_field_integer input {
+        direction: ltr;
+        text-align: left;
+    }
+}
+
+/* ============================================
+   2. Navigation & Breadcrumb — شريط التنقل
+   ============================================ */
+:is(
+    html[lang^="ar"] .o_web_client,
+    html[dir="rtl"] .o_web_client,
+    .o_web_client[lang^="ar"],
+    .o_web_client[dir="rtl"]
+) {
+    .o_main_navbar {
+        direction: rtl;
+
+        .smartedu_navbar_brand {
+            margin-left: 10px;
+            margin-right: 0;
+
+            .smartedu_navbar_logo {
+                margin-left: 8px;
+                margin-right: 0;
+            }
+        }
+
+        .o_menu_sections {
+            direction: rtl;
+        }
+
+        .o_menu_systray {
+            direction: rtl;
+            margin-right: auto !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    .o_breadcrumb {
+        direction: rtl;
+
+        .o_back_button {
+            transform: scaleX(-1);
+        }
+    }
+
+/* ============================================
+   3. Form Views — نماذج الإدخال
+   ============================================ */
+    .o_form_view {
+        .o_form_sheet {
+            direction: rtl;
+        }
+
+        .o_group label {
+            text-align: right;
+        }
+
+        .o_field_widget input:not([type="email"]):not([type="url"]):not([type="tel"]),
+        .o_field_widget textarea {
+            text-align: right;
+            direction: rtl;
+        }
+
+        .o_field_widget input[type="email"],
+        .o_field_widget input[type="url"],
+        .o_field_widget input[type="tel"],
+        .o_field_widget input[type="number"],
+        .o_field_monetary input,
+        .o_field_float input,
+        .o_field_integer input {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .o_field_translate {
+            float: left;
+        }
+
+        /* علامات التبويب — Notebook Tabs */
+        .o_notebook {
+            .nav-tabs {
+                padding-right: 0;
+                direction: rtl;
+
+                .nav-item {
+                    margin-left: 0.25rem;
+                    margin-right: 0;
+                }
+
+                .nav-link {
+                    text-align: right;
+                }
+            }
+
+            .tab-content {
+                direction: rtl;
+                text-align: right;
+            }
+        }
+
+        /* وسوم الاختيار المتعدد — Many2many Tags */
+        .o_field_many2many_tags,
+        .o_field_tags {
+            direction: rtl;
+            text-align: right;
+
+            .badge,
+            .o_tag {
+                direction: rtl;
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                margin-left: 4px;
+                margin-right: 0;
+
+                .o_delete,
+                .o_tag_badge_delete {
+                    margin-right: 4px;
+                    margin-left: 0;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+/* ============================================
+   4. List Views — عرض القوائم
+   ============================================ */
+    .o_list_view {
+        direction: rtl;
+
+        thead th,
+        tbody td {
+            text-align: right;
+        }
+
+        .o_list_record_selector {
+            text-align: center;
+        }
+    }
+
+/* ============================================
+   5. Kanban Views — عرض الكانبان
+   ============================================ */
+    .o_kanban_view {
+        direction: rtl;
+
+        .o_kanban_record {
+            text-align: right;
+        }
+    }
+
+/* ============================================
+   6. Sidebar & Control Panel — الشريط الجانبي
+   ============================================ */
+    .o_action_manager .o_control_panel {
+        direction: rtl;
+
+        .o_cp_top {
+            flex-direction: row-reverse;
+        }
+
+        .o_searchview {
+            direction: rtl;
+
+            .o_searchview_input_container {
+                padding-right: 8px;
+                padding-left: 0;
+
+                .o_searchview_facet {
+                    margin: 1px 0 1px 4px;
+
+                    .o_searchview_facet_label {
+                        border-radius: 0 3px 3px 0;
+                    }
+
+                    .o_facet_values {
+                        border-radius: 3px 0 0 3px;
+                    }
+
+                    .o_facet_remove {
+                        margin-right: 4px;
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    /* لوحة التصفية الجانبية — SearchPanel */
+    .o_search_panel {
+        direction: rtl;
+        text-align: right;
+        border-left: 1px solid #dee2e6 !important;
+        border-right: none !important;
+
+        .o_search_panel_section_header {
+            text-align: right;
+            direction: rtl;
+        }
+
+        .o_search_panel_category_value,
+        .o_search_panel_filter_value {
+            text-align: right;
+            direction: rtl;
+
+            .form-check {
+                padding-right: 1.5em;
+                padding-left: 0;
+
+                .form-check-input {
+                    float: right;
+                    margin-right: -1.5em;
+                    margin-left: 0;
+                }
+            }
+
+            .o_search_panel_counter {
+                margin-right: auto;
+                margin-left: 0;
+            }
+        }
+    }
+
+/* ============================================
+   7. Buttons & Actions — الأزرار والإجراءات
+   ============================================ */
+    .o_statusbar_status {
+        direction: rtl;
+    }
+
+/* ============================================
+   8. Modals & Dialogs — النوافذ المنبثقة
+   ============================================ */
+    .modal-dialog {
+        direction: rtl;
+
+        .modal-header,
+        .modal-body,
+        .modal-footer {
+            text-align: right;
+        }
+
+        .modal-footer {
+            flex-direction: row-reverse;
+        }
+    }
+
+/* ============================================
+   9. Dashboard Stats — إحصائيات لوحة التحكم
+   ============================================ */
+    .o_stat_button {
+        direction: rtl;
+
+        .o_stat_info {
+            text-align: right;
+        }
+    }
+
+/* ============================================
+   10. Student & Faculty Forms — نماذج الطالب والعضو
+   ============================================ */
+    .o_form_view .o_form_sheet_bg {
+        .student-name .o_field_widget input,
+        .faculty-name .o_field_widget input {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 576px) {
+            .student-name, .faculty-name {
+                h1 {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    gap: 8px !important;
+
+                    .o_field_widget {
+                        width: 100% !important;
+
+                        input {
+                            width: 100% !important;
+                            font-size: 16px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/* ============================================
+   11. OpenEduCat Custom Cards — البطاقات المخصصة
+   ============================================ */
+    .o_student_kanban,
+    .o_faculty_kanban {
+        .o_kanban_record {
+            direction: rtl;
+            text-align: right;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+    }
+
+/* ============================================
+   12. Reports RTL — تقارير باتجاه عربي
+   ============================================ */
+}
+.o_report_layout {
+    direction: rtl;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+
+    .page {
+        direction: rtl;
+    }
+}
+:is(
+    html[lang^="ar"] .o_web_client,
+    html[dir="rtl"] .o_web_client,
+    .o_web_client[lang^="ar"],
+    .o_web_client[dir="rtl"]
+) {
+
+/* ============================================
+   13. Date Pickers — منتقيات التاريخ
+   ============================================ */
+    .o_datepicker_root {
+        direction: ltr;
+    }
+
+/* ============================================
+   14. Chatter / Messages — المحادثات
+   ============================================ */
+    .o-mail-Thread,
+    .o_Message {
+        direction: rtl;
+        text-align: right;
+
+        .o_Message_content {
+            direction: rtl;
+        }
+    }
+
+/* ============================================
+   15. Arabic Typography Improvements — تحسينات طباعية
+   ============================================ */
+    [dir="rtl"] {
+        line-height: 1.8;
+        letter-spacing: 0;
+        word-spacing: 0.05em;
+    }
+
+/* تحسين عرض الأرقام العربية */
+    .o_field_integer,
+    .o_field_float,
+    .o_field_monetary {
+        font-family: 'Arial', sans-serif;
+    }
+}
+
+/* ==============================================================================
+   SMARTEDU UNIFIED DESIGN SYSTEM — SYSTEM-WIDE AESTHETICS (NAVY + CREAM + CORAL)
+   ============================================================================== */
+
+/* 1. BACKEND ERP WEB CLIENT & NAVBAR */
+:is(
+    html[lang^="ar"] .o_web_client,
+    html[dir="rtl"] .o_web_client,
+    .o_web_client[lang^="ar"],
+    .o_web_client[dir="rtl"],
+    .o_web_client
+) {
+    .o_main_navbar {
+        background: linear-gradient(135deg, #0A0F1D 0%, #14213D 100%) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 4px 18px rgba(10, 15, 29, 0.25) !important;
+
+        .o_menu_brand {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.2px;
+        }
+
+        .o_nav_entry,
+        .dropdown-toggle,
+        .o_menu_sections > button {
+            color: rgba(255, 255, 255, 0.88) !important;
+            font-weight: 600;
+            transition: all 0.2s ease;
+
+            &:hover, &:focus, &.show {
+                background: rgba(255, 255, 255, 0.14) !important;
+                color: #ffffff !important;
+            }
+        }
+
+        .o_menu_systray {
+            .o_nav_entry,
+            button {
+                color: rgba(255, 255, 255, 0.85) !important;
+                &:hover {
+                    color: #FF6B6B !important;
+                }
+            }
+        }
+    }
+
+    /* Control Panel & Breadcrumb */
+    .o_control_panel {
+        background: #FAF8F5 !important;
+        border-bottom: 1px solid rgba(20, 33, 61, 0.08) !important;
+    }
+
+    /* Primary Buttons */
+    .btn-primary {
+        background: linear-gradient(135deg, #14213D 0%, #1E293B 100%) !important;
+        border-color: #14213D !important;
+        color: #ffffff !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 12px rgba(20, 33, 61, 0.18) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+        &:hover, &:focus, &:active {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FA5252 100%) !important;
+            border-color: #FF6B6B !important;
+            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.4) !important;
+            transform: translateY(-1px);
+        }
+    }
+
+    /* Form Views */
+    .o_form_view {
+        .o_form_sheet_bg {
+            background-color: #FAF8F5 !important;
+        }
+
+        .o_form_sheet {
+            background: #ffffff !important;
+            border: 1px solid rgba(20, 33, 61, 0.08) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 10px 30px rgba(20, 33, 61, 0.04) !important;
+        }
+    }
+
+    /* Kanban Views */
+    .o_kanban_view .o_kanban_record {
+        border-radius: 18px !important;
+        border: 1px solid rgba(20, 33, 61, 0.08) !important;
+        box-shadow: 0 6px 20px rgba(20, 33, 61, 0.03) !important;
+        transition: all 0.25s ease !important;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(20, 33, 61, 0.08) !important;
+            border-color: rgba(255, 107, 107, 0.35) !important;
+        }
+    }
+}
+
+/* 2. CUSTOMER & STUDENT & PARENT PORTAL */
+.o_portal {
+    background-color: #FAF8F5 !important;
+    font-family: 'Cairo', 'Tajawal', sans-serif !important;
+
+    .o_portal_my_home {
+        .o_portal_docs {
+            .list-group-item {
+                border-radius: 18px !important;
+                border: 1px solid rgba(20, 33, 61, 0.08) !important;
+                box-shadow: 0 8px 24px rgba(20, 33, 61, 0.04) !important;
+                background: #ffffff !important;
+                margin-bottom: 14px;
+                padding: 18px 24px !important;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                &:hover {
+                    transform: translateY(-3px);
+                    border-color: rgba(255, 107, 107, 0.4) !important;
+                    box-shadow: 0 16px 36px rgba(20, 33, 61, 0.08) !important;
+                }
+
+                .badge {
+                    background: linear-gradient(135deg, #FF6B6B 0%, #FA5252 100%) !important;
+                    color: #ffffff !important;
+                    font-weight: 700;
+                    border-radius: 50px;
+                    padding: 6px 14px;
+                    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+                }
+            }
+        }
+    }
+
+    .breadcrumb {
+        background-color: #F5EFEB !important;
+        border-radius: 14px !important;
+        padding: 10px 20px !important;
+        border: 1px solid rgba(20, 33, 61, 0.06);
+
+        a {
+            color: #14213D !important;
+            font-weight: 700;
+            text-decoration: none;
+
+            &:hover {
+                color: #FF6B6B !important;
+            }
+        }
+    }
+}

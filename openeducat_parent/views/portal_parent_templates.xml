@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add My Children entry to Portal Home -->
+    <template id="portal_my_home_parent" inherit_id="portal.portal_my_home" priority="40">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">أبنائي والطلاب المسجلين</t>
+                <t t-set="url" t-value="'/my/children'"/>
+                <t t-set="placeholder_count" t-value="'children_count'"/>
+                <t t-set="config_card" t-value="{'show_count': True}"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Main Parent Portal Page -->
+    <template id="portal_my_children" name="بوابة متابعة الأبناء">
+        <t t-call="portal.portal_layout">
+            <t t-set="my_details" t-value="False"/>
+            <div class="container py-4">
+                
+                <!-- Page Breadcrumbs -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb bg-light p-2 rounded-3">
+                        <li class="breadcrumb-item"><a href="/my">لوحة التحكم الرئيسية</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">بوابة أولياء الأمور — متابعة الأبناء</li>
+                    </ol>
+                </nav>
+
+                <t t-if="not students">
+                    <div class="alert alert-info shadow-sm rounded-3 text-center p-5">
+                        <i class="fa fa-info-circle fa-3x mb-3 text-primary d-block"/>
+                        <h4>لا يوجد طلاب مسجلون حالياً مرتبطين بهذا الحساب</h4>
+                        <p class="text-muted">يرجى مراجعة إدارة القبول والتسجيل لربط ملفك ببيانات الأبناء.</p>
+                        <a href="/my" class="btn btn-primary mt-2">العودة للرئيسية</a>
+                    </div>
+                </t>
+
+                <t t-else="">
+                    <!-- Children Selector Bar (only shown if multiple children exist) -->
+                    <t t-if="len(students) &gt; 1">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span class="fw-bold text-dark me-2">
+                                    <i class="fa fa-users text-primary me-1"/>
+                                    اختيار ملف الابن / الابنة:
+                                </span>
+                                <t t-foreach="students" t-as="std">
+                                    <a t-attf-href="/my/children?student_id=#{std.id}"
+                                       t-attf-class="btn #{selected_student and selected_student.id == std.id and 'btn-primary shadow-sm' or 'btn-outline-secondary'} rounded-pill px-3 py-1">
+                                        <i class="fa fa-user-graduate me-1"/>
+                                        <span t-esc="std.name"/>
+                                    </a>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+
+                    <!-- Selected Student Profile Card -->
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-4" style="border-top: 4px solid #14213D !important;">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img t-att-src="image_data_uri(selected_student.image_1920 or selected_student.avatar_128)"
+                                         alt="صورة الطالب"
+                                         class="rounded-circle border p-1 shadow-sm"
+                                         style="width: 90px; height: 90px; object-fit: cover;"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="fw-bold text-dark mb-1" t-esc="selected_student.name"/>
+                                    <div class="d-flex flex-wrap gap-3 text-muted small mt-2">
+                                        <div>
+                                            <strong class="text-primary">الرقم الأكاديمي:</strong>
+                                            <span class="badge bg-light text-dark border ms-1" t-esc="selected_student.gr_no or '—'"/>
+                                        </div>
+                                        <div>
+                                            <strong class="text-primary">المرحلة الدراسية:</strong>
+                                            <span t-if="selected_student.course_detail_ids" t-esc="selected_student.course_detail_ids[0].course_id.name"/>
+                                            <span t-else="">—</span>
+                                        </div>
+                                        <div>
+                                            <strong class="text-primary">الشعبة:</strong>
+                                            <span t-if="selected_student.course_detail_ids" t-esc="selected_student.course_detail_ids[0].batch_id.name"/>
+                                            <span t-else="">—</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Summary Stat Cards -->
+                    <h5 class="fw-bold text-dark mb-3">
+                        <i class="fa fa-calendar-check text-primary me-2"/>
+                        ملخص الحضور والغياب الأكاديمي
+                    </h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #10B981 !important;">
+                                <span class="text-muted small fw-bold">أيام الحضور</span>
+                                <h3 class="fw-bold text-success mt-2 mb-0" t-esc="attendance_summary['present']"/>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #EF4444 !important;">
+                                <span class="text-muted small fw-bold">أيام الغياب</span>
+                                <h3 class="fw-bold text-danger mt-2 mb-0" t-esc="attendance_summary['absent']"/>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #F59E0B !important;">
+                                <span class="text-muted small fw-bold">مرات التأخير</span>
+                                <h3 class="fw-bold text-warning mt-2 mb-0" t-esc="attendance_summary['late']"/>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #3B82F6 !important;">
+                                <span class="text-muted small fw-bold">الاستئذان المبرر</span>
+                                <h3 class="fw-bold text-primary mt-2 mb-0" t-esc="attendance_summary['excused']"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Attendance Log Table -->
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-4">
+                        <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                            <h6 class="fw-bold mb-0 text-dark">سجل الحضور الأخير (آخر الحصص المسجلة)</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <t t-if="recent_attendance">
+                                <!-- Desktop Table View -->
+                                <div class="table-responsive d-none d-md-block">
+                                    <table class="table table-hover align-middle mb-0 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>التاريخ</th>
+                                                <th>حالة الحضور</th>
+                                                <th>الملاحظات والتفاصيل</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="recent_attendance" t-as="att">
+                                                <tr>
+                                                    <td><span t-field="att.attendance_date" t-options="{'widget': 'date'}"/></td>
+                                                    <td>
+                                                        <t t-if="att.present">
+                                                            <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">حاضر ومشارك</span>
+                                                        </t>
+                                                        <t t-elif="att.absent">
+                                                            <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">غائب</span>
+                                                        </t>
+                                                        <t t-elif="att.late">
+                                                            <span class="badge bg-warning-subtle text-warning border border-warning-subtle px-2 py-1">تأخر صباحي</span>
+                                                        </t>
+                                                        <t t-elif="att.excused">
+                                                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">استئذان بعذر مسبق</span>
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-muted small" t-esc="att.remark or '—'"/>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Mobile Card View -->
+                                <div class="d-md-none p-3">
+                                    <t t-foreach="recent_attendance" t-as="att">
+                                        <div class="card border rounded-3 p-3 mb-2 shadow-sm bg-light">
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <span class="fw-bold text-dark small">
+                                                    <i class="fa fa-calendar-o me-1 text-primary"/>
+                                                    <span t-field="att.attendance_date" t-options="{'widget': 'date'}"/>
+                                                </span>
+                                                <t t-if="att.present">
+                                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">حاضر</span>
+                                                </t>
+                                                <t t-elif="att.absent">
+                                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">غائب</span>
+                                                </t>
+                                                <t t-elif="att.late">
+                                                    <span class="badge bg-warning-subtle text-warning border border-warning-subtle px-2 py-1">متأخر</span>
+                                                </t>
+                                                <t t-elif="att.excused">
+                                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">بعذر</span>
+                                                </t>
+                                            </div>
+                                            <div t-if="att.remark" class="text-muted small mt-1">
+                                                <strong>الملاحظة:</strong> <span t-esc="att.remark"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <!-- Reassuring Empty State -->
+                                <div class="text-center p-4 p-md-5">
+                                    <div class="mb-3">
+                                        <i class="fa fa-check-circle-o fa-3x text-success opacity-75"/>
+                                    </div>
+                                    <h5 class="fw-bold text-dark mb-1">السجل منتظم ونظيف</h5>
+                                    <p class="text-muted small mb-0">لم يتم تسجيل أي ملاحظات غياب أو تأخر سلبية على الطالب خلال الفترة الأخيرة.</p>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Quick Academic Actions -->
+                    <div class="card bg-light border-0 rounded-4 p-4 shadow-sm text-center">
+                        <h6 class="fw-bold text-dark mb-2">خدمات أكاديمية إضافية</h6>
+                        <p class="text-muted small mb-3">يمكنك طلب تقارير الحضور والغياب أو متابعة الفواتير والرسوم من خلال قسم الوثائق والفواتير في البوابة.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="/my/invoices" class="btn btn-outline-dark rounded-pill px-4">
+                                <i class="fa fa-file-invoice-dollar me-1"/>
+                                استعراض الرسوم والفواتير
+                            </a>
+                            <a href="/my" class="btn btn-primary rounded-pill px-4">
+                                <i class="fa fa-home me-1"/>
+                                العودة للبوابة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

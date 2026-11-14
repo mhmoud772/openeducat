@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_timetable_teacher_generate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-set="layout_document_title">جدول الحصص الأسبوعي لعضو هيئة التدريس</t>
+                    <div class="page" style="direction: rtl; font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, sans-serif; padding: 20px 25px; color: #0F172A;">
+                        <style>
+                            .smartedu-teacher-tt-box {
+                                border: 2px solid #1E3A8A;
+                                border-radius: 14px;
+                                padding: 24px;
+                                background: #FFFFFF;
+                                box-shadow: 0 4px 15px rgba(10, 25, 47, 0.08);
+                                position: relative;
+                            }
+                            .smartedu-teacher-tt-header {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                border-bottom: 2.5px solid #D97706;
+                                padding-bottom: 16px;
+                                margin-bottom: 20px;
+                            }
+                            .smartedu-teacher-tt-title {
+                                text-align: center;
+                                margin: 15px 0 22px 0;
+                            }
+                            .smartedu-teacher-tt-badge {
+                                display: inline-block;
+                                font-size: 20px;
+                                font-weight: 900;
+                                color: #FFFFFF;
+                                background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+                                padding: 6px 34px;
+                                border-radius: 20px;
+                                border: 1.5px solid #D97706;
+                                letter-spacing: 0.5px;
+                            }
+                            .smartedu-info-grid {
+                                background: #F8FAFC;
+                                border: 1px solid #E2E8F0;
+                                border-radius: 10px;
+                                padding: 14px 18px;
+                                margin-bottom: 22px;
+                                font-size: 13.5px;
+                                line-height: 1.8;
+                            }
+                            .smartedu-teacher-tt-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 18px 0;
+                                font-size: 11.5px;
+                            }
+                            .smartedu-teacher-tt-table th {
+                                background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+                                color: #FFFFFF;
+                                padding: 10px 6px;
+                                text-align: center;
+                                font-weight: 700;
+                                border: 1px solid #1E3A8A;
+                            }
+                            .smartedu-teacher-tt-table td {
+                                padding: 8px 6px;
+                                border: 1px solid #CBD5E1;
+                                text-align: center;
+                                vertical-align: middle;
+                                height: 50px;
+                            }
+                            .smartedu-teacher-tt-table tr:nth-child(even) td {
+                                background-color: #F8FAFC;
+                            }
+                            .smartedu-period-badge {
+                                font-weight: 700;
+                                color: #1E3A8A;
+                                background: #EFF6FF;
+                                padding: 4px 6px;
+                                border-radius: 6px;
+                                border: 1px solid #BFDBFE;
+                                display: inline-block;
+                                font-size: 11px;
+                            }
+                            .smartedu-cell-course {
+                                font-weight: 700;
+                                color: #1E3A8A;
+                                font-size: 11px;
+                            }
+                            .smartedu-cell-batch {
+                                color: #D97706;
+                                font-weight: 600;
+                                font-size: 10.5px;
+                            }
+                            .smartedu-cell-subject {
+                                color: #0F172A;
+                                font-weight: 600;
+                                font-size: 11px;
+                            }
+                            .smartedu-footer-signatures {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: 36px;
+                                padding-top: 18px;
+                                border-top: 1.5px dashed #CBD5E1;
+                                text-align: center;
+                                font-size: 13px;
+                            }
+                        </style>
+
+                        <div class="smartedu-teacher-tt-box">
+                            <!-- School Header -->
+                            <div class="smartedu-teacher-tt-header">
+                                <div style="text-align: right;">
+                                    <div style="font-size: 15px; font-weight: 800; color: #0A192F;">
+                                        نظام سمارت إديو للتعليم المطور | إدارة الجداول الأكاديمية
+                                    </div>
+                                    <div style="font-size: 12px; color: #64748B; margin-top: 4px;">وكالة الشؤون التعليمية والمعلمين</div>
+                                </div>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 12px; color: #64748B;">تاريخ الطباعة:</div>
+                                    <div style="font-size: 13px; font-weight: 700; color: #0A192F;" t-esc="time.strftime('%Y/%m/%d')"/>
+                                </div>
+                            </div>
+
+                            <!-- Main Title -->
+                            <div class="smartedu-teacher-tt-title">
+                                <div class="smartedu-teacher-tt-badge">
+                                    👨‍🏫 جدول الحصص الأسبوعي لعضو هيئة التدريس
+                                </div>
+                            </div>
+
+                            <!-- Teacher Info Grid -->
+                            <div class="smartedu-info-grid">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr>
+                                        <td style="width: 50%; padding: 4px 0;">
+                                            <strong style="color: #1E3A8A;">اسم المعلم / الأستاذ:</strong>
+                                            <span style="font-weight: 700; color: #0F172A;" t-esc="get_full_name(data)"/>
+                                        </td>
+                                        <td style="width: 50%; padding: 4px 0;">
+                                            <strong style="color: #1E3A8A;">ساري من تاريخ:</strong>
+                                            <span t-esc="data.get('start_date')" t-options="{'widget':'date'}"/>
+                                            <strong style="color: #1E3A8A; margin-right: 12px;">إلى:</strong>
+                                            <span t-esc="data.get('end_date')" t-options="{'widget':'date'}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- Teacher Timetable Grid -->
+                            <table class="smartedu-teacher-tt-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 16%;">الحصة / التوقيت</th>
+                                        <t t-foreach="get_heading()" t-as="n">
+                                            <th style="width: 12%;">
+                                                <span t-out="n"/>
+                                            </th>
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="get_object(data)" t-as="a">
+                                        <td>
+                                            <span class="smartedu-period-badge" t-esc="'%s' % a['name'] if a['name'] else '—'"/>
+                                        </td>
+                                        <td t-foreach="range(7)" t-as="day_idx">
+                                            <t t-set="line_item" t-value="a['line'].get(str(day_idx), {})"/>
+                                            <t t-if="line_item.get('subject') or line_item.get('course')">
+                                                <div class="smartedu-cell-course" t-esc="line_item.get('course', '')"/>
+                                                <div class="smartedu-cell-batch" t-esc="line_item.get('batch', '')"/>
+                                                <div class="smartedu-cell-subject" t-esc="line_item.get('subject', '')"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span style="color: #CBD5E1;">—</span>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- Signatures -->
+                            <div class="smartedu-footer-signatures">
+                                <div style="width: 30%;">
+                                    <div style="font-weight: 700; color: #1E3A8A;">توقيع المعلم</div>
+                                    <div style="margin-top: 36px; color: #94A3B8;">...................................</div>
+                                </div>
+                                <div style="width: 30%;">
+                                    <div style="font-weight: 700; color: #1E3A8A;">وكيل الشؤون التعليمية</div>
+                                    <div style="margin-top: 36px; color: #94A3B8;">...................................</div>
+                                </div>
+                                <div style="width: 30%;">
+                                    <div style="font-weight: 700; color: #1E3A8A;">اعتماد مدير المدرسة</div>
+                                    <div style="margin-top: 36px; color: #94A3B8;">...................................</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

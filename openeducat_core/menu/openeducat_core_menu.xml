@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_openeducat_configuration" model="ir.actions.act_window">
+        <field name="name">الإعدادات العامة</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="path">res-config-settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module' : 'openeducat_core'}</field>
+    </record>
+    <!-- SmartEdu Core Menu -->
+    <menuitem id="menu_op_school_root"
+              name="الشؤون التعليمية"
+              sequence="220"
+              web_icon="openeducat_core,static/description/smartedu_icon.svg"/>
+
+    <menuitem id="menu_op_school_main"
+              name="الطلاب"
+              parent="menu_op_school_root"
+              sequence="10"
+              action="act_open_op_student_view"
+              groups="group_op_faculty"/>
+
+    <menuitem id="menu_op_faculty_main"
+              name="الكادر التعليمي"
+              parent="menu_op_school_root"
+              sequence="20"
+              action="act_open_op_faculty_view"
+              groups="openeducat_core.group_op_faculty"/>
+
+    <menuitem id="menu_op_general_main"
+              name="عام"
+              parent="menu_op_school_root"
+              sequence="30"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_op_school_config"
+              name="التهيئة والإعدادات"
+              parent="menu_op_school_root"
+              sequence="50"/>
+
+    <menuitem id="menu_op_school_config_course"
+              name="إدارة المراحل والمقررات"
+              parent="menu_op_school_config"
+              sequence="10"/>
+
+    <menuitem id="menu_op_course_sub"
+              name="المراحل والصفوف الدراسية"
+              parent="menu_op_school_config_course"
+              sequence="10"
+              action="act_open_op_course_view"
+              groups="group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_batch_sub"
+              name="الشُعب والفصول"
+              parent="menu_op_school_config_course"
+              sequence="20"
+              action="act_open_op_batch_view"
+              groups="group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_department_sub"
+              name="الأقسام التعليمية"
+              parent="menu_op_school_config_course"
+              sequence="30"
+              action="act_open_op_department_view"
+              groups="group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_school_config_subject"
+              name="إدارة المواد الدراسية"
+              parent="menu_op_school_config"
+              sequence="20"/>
+
+    <menuitem id="menu_op_subject_sub"
+              name="المواد الدراسية"
+              sequence="10"
+              parent="menu_op_school_config_subject"
+              action="act_open_op_subject_view"
+              groups="group_op_back_office_admin,openeducat_core.group_op_faculty"/>
+
+    <menuitem id="menu_op_school_config_general"
+              name="الإدارة العامة"
+              parent="menu_op_school_config"
+              sequence="80"/>
+
+    <menuitem id="menu_op_category_sub"
+              name="فئات الطلاب"
+              parent="menu_op_school_config_general"
+              sequence="40"
+              action="act_open_op_category_view"
+              groups="openeducat_core.group_op_back_office_admin"/>
+
+    <!-- Activity Root -->
+    <menuitem id="menu_op_school_config_activity"
+              name="إدارة الأنشطة المدرسية"
+              parent="menu_op_school_config"
+              sequence="40"/>
+
+    <!-- Report Root -->
+    <menuitem id="menu_op_report_main"
+              name="التقارير والإحصائيات"
+              parent="menu_op_school_root"
+              sequence="40"/>
+
+    <menuitem name="الإعدادات العامة"
+              id="menu_openeducat_config"
+              action="action_openeducat_configuration"
+              parent="menu_op_school_config"
+              groups="base.group_system"
+              sequence="100"/>
+
+    <menuitem id="menu_academic_year" name="السنوات الدراسية"
+              sequence="1"
+              parent="openeducat_core.menu_op_school_config"
+              action="act_op_academic_year_view"
+              groups="openeducat_core.group_op_back_office_admin"/>
+
+    <menuitem id="menu_academic_term" name="الفصول الدراسية"
+              sequence="2"
+              parent="openeducat_core.menu_op_school_config"
+              action="act_op_academic_term_view"
+              groups="openeducat_core.group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_school_config_program"
+              name="إدارة البرامج الأكاديمية"
+              parent="openeducat_core.menu_op_school_config"
+              sequence="9"/>
+
+    <menuitem id="menu_op_program_sub"
+              name="البرامج الأكاديمية"
+              parent="menu_op_school_config_program"
+              sequence="10"
+              action="act_open_op_program_view"
+              groups="group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_program_level_sub"
+              name="المستويات التعليمية"
+              parent="menu_op_school_config_program"
+              sequence="10"
+              action="act_open_op_program_level_view"
+              groups="group_op_back_office_admin"/>
+
+</odoo>

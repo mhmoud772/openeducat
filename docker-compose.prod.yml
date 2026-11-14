@@ -1,0 +1,66 @@
+# =========================================================
+# سمارت إديو (SmartEdu) - ملف التشغيل الميداني والإنتاج الرسمي
+# =========================================================
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: smartedu_prod_db
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo123
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - smartedu_prod_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - smartedu_net
+
+  web:
+    image: odoo:19
+    container_name: smartedu_prod_web
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo123
+    volumes:
+      - .:/mnt/extra-addons/openeducat
+      - smartedu_prod_web_data:/var/lib/odoo
+      - ./odoo.prod.conf:/etc/odoo/odoo.conf:ro
+    networks:
+      - smartedu_net
+
+  nginx:
+    image: nginx:alpine
+    container_name: smartedu_prod_nginx
+    restart: always
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    networks:
+      - smartedu_net
+
+volumes:
+  smartedu_prod_db_data:
+  smartedu_prod_web_data:
+
+networks:
+  smartedu_net:
+    driver: bridge

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_library_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="direction: rtl; font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, sans-serif; padding: 20px 0;">
+                    <style>
+                        .smartedu-lib-card {
+                            width: 380px;
+                            height: 230px;
+                            border-radius: 14px;
+                            overflow: hidden;
+                            position: relative;
+                            box-shadow: 0 4px 15px rgba(10, 25, 47, 0.12);
+                            border: 1.5px solid #D97706;
+                            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+                            box-sizing: border-box;
+                            page-break-inside: avoid;
+                            margin: 15px auto;
+                        }
+                        .smartedu-lib-header {
+                            background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+                            border-bottom: 2.5px solid #D97706;
+                            padding: 8px 14px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                        .smartedu-lib-title {
+                            color: #FFFFFF;
+                            font-size: 13.5px;
+                            font-weight: 800;
+                            text-align: right;
+                        }
+                        .smartedu-lib-sub {
+                            color: #FBBF24;
+                            font-size: 10px;
+                            font-weight: 600;
+                        }
+                        .smartedu-lib-body {
+                            padding: 10px 14px;
+                            display: flex;
+                            gap: 12px;
+                            align-items: center;
+                        }
+                        .smartedu-lib-avatar {
+                            width: 82px;
+                            height: 105px;
+                            border-radius: 8px;
+                            border: 1.5px solid #CBD5E1;
+                            object-fit: cover;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+                        }
+                        .smartedu-lib-info {
+                            flex: 1;
+                            font-size: 11.5px;
+                            line-height: 1.7;
+                            color: #0F172A;
+                        }
+                        .smartedu-lib-barcode {
+                            margin-top: 6px;
+                            text-align: center;
+                            background: #FFFFFF;
+                            padding: 2px 4px;
+                            border-radius: 4px;
+                            border: 1px solid #E2E8F0;
+                        }
+                        .smartedu-lib-footer {
+                            background: #0A192F;
+                            color: #94A3B8;
+                            font-size: 8.5px;
+                            text-align: center;
+                            padding: 3px 0;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                        }
+                    </style>
+
+                    <div class="smartedu-lib-card">
+                        <!-- Card Header -->
+                        <div class="smartedu-lib-header">
+                            <div>
+                                <div class="smartedu-lib-title">📚 بطاقة عضوية واستعارة المكتبة</div>
+                                <div class="smartedu-lib-sub" t-esc="res_company.partner_id.name if res_company.partner_id.name else 'نظام سمارت إديو'"/>
+                            </div>
+                            <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" style="max-height: 32px; max-width: 60px; object-fit: contain;"/>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="smartedu-lib-body">
+                            <!-- Student Photo -->
+                            <div>
+                                <img class="smartedu-lib-avatar" t-att-src="image_data_uri(o.image_1920 or o.avatar_128)" alt="صورة الطالب"/>
+                            </div>
+
+                            <!-- Student Info -->
+                            <div class="smartedu-lib-info">
+                                <div>
+                                    <strong style="color: #1E3A8A;">الاسم:</strong>
+                                    <span style="font-weight: 700;" t-field="o.name"/>
+                                </div>
+                                <div t-if="o.library_card_id">
+                                    <strong style="color: #1E3A8A;">رقم البطاقة:</strong>
+                                    <span style="font-family: Arial; font-weight: 700; color: #D97706;" t-field="o.library_card_id.number"/>
+                                </div>
+                                <div t-if="o.library_card_id and o.library_card_id.library_card_type_id">
+                                    <strong style="color: #1E3A8A;">نوع العضوية:</strong>
+                                    <span t-field="o.library_card_id.library_card_type_id.name"/>
+                                </div>
+                                <div t-if="o.library_card_id and o.library_card_id.issue_date">
+                                    <strong style="color: #1E3A8A;">تاريخ الإصدار:</strong>
+                                    <span t-field="o.library_card_id.issue_date" t-options="{'widget':'date'}"/>
+                                </div>
+
+                                <!-- Barcode -->
+                                <div class="smartedu-lib-barcode" t-if="o.library_card_id and o.library_card_id.number">
+                                    <img style="max-height: 26px; max-width: 170px;" t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.library_card_id.number, 170, 26)" alt="Barcode"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="smartedu-lib-footer">
+                            بطاقة رسمية معتمدة من إدارة شؤون المكتبات ومصادر التعلم
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

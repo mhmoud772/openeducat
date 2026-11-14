@@ -1,0 +1,512 @@
+.o_web_client {
+    --oe-primary: #1e3a8a;
+    --oe-primary-dark: #0a192f;
+    --oe-gold: #d97706;
+    --oe-gold-light: #fbbf24;
+    --oe-surface: #ffffff;
+    --oe-page: #f8fafc;
+    --oe-border: #e2e8f0;
+    --oe-text: #0f172a;
+    --oe-muted: #64748b;
+    --oe-focus: rgba(30, 58, 138, 0.22);
+    --oe-font-arabic: 'Cairo', 'Tajawal', 'Almarai', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    font-family: var(--oe-font-arabic) !important;
+    color: var(--oe-text);
+    background-color: var(--oe-page);
+
+    .o_main_navbar {
+        background: linear-gradient(135deg, #071324 0%, #0A192F 40%, #1E3A8A 100%) !important;
+        border-bottom: 2px solid #D97706 !important;
+        box-shadow: 0 3px 12px rgba(7, 19, 36, 0.28) !important;
+        height: 50px !important;
+        min-height: 50px !important;
+        padding: 0 8px !important;
+        align-items: center !important;
+
+        /* SmartEdu Brand in Navbar */
+        .smartedu_navbar_brand {
+            display: flex;
+            align-items: center;
+            height: 38px;
+            padding: 0 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(217, 119, 6, 0.35);
+            transition: all 0.2s ease;
+            margin-inline-end: 8px;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.14);
+                border-color: #FBBF24;
+                transform: translateY(-1px);
+            }
+
+            .smartedu_navbar_logo {
+                height: 26px;
+                width: 26px;
+                border-radius: 6px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            .smartedu_navbar_name {
+                font-weight: 800;
+                font-size: 15px;
+                letter-spacing: 0.3px;
+                color: #ffffff;
+            }
+        }
+
+        /* 9-dots Apps Menu Button */
+        .o_navbar_apps_menu {
+            button {
+                border-radius: 8px !important;
+                padding: 6px 10px !important;
+                color: #ffffff !important;
+                background: rgba(255, 255, 255, 0.08) !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                transition: all 0.2s ease !important;
+                margin-inline-end: 6px !important;
+
+                &:hover,
+                &:focus {
+                    background: rgba(255, 255, 255, 0.18) !important;
+                    color: #FBBF24 !important;
+                    border-color: #D97706 !important;
+                }
+            }
+        }
+
+        /* Current App Title (Brand) */
+        .o_menu_brand {
+            font-weight: 700 !important;
+            font-size: 14.5px !important;
+            color: #ffffff !important;
+            padding: 6px 14px !important;
+            border-radius: 8px !important;
+            margin: 0 4px !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            transition: all 0.2s ease !important;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.18) !important;
+                color: #FBBF24 !important;
+                border-color: #D97706 !important;
+            }
+        }
+
+        /* Sub-sections / Menus (حساب تعريفي، عام، إعدادات) */
+        .o_menu_sections {
+            .o_nav_entry,
+            .dropdown-toggle,
+            button {
+                color: rgba(255, 255, 255, 0.9) !important;
+                font-weight: 600 !important;
+                font-size: 13.5px !important;
+                padding: 6px 12px !important;
+                border-radius: 8px !important;
+                margin: 0 3px !important;
+                background: transparent !important;
+                border: 1px solid transparent !important;
+                transition: all 0.2s ease !important;
+
+                &:hover {
+                    color: #ffffff !important;
+                    background: rgba(255, 255, 255, 0.12) !important;
+                    border-color: rgba(255, 255, 255, 0.15) !important;
+                }
+
+                &:focus,
+                &.active,
+                &[aria-expanded="true"] {
+                    color: #FBBF24 !important;
+                    background: rgba(255, 255, 255, 0.16) !important;
+                    border-color: rgba(217, 119, 6, 0.5) !important;
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+                }
+            }
+        }
+
+        /* Systray Items (Company switcher, notifications, user avatar) */
+        .o_menu_systray {
+            align-items: center !important;
+            gap: 6px !important;
+            padding-inline-end: 4px !important;
+
+            .o_nav_entry,
+            .dropdown-toggle,
+            button,
+            .o-mail-ActivityMenu,
+            .o_MessagingMenu {
+                color: rgba(255, 255, 255, 0.9) !important;
+                border-radius: 8px !important;
+                padding: 5px 8px !important;
+                background: transparent !important;
+                border: 1px solid transparent !important;
+                transition: all 0.2s ease !important;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.12) !important;
+                    color: #FBBF24 !important;
+                }
+            }
+
+            /* Company Switcher Menu */
+            .o_switch_company_menu {
+                .dropdown-toggle {
+                    background: rgba(255, 255, 255, 0.08) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+                    border-radius: 10px !important;
+                    padding: 4px 12px !important;
+                    font-weight: 600 !important;
+                    font-size: 13px !important;
+                    color: #ffffff !important;
+
+                    &:hover {
+                        border-color: #D97706 !important;
+                        background: rgba(255, 255, 255, 0.16) !important;
+                    }
+                }
+            }
+
+            /* Notification & Message Badges */
+            .badge,
+            .o-mail-MessagingMenu-counter,
+            .o_notification_counter {
+                background: linear-gradient(135deg, #D97706 0%, #B45309 100%) !important;
+                color: #ffffff !important;
+                border-radius: 10px !important;
+                font-size: 10.5px !important;
+                font-weight: 700 !important;
+                padding: 2px 6px !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+            }
+
+            /* User Avatar */
+            .o_user_menu {
+                img.rounded-circle,
+                .o_user_avatar {
+                    border: 2px solid #D97706 !important;
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+                }
+            }
+        }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            border-radius: 12px !important;
+            border: 1px solid #E2E8F0 !important;
+            box-shadow: 0 10px 30px rgba(10, 25, 47, 0.18) !important;
+            padding: 8px !important;
+            margin-top: 6px !important;
+
+            .dropdown-item {
+                border-radius: 8px !important;
+                padding: 8px 14px !important;
+                font-size: 13.5px !important;
+                font-weight: 500 !important;
+                color: #334155 !important;
+                transition: all 0.15s ease !important;
+
+                &:hover {
+                    background: #EFF6FF !important;
+                    color: #1E3A8A !important;
+                    font-weight: 600 !important;
+                }
+
+                &.active,
+                &:active {
+                    background: linear-gradient(135deg, #1E3A8A 0%, #0A192F 100%) !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+    }
+
+    .o_action_manager,
+    .o_content {
+        background-color: var(--oe-page);
+    }
+
+    /* Control Panel (Under Navbar) */
+    .o_control_panel {
+        background-color: var(--oe-surface) !important;
+        border-bottom: 1px solid var(--oe-border) !important;
+        box-shadow: 0 1px 3px rgba(10, 25, 47, 0.04) !important;
+        padding: 8px 16px !important;
+
+        .breadcrumb-item,
+        .o_breadcrumb .active {
+            color: var(--oe-text) !important;
+            font-weight: 700 !important;
+            font-size: 15px !important;
+        }
+
+        /* Action Buttons like "New" (جديد) */
+        .o_control_panel_main_buttons {
+            .btn-primary,
+            .o_list_button_add,
+            button.btn-primary {
+                background: linear-gradient(135deg, #1E3A8A 0%, #0A192F 100%) !important;
+                background-color: #1E3A8A !important;
+                border: 1px solid #0A192F !important;
+                color: #ffffff !important;
+                border-radius: 8px !important;
+                font-weight: 700 !important;
+                padding: 6px 16px !important;
+                font-size: 13.5px !important;
+                box-shadow: 0 2px 6px rgba(30, 58, 138, 0.22) !important;
+                transition: all 0.2s ease !important;
+
+                &:hover {
+                    background: linear-gradient(135deg, #0A192F 0%, #D97706 100%) !important;
+                    border-color: #D97706 !important;
+                    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
+                    transform: translateY(-1px);
+                }
+            }
+        }
+
+        /* Search Box */
+        .o_searchview {
+            background: #F8FAFC !important;
+            border: 1.5px solid #CBD5E1 !important;
+            border-radius: 10px !important;
+            padding: 4px 10px !important;
+            transition: all 0.2s ease !important;
+
+            &:focus-within {
+                background: #ffffff !important;
+                border-color: #1E3A8A !important;
+                box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12) !important;
+            }
+
+            .o_searchview_input {
+                font-size: 13px !important;
+            }
+
+            .o_searchview_facet {
+                background: #EFF6FF !important;
+                border: 1px solid #BFDBFE !important;
+                border-radius: 6px !important;
+                color: #1E3A8A !important;
+
+                .o_searchview_facet_label {
+                    background: #1E3A8A !important;
+                    color: #ffffff !important;
+                }
+            }
+        }
+
+        /* View switcher buttons (Kanban, List, Activity) */
+        .o_cp_switch_buttons {
+            button.btn {
+                border-radius: 8px !important;
+                border: 1px solid #E2E8F0 !important;
+                background: #ffffff !important;
+                color: #64748B !important;
+                padding: 5px 10px !important;
+                transition: all 0.15s ease !important;
+                margin: 0 2px !important;
+
+                &:hover {
+                    background: #F1F5F9 !important;
+                    color: #0A192F !important;
+                }
+
+                &.active {
+                    background: #1E3A8A !important;
+                    color: #ffffff !important;
+                    border-color: #1E3A8A !important;
+                    box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2) !important;
+                }
+            }
+        }
+    }
+
+    .btn-primary {
+        --bs-btn-bg: var(--oe-primary);
+        --bs-btn-border-color: var(--oe-primary);
+        --bs-btn-hover-bg: var(--oe-primary-dark);
+        --bs-btn-hover-border-color: var(--oe-primary-dark);
+    }
+
+    .form-control:focus,
+    .o_input:focus,
+    .o_searchview input:focus {
+        border-color: var(--oe-primary);
+        box-shadow: 0 0 0 0.2rem var(--oe-focus);
+    }
+
+    .o_form_view .o_form_sheet_bg {
+        background-color: var(--oe-page);
+    }
+
+    .o_form_view .o_form_sheet {
+        background-color: var(--oe-surface);
+        border: 1px solid var(--oe-border);
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px rgba(37, 54, 74, 0.06);
+    }
+
+    .o_list_view {
+        background-color: var(--oe-surface);
+
+        thead th {
+            background-color: #f7f9fc;
+            color: var(--oe-muted);
+            border-bottom-color: var(--oe-border);
+        }
+
+        tbody tr:hover > td {
+            background-color: #f1f7ff;
+        }
+    }
+
+    .oe_stat_button {
+        color: var(--oe-muted) !important;
+        border-color: var(--oe-border) !important;
+
+        &:hover {
+            color: var(--oe-primary-dark) !important;
+            background-color: #f1f7ff;
+        }
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--oe-primary);
+        outline-offset: 2px;
+    }
+}
+.o_notebook{
+    width: 100%
+}
+.truncate-email a {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: top;
+    }
+
+.o_MessagingMenu, .o_mail_systray_item{
+.o_MessagingMenu_dropdownMenu.dropdown-menu, .o_mail_systray_dropdown.dropdown-menu {
+    top: 100%;
+}
+}
+.o_web_client .o_form_view{
+    .o_stat_text{
+        white-space: inherit !important;
+        overflow: inherit !important;
+    }
+    .oe_button_box .oe_stat_button{
+        display: inline-flex !important;
+        white-space: inherit !important;
+        //border-bottom: 1px solid #dee2e6 !important;
+        height: 55px;
+        padding: 6px 6px 6px 0 !important;
+        border: 1px solid #dee2e6 !important;
+        align-items: center;
+        //margin-bottom: 2px;
+//         border-right: 0 !important;
+    }
+}
+
+.o_form_view{
+    .o_form_sheet_bg{
+//         .o_form_sheet{
+//             display: -webkit-box;
+//             display: -webkit-flex;
+//             display: flex;
+//             -webkit-flex-wrap: wrap;
+//             flex-wrap: wrap;
+//             margin-right: -16px;
+//             margin-left: -16px;
+//             margin: auto;
+//         }
+        .o_field_image{
+            order: -1;
+            margin-right: 1rem !important;
+        }
+        .oe_title{
+            order: -1;
+
+            h1{
+                tr td{
+                    display: grid;
+                    width: 250px;
+
+                    .o_field_translate{
+                        font-size: 22px;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
+
+        .oe_button_box{
+            flex: 0 0 66.66666667%;
+            max-width: 66.66666667%;
+            box-shadow: unset;
+            margin-left: auto !important;
+        }
+        .oe_button_box .oe_stat_button{
+            display: -webkit-inline-box !important;
+            display: -webkit-inline-flex !important;
+            display: inline-flex !important;
+            white-space: inherit !important;
+            height: 55px;
+            padding: 6px 6px 6px 0 !important;
+            border: 1px solid #dee2e6 !important;
+            align-items: center;
+            /* margin-bottom: 2px; */
+//             border-right: 0 !important;
+            border-top: 0 !important;
+            width: -webkit-fill-available;
+            width: -moz-available;
+            flex: 0 0 33.33333333%;
+//             max-width: 33.33333333%;
+        }
+        .o_group.o_inner_group{
+            margin-top: 32px;
+        }
+        .course_info{
+            flex: 0 0 33.33333333%;
+            max-width: 33.33333333%;
+            margin-top: 0 !important;
+
+            td span{
+                font-size: 14px;
+            }
+
+            label{
+                font-size: 18px;
+            }
+        }
+        .student-name, .faculty-name{
+            .o_field_widget {
+                input.o_field_translate{
+                    padding-right: 0 !important;
+                }
+            }
+        }
+        @media only screen and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2){
+            .oe_button_box{
+                flex: 0 0 58.33333333%;
+                max-width: 58.33333333%;
+            }
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    .o_student_kanban .o_kanban_record:not(.o_kanban_ghost),
+    .o_faculty_kanban .o_kanban_record:not(.o_kanban_ghost),
+    .o_timetable_kanban .o_kanban_record:not(.o_kanban_ghost) {
+        margin-bottom: 8px !important;
+        border: 1px solid #dee2e6 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+}

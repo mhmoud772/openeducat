@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_op_marksheet_register_tree" model="ir.ui.view">
+            <field name="name">op.marksheet.register.list</field>
+            <field name="model">op.marksheet.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="سجلات كشوف الدرجات الفصلية">
+                    <field name="name" string="مسمى السجل / الفصل"/>
+                    <field name="exam_session_id" string="فترة الاختبار"/>
+                    <field name="generated_date" string="تاريخ الرصد"/>
+                    <field name="generated_by" string="المسؤول عن الرصد"/>
+                    <field name="total_pass" string="الناجحون"/>
+                    <field name="total_failed" string="الراسبون"/>
+                    <field name="state" string="الحالة" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'validated'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_marksheet_register_form" model="ir.ui.view">
+            <field name="name">op.marksheet.register.form</field>
+            <field name="model">op.marksheet.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="سجل كشف الدرجات النهائي">
+                    <header groups="openeducat_exam.group_op_exam_admin">
+                        <button name="action_validate" invisible="state != 'draft'" string="اعتماد كشف الدرجات النهائي" type="object"
+                                class="oe_highlight"/>
+                        <button name="act_draft" invisible="state != 'cancelled'" string="إعادة كمسودة" type="object"/>
+                        <button name="act_cancel" invisible="state != 'draft'" type="object" string="إلغاء"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated,cancelled"/>
+                    </header>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="مؤرشف" bg_color="bg-danger"
+                                invisible="active == True"/>
+                        <div class="oe_title">
+                            <label for="name" string="مسمى سجل كشف الدرجات"/>
+                            <h1><field name="name" placeholder="مثال: نتيجة الفصل الدراسي الأول - الصف الأول الثانوي"/></h1>
+                        </div>
+                        <group>
+                            <group string="بيانات السجل">
+                                <field name="exam_session_id" string="فترة وجدول الاختبار"/>
+                                <field name="result_template_id" string="قالب حساب النتيجة والتقديرات"/>
+                                <field name="generated_by" string="المسؤول عن إعداد السجل"/>
+                            </group>
+                            <group string="الإحصائيات والتواريخ">
+                                <field name="generated_date" string="تاريخ الرصد والإعداد"/>
+                                <field name="total_pass" string="إجمالي الطلاب الناجحين"/>
+                                <field name="total_failed" string="إجمالي الطلاب الراسبين"/>
+                            </group>
+                        </group>
+                        <separator string="كشوف درجات الطلاب (كشوف فردية قابلة للطباعة)" colspan="4"/>
+                        <group colspan="4">
+                            <field name="marksheet_line" colspan="2" nolabel="1">
+                                <list string="درجات الطلاب" decoration-success="status == 'pass'" decoration-danger="status == 'fail'">
+                                    <field name="student_id" string="الطالب"/>
+                                    <field name="total_marks" string="المجموع"/>
+                                    <field name="percentage" string="النسبة المئوية (%)" widget="percentage"/>
+                                    <field name="grade" string="التقدير"/>
+                                    <field name="status" string="النتيجة" widget="badge"/>
+                                </list>
+                            </field>
+                        </group>
+                    </sheet>
+                   <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_marksheet_register_search" model="ir.ui.view">
+            <field name="name">op.marksheet.register.search</field>
+            <field name="model">op.marksheet.register</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="البحث في سجلات كشوف الدرجات">
+                    <field name="name" string="مسمى السجل"/>
+                    <field name="exam_session_id" string="فترة الاختبار"/>
+                    <field name="generated_by" string="المسؤول"/>
+                    <filter string="المؤرشفة" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                    <newline/>
+                    <group>
+                        <filter string="فترة الاختبار"
+                                name="group_by_marksheet_register_exam_session"
+                                domain="[]" context="{'group_by':'exam_session_id'}"/>
+                        <filter string="الحالة"
+                                name="group_by_marksheet_register_state"
+                                domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_marksheet_register_view">
+            <field name="name">سجلات كشوف الدرجات الفصلية</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.marksheet.register</field>
+            <field name="path">marksheet-register</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_op_marksheet_register_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_marksheet_register_view_form">
+            <field name="act_window_id" ref="act_open_op_marksheet_register_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_marksheet_register_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_marksheet_register_view_tree">
+            <field name="act_window_id" ref="act_open_op_marksheet_register_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_marksheet_register_tree"/>
+        </record>
+
+</odoo>

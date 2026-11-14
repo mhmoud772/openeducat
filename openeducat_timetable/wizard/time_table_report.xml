@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_time_table_report_form" model="ir.ui.view">
+            <field name="name">time.table.report.form</field>
+            <field name="model">time.table.report</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="تقرير كشف الجدول المدرسي">
+                    <sheet>
+                        <div>
+                            <group colspan="4" cols="4">
+                                <group string="معايير التقرير">
+                                    <field name="start_date" string="من تاريخ"/>
+                                    <field name="end_date" string="إلى تاريخ"/>
+                                    <field name="state" string="نوع الجدول المطلوب"/>
+                                </group>
+                                <group string="التحديد">
+                                    <field name="faculty_id" string="المعلم / المحاضر"
+                                           required="state == 'faculty'" invisible="state != 'faculty'"/>
+                                    <field name="course_id" string="المرحلة الدراسية"
+                                           required="state == 'student'" invisible="state != 'student'"/>
+                                    <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" string="الصف / الشعبة"
+                                           required="state == 'student'" invisible="state != 'student'"/>
+                                </group>
+                            </group>
+                        </div>
+                    </sheet>
+                    <footer>
+                        <span class="w-100" groups="base.group_user" >
+                            <button string="طباعة الجدول (PDF)" type="object"
+                                    name="gen_time_table_report" class="oe_highlight btn-primary m-2"/>
+                            <button special="cancel" string="إلغاء" type="object" class="btn-secondary"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_time_table_report_view">
+            <field name="name">طباعة كشف الجدول المدرسي</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">time.table.report</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+</odoo>

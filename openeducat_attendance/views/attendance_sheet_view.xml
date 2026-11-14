@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="view_op_attendance_sheet_tree" model="ir.ui.view">
+            <field name="name">op.attendance.sheet.list</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="كشوف الحضور والغياب اليومية">
+                    <field name="register_id" string="سجل الحضور"/>
+                    <field name="name" string="مسمى الكشف"/>
+                    <field name="session_id" string="الحصة / الجلسة"/>
+                    <field name="attendance_date" string="التاريخ"/>
+                    <field name="state" string="الحالة" widget="badge" decoration-info="state == 'start'" decoration-success="state == 'done'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_attendance_sheet_form" model="ir.ui.view">
+            <field name="name">op.attendance.sheet.form</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="كشف الحضور والغياب اليومي">
+                    <header>
+                        <button type="object" name="attendance_start"
+                                invisible="state != 'draft'" string="بدء رصد الحضور"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_done"
+                                invisible="state != 'start'" string="اعتماد وإغلاق الكشف"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_cancel"
+                                invisible="state not in ('draft','start')" string="إلغاء الكشف"/>
+                        <button type="object" name="attendance_draft" string="إعادة كمسودة" invisible="state not in ['done','cancel']" class="oe_highlight"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,start,done"/>
+                    </header>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="مؤرشف" bg_color="bg-danger"
+                                invisible="active == True"/>
+                        <div name="button_box" class="oe_button_box">
+
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="مسمى كشف الحضور"/>
+                            <h1><field name="name" placeholder="مثال: حضور الصف الأول الثانوي - الحصة الأولى" readonly="state in ('done','cancel')"/></h1>
+                        </div>
+                        <group>
+                            <group string="بيانات الحصة والمرحلة">
+                                <field name="register_id" string="سجل الحضور" readonly="state in ('done','cancel')"/>
+                                <field name="session_id" string="الحصة / الجلسة الدراسية" readonly="state in ('done','cancel')"
+                                       domain="[('course_id','=',course_id),('batch_id','=',batch_id)]" />
+                                <field name="course_id" invisible="1"/>
+                                <field name="batch_id" invisible="1"/>
+                            </group>
+                            <group string="التاريخ والتوقيت">
+                                <field name="attendance_date" string="تاريخ الحضور" readonly="state in ('done','cancel')"/>
+                            </group>
+                        </group>
+                        <group col="4" string="كشف حضور الطلاب">
+                            <field name="attendance_line" colspan="4" nolabel="1" readonly="state in ('done','cancel')">
+                                <list string="الطلاب" editable="top">
+                                    <field name="student_id" string="اسم الطالب"
+                                           domain="[('course_detail_ids.course_id','=',parent.course_id),('course_detail_ids.batch_id','=',parent.batch_id),('course_detail_ids.state', '=', 'running')]"/>
+                                    <field name="present" string="حاضر" widget="boolean_toggle"/>
+                                    <field name="absent" string="غائب" widget="boolean_toggle"/>
+                                    <field name="late" string="متأخر" widget="boolean_toggle"/>
+                                    <field name="excused" string="بعذر" widget="boolean_toggle"/>
+                                    <button name="action_send_whatsapp_attendance" string="إشعار واتساب" type="object" icon="fa-whatsapp" class="btn-success" invisible="present == True" title="إرسال إشعار فوري لولي الأمر عبر واتساب"/>
+                                    <field name="remark" string="ملاحظات"/>
+                                </list>
+                            </field>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_attendance_sheet_search" model="ir.ui.view">
+            <field name="name">op.attendance.sheet.search</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="البحث في كشوف الحضور">
+                    <field name="name" string="مسمى الكشف"/>
+                    <field name="register_id" string="سجل الحضور"/>
+                    <field name="attendance_date" string="التاريخ"/>
+                    <newline/>
+                    <filter string="كشوف اليوم" name="filter_attendance_today"
+                            domain="[('attendance_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="كشوف هذا الأسبوع" name="filter_attendance_week"
+                            domain="[('attendance_date', '&gt;=', (context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                    ('attendance_date', '&lt;=', (context_today()-relativedelta(weekday=6)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="المؤرشفة" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                    <group>
+                        <filter string="سجل الحضور" name="group_by_attendance_sheet_register_id"
+                                domain="[]" context="{'group_by':'register_id'}"/>
+                        <filter string="التاريخ" name="group_by_attendance_sheet_attendance_date"
+                                domain="[]" context="{'group_by':'attendance_date'}"/>
+                        <filter string="الحالة" name="group_by_attendance_sheet_state"
+                                domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_op_attendance_sheet_pivot" model="ir.ui.view">
+            <field name="name">op.attendance.sheet.pivot</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="تحليل كشوف الحضور">
+                    <field name="name" type="row"/>
+                    <field name="register_id" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_attendance_sheet_view">
+            <field name="name">كشوف الحضور والغياب اليومية</field>
+            <field name="path">attendance-sheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.attendance.sheet</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form,pivot</field>
+            <field name="search_view_id" ref="view_op_attendance_sheet_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_filter_attendance_today': 1}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_attendance_sheet_view_form">
+            <field name="act_window_id" ref="act_open_op_attendance_sheet_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_attendance_sheet_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_attendance_sheet_view_tree">
+            <field name="act_window_id" ref="act_open_op_attendance_sheet_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_attendance_sheet_tree"/>
+        </record>
+</odoo>

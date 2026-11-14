@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Preload and link premium Arabic Web Fonts with local system fallbacks -->
+    <template id="smartedu_web_fonts" inherit_id="web.layout" priority="1" name="SmartEdu Arabic Web Fonts">
+        <xpath expr="//head" position="inside">
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+            <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&amp;family=Tajawal:wght@400;500;700;800&amp;family=Almarai:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+            <style>
+                :root {
+                    --smartedu-font: 'Cairo', 'Tajawal', 'DejaVu Sans', 'Liberation Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                }
+                body, .o_web_client, .oe_structure, .o_portal {
+                    font-family: var(--smartedu-font);
+                }
+                @media print {
+                    * {
+                        font-family: 'Cairo', 'DejaVu Sans', 'Arial Unicode MS', sans-serif !important;
+                    }
+                }
+            </style>
+        </xpath>
+    </template>
+</odoo>

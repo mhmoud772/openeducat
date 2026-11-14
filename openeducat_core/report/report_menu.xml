@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="action_report_student_idcard" model="ir.actions.report">
+            <field name="name">بطاقة هوية الطالب (CR80)</field>
+            <field name="model">op.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_core.report_student_idcard</field>
+            <field name="report_file">openeducat_core.report_student_idcard</field>
+            <field name="print_report_name">'بطاقة هوية - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_student_bonafide" model="ir.actions.report">
+            <field name="name">شهادة تعريف طالب (إثبات قيد)</field>
+            <field name="model">op.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_core.report_student_bonafide</field>
+            <field name="report_file">openeducat_core.report_student_bonafide</field>
+            <field name="print_report_name">'شهادة تعريف طالب - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
+            <field name="binding_type">report</field>
+        </record>
+</odoo>

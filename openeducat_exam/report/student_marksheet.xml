@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_marksheet_report">
+        <t t-call="web.html_container">
+            <t t-foreach="get_objects(docs)" t-as="objs">
+                <t t-foreach="objs" t-as="obj">
+                    <div class="page" style="direction: rtl; font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, sans-serif; padding: 20px; color: #0F172A;">
+                        <style>
+                            .smartedu-report-card {
+                                border: 2.5px solid #1E3A8A;
+                                border-radius: 12px;
+                                padding: 24px;
+                                background: #FFFFFF;
+                                box-shadow: 0 4px 15px rgba(10, 25, 47, 0.08);
+                                min-height: 960px;
+                                box-sizing: border-box;
+                            }
+                            .smartedu-report-header {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                border-bottom: 2.5px solid #D97706;
+                                padding-bottom: 14px;
+                                margin-bottom: 20px;
+                            }
+                            .smartedu-report-badge {
+                                display: inline-block;
+                                font-size: 21px;
+                                font-weight: 900;
+                                color: #FFFFFF;
+                                background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+                                padding: 7px 32px;
+                                border-radius: 20px;
+                                border: 1.5px solid #D97706;
+                                letter-spacing: 0.5px;
+                            }
+                            .smartedu-student-banner {
+                                background: #F8FAFC;
+                                border: 1px solid #E2E8F0;
+                                border-right: 4px solid #1E3A8A;
+                                border-radius: 10px;
+                                padding: 14px 18px;
+                                margin-bottom: 20px;
+                                font-size: 13.5px;
+                                line-height: 1.8;
+                            }
+                            .smartedu-marks-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 18px 0;
+                                font-size: 13px;
+                            }
+                            .smartedu-marks-table th {
+                                background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+                                color: #FFFFFF;
+                                padding: 9px 12px;
+                                text-align: center;
+                                font-weight: 700;
+                                border: 1px solid #1E3A8A;
+                            }
+                            .smartedu-marks-table td {
+                                padding: 9px 12px;
+                                border: 1px solid #E2E8F0;
+                                text-align: center;
+                            }
+                            .smartedu-marks-table tr:nth-child(even) {
+                                background: #F8FAFC;
+                            }
+                            .smartedu-summary-card {
+                                background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+                                border: 1.5px solid #93C5FD;
+                                border-radius: 10px;
+                                padding: 14px 20px;
+                                margin: 20px 0;
+                            }
+                        </style>
+
+                        <div class="smartedu-report-card">
+                            <!-- الترويسة الرسمية -->
+                            <div class="smartedu-report-header">
+                                <div style="text-align: right; font-size: 13px; line-height: 1.6; font-weight: 700; color: #1E3A8A;">
+                                    <div>وزارة التعليم</div>
+                                    <div style="font-size: 15.5px; color: #0A192F; font-weight: 800;"><t t-out="res_company.name or 'سمارت إديو للأنظمة التعليمية'"/></div>
+                                    <div style="color: #64748B; font-size: 11px;">لجنة الاختبارات والتقويم المدرسي</div>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)"
+                                         style="max-height: 70px; max-width: 120px; object-fit: contain; margin-bottom: 2px;"/>
+                                </div>
+
+                                <div style="text-align: left; font-size: 12px; line-height: 1.6; color: #475569;">
+                                    <div><strong>رقم الجلوس/القيد:</strong> <span style="color: #1E3A8A; font-weight: 800;"><t t-out="obj.student_id.gr_no or str(obj.student_id.id)"/></span></div>
+                                    <div><strong>تاريخ الإصدار:</strong> <span t-out="get_date(obj.generated_date) or time.strftime('%Y-%m-%d')"/></div>
+                                    <div><strong>رمز الاختبار:</strong> <span style="font-weight: 700;"><t t-out="obj.marksheet_reg_id.exam_session_id.exam_code or 'EXAM'"/></span></div>
+                                </div>
+                            </div>
+
+                            <!-- عنوان الكشف -->
+                            <div style="text-align: center; margin: 15px 0 20px 0;">
+                                <div class="smartedu-report-badge">
+                                    إشعار نتيجة دراسية (كشف درجات معتمد)
+                                </div>
+                                <div style="color: #64748B; font-size: 11.5px; margin-top: 4px; font-weight: 600;">
+                                    OFFICIAL STUDENT REPORT CARD &amp; MARKSHEET
+                                </div>
+                            </div>
+
+                            <!-- بطاقة بيانات الطالب -->
+                            <div class="smartedu-student-banner">
+                                <div class="row">
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• اسم الطالب: </span>
+                                        <strong style="color: #0A192F; font-size: 15px;"><t t-out="obj.student_id.name"/></strong>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• الهوية / الإقامة: </span>
+                                        <strong style="color: #1E3A8A;"><t t-out="obj.student_id.id_number or '—'"/></strong>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• المرحلة والصف: </span>
+                                        <strong style="color: #D97706;"><t t-out="obj.marksheet_reg_id.exam_session_id.course_id.name or '—'"/></strong>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• الاختبار: </span>
+                                        <strong><t t-out="obj.marksheet_reg_id.name or 'الاختبار النهائي'"/></strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ================= نوع التقييم بالدرجات (Normal) ================= -->
+                            <t t-if="obj.evaluation_type == 'normal'">
+                                <table class="smartedu-marks-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th style="text-align: right; padding-right: 14px;">المادة الدراسية</th>
+                                            <th>نوع التقييم</th>
+                                            <th>الدرجة الكلية</th>
+                                            <th>الدرجة الصغرى (النجاح)</th>
+                                            <th>الدرجة المحصّلة</th>
+                                            <th>الحالة والتقدير</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="idx" t-value="1"/>
+                                        <t t-foreach="get_lines(obj)" t-as="lines">
+                                            <t t-foreach="lines" t-as="result">
+                                                <tr>
+                                                    <td style="font-weight: bold;"><t t-out="idx"/></td>
+                                                    <td style="text-align: right; padding-right: 14px; font-weight: 700; color: #0A192F;">
+                                                        <t t-out="result.exam_id.subject_id.name or ''"/>
+                                                    </td>
+                                                    <td><t t-out="result.exam_id.session_id.exam_type.name or 'نظري'"/></td>
+                                                    <td style="font-weight: 600;"><t t-out="result.exam_id.total_marks or ''"/></td>
+                                                    <td style="color: #64748B;"><t t-out="result.exam_id.min_marks or ''"/></td>
+                                                    <td style="font-size: 14px; font-weight: 800; color: #1E3A8A;">
+                                                        <t t-out="result.marks if result.marks else '--'"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-if="result.marks and result.marks >= result.exam_id.min_marks"
+                                                              style="background: #10B981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700;">
+                                                            ناجح
+                                                        </span>
+                                                        <span t-elif="result.marks and result.marks &lt; result.exam_id.min_marks"
+                                                              style="background: #EF4444; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700;">
+                                                            راسب
+                                                        </span>
+                                                        <span t-else="" style="color: #94A3B8;">غائب</span>
+                                                    </td>
+                                                </tr>
+                                                <t t-set="idx" t-value="idx + 1"/>
+                                            </t>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <!-- ملخص النتيجة النهائية -->
+                                <div class="smartedu-summary-card">
+                                    <div class="row align-items-center text-center">
+                                        <div class="col-4 border-end">
+                                            <div style="color: #1E3A8A; font-size: 12px; font-weight: 700;">المجموع الكلي المحصّل:</div>
+                                            <div style="font-size: 20px; font-weight: 900; color: #0A192F; margin-top: 2px;">
+                                                <t t-out="obj.total_marks or '0'"/> / <t t-out="get_total(get_lines(obj)) or '100'"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 border-end">
+                                            <div style="color: #1E3A8A; font-size: 12px; font-weight: 700;">النسبة المئوية العامة:</div>
+                                            <div style="font-size: 20px; font-weight: 900; color: #D97706; margin-top: 2px;">
+                                                <t t-out="obj.percentage or '0'"/>%
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div style="color: #1E3A8A; font-size: 12px; font-weight: 700;">النتيجة والقرار النهائي:</div>
+                                            <div style="font-size: 20px; font-weight: 900; margin-top: 2px;">
+                                                <span t-if="obj.status in ('Pass', 'pass', 'ناجح')" style="color: #059669;">ناجح ومؤهل ✓</span>
+                                                <span t-else="" style="color: #DC2626;"><t t-out="obj.status or 'راسب'"/></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+
+                            <!-- ================= نوع التقييم بالتقديرات (Grade) ================= -->
+                            <t t-if="obj.evaluation_type == 'grade'">
+                                <table class="smartedu-marks-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th style="text-align: right; padding-right: 14px;">المادة الدراسية</th>
+                                            <th>نوع التقييم</th>
+                                            <th>التقدير المحصّل</th>
+                                            <th>حالة الحضور</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="idx" t-value="1"/>
+                                        <t t-foreach="get_lines(obj)" t-as="lines">
+                                            <t t-foreach="lines" t-as="result">
+                                                <tr>
+                                                    <td style="font-weight: bold;"><t t-out="idx"/></td>
+                                                    <td style="text-align: right; padding-right: 14px; font-weight: 700; color: #0A192F;">
+                                                        <t t-out="result.exam_id.subject_id.name or ''"/>
+                                                    </td>
+                                                    <td><t t-out="result.exam_id.session_id.exam_type.name or ''"/></td>
+                                                    <td style="font-size: 14px; font-weight: 800; color: #1E3A8A;">
+                                                        <t t-out="result.grade if result.grade else '--'"/>
+                                                    </td>
+                                                    <td>
+                                                        <span t-if="result.marks > 0" style="color: #10B981; font-weight: 700;">حاضر</span>
+                                                        <span t-else="" style="color: #EF4444; font-weight: 700;">غائب</span>
+                                                    </td>
+                                                </tr>
+                                                <t t-set="idx" t-value="idx + 1"/>
+                                            </t>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <div class="smartedu-summary-card">
+                                    <div class="row align-items-center text-center">
+                                        <div class="col-6 border-end">
+                                            <div style="color: #1E3A8A; font-size: 12px; font-weight: 700;">التقدير العام النهائي:</div>
+                                            <div style="font-size: 22px; font-weight: 900; color: #D97706; margin-top: 2px;">
+                                                <t t-out="obj.grade or 'ممتاز'"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div style="color: #1E3A8A; font-size: 12px; font-weight: 700;">الحالة العامة:</div>
+                                            <div style="font-size: 22px; font-weight: 900; color: #059669; margin-top: 2px;">
+                                                <t t-out="obj.status or 'ناجح'"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+
+                            <!-- الاعتمادات والتوقيعات والـ QR -->
+                            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #E2E8F0;">
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-center">
+                                        <div style="font-weight: 700; font-size: 13px; color: #1E3A8A; margin-bottom: 30px;">مسؤول الكنترول والاختبارات</div>
+                                        <div style="font-size: 12px; color: #475569;">التوقيع: ............................</div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <t t-set="qr_marks" t-value="'SMARTEDU-MARKS:' + (obj.student_id.gr_no or str(obj.student_id.id)) + ':' + (obj.student_id.name or '') + ':' + str(obj.percentage or obj.grade or '')"/>
+                                        <img t-att-src="env['ir.actions.report'].get_barcode_data_uri('QR', qr_marks, width=70, height=70)"
+                                             style="width: 70px; height: 70px; border: 1px solid #CBD5E1; border-radius: 6px; padding: 2px; background: white; margin-bottom: 2px;"/>
+                                        <div style="font-size: 9px; color: #64748B; font-weight: 700;">رمز التحقق المعتمد</div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div style="font-weight: 700; font-size: 13px; color: #1E3A8A; margin-bottom: 30px;">قائد / مدير المؤسسة التعليمية</div>
+                                        <div style="font-size: 12px; color: #475569;">التوقيع والختم: ............................</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- تذييل الكشف -->
+                            <div style="text-align: center; font-size: 9px; color: #94A3B8; margin-top: 25px; border-top: 1px solid #F1F5F9; padding-top: 6px;">
+                                نظام سمارت إديو لإدارة المدارس والجامعات • وثيقة أكاديمية رسمية لا تصح إلا بالختم والتوقيع الحي أو التحقق الإلكتروني
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

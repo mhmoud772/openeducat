@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_bonafide_parent" inherit_id="openeducat_core.report_student_bonafide">
+        <xpath expr="//p/strong[2]" position="after">
+            <t t-if="o.parent_ids">
+                <t t-if="o.gender == 'm'">، ابن المكرم: </t>
+                <t t-elif="o.gender == 'f'">، ابنة المكرم: </t>
+                <t t-else="">، ولي الأمر: </t>
+                <span class="smartedu-highlight"><t t-out="o.parent_ids[0].name.name if o.parent_ids else ''"/></span>
+            </t>
+        </xpath>
+    </template>
+</odoo>

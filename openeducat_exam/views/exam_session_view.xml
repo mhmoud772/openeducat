@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_op_exam_session_tree" model="ir.ui.view">
+            <field name="name">op.exam.session.list</field>
+            <field name="model">op.exam.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="فترات وجداول الاختبارات">
+                    <field name="name" string="مسمى فترة الاختبار"/>
+                    <field name="exam_code" string="رمز الفترة"/>
+                    <field name="start_date" string="تاريخ البدء"/>
+                    <field name="end_date" string="تاريخ الانتهاء"/>
+                    <field name="course_id" string="المرحلة / الصف" optional="show"/>
+                    <field name="batch_id" string="الشعبة" optional="show"/>
+                    <field name="exam_type" string="نوع الاختبار" optional="show"/>
+                    <field name="evaluation_type" string="نظام التقييم" optional="show"/>
+                    <field name="venue" string="مقر / مركز الاختبار" optional="show"/>
+                    <field name="state" string="الحالة" widget="badge" decoration-info="state == 'schedule'" decoration-success="state == 'done'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_exam_session_form" model="ir.ui.view">
+            <field name="name">op.exam.session.form</field>
+            <field name="model">op.exam.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="فترة وجدول اختبارات" >
+                    <header groups="base.group_user">
+                        <button name="act_draft" invisible="state not in ['held', 'schedule', 'cancel']" type="object"
+                                string="إعادة كمسودة" class="oe_highlight"/>
+                        <button name="act_schedule" invisible="state != 'draft'" type="object"
+                                string="جدولة الفترة" class="oe_highlight"/>
+                        <button name="act_held" invisible="state != 'schedule'" type="object"
+                                string="بدء انعقاد الاختبارات" class="oe_highlight"/>
+                        <button name="act_done" invisible="state not in ['schedule', 'held']" type="object"
+                                string="إنهاء واعتماد الفترة" class="oe_highlight"/>
+                        <button name="act_cancel" invisible="state not in ['schedule', 'held']" type="object"
+                                string="إلغاء الفترة"/>
+                        <button name="%(openeducat_exam.action_student_hall_ticket_report)d"
+                                type="action"
+                                string="طباعة أرقام الجلوس وبطاقات الاختبار"
+                                class="btn-primary"
+                                icon="fa-print" invisible="state != 'schedule'"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,schedule,held,done"/>
+                    </header>
+                    <sheet>
+                    <div name="button_box" class="oe_button_box">
+                            <button name="get_exam" type="object" class="oe_stat_button" icon="fa-book" string="الاختبارات">
+                                <field name="exams_count" string="الاختبارات" widget="statinfo" />
+                            </button>
+                        </div>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="مؤرشف" bg_color="bg-danger"
+                                invisible="active == True"/>
+                        <div class="oe_title">
+                            <label for="name" string="مسمى فترة وجدول الاختبارات"/>
+                            <h1><field class="w-100" name="name" select="1" readonly="state in ['held', 'done', 'cancel']" placeholder="مثال: اختبارات نهاية الفصل الدراسي الأول 2026"/></h1>
+                        </div>
+                        <group>
+                            <group string="المعلومات الأساسية">
+                                <field name="exam_code" string="رمز الفترة" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="start_date" string="تاريخ البدء" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="end_date" string="تاريخ الانتهاء" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="venue" string="المقر / المركز" domain="[('is_venue','=',True)]" required="1" readonly="state in ['held', 'done', 'cancel']"/>
+                            </group>
+                            <group string="المرحلة والتقييم">
+                                <field name="course_id" string="المرحلة / الصف" readonly="state in ['held', 'done', 'cancel']" />
+                                <field name="batch_id" string="الشعبة / الفصل" context="{'course_id': course_id,'get_parent_batch':1}" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="exam_type" string="نوع الاختبار" readonly="state in ['held', 'done', 'cancel']"/>
+                                <field name="evaluation_type" string="نظام التقييم" readonly="state in ['held', 'done', 'cancel']"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_exam_session_search" model="ir.ui.view">
+            <field name="name">op.exam.session.search</field>
+            <field name="model">op.exam.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="البحث في فترات الاختبارات">
+                    <field name="name" string="مسمى الفترة" select="True"/>
+                    <field name="exam_code" string="الرمز" select="True"/>
+                    <field name="start_date" string="تاريخ البدء" select="True"/>
+                    <field name="end_date" string="تاريخ الانتهاء" select="True"/>
+                    <field name="course_id" string="المرحلة / الصف" select="True"/>
+                    <field name="batch_id" string="الشعبة" select="True"/>
+                    <field name="venue" string="المقر"/>
+                    <filter string="المؤرشفة" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_exam_session_pivot">
+            <field name="name">op.exam.session.pivot</field>
+            <field name="model">op.exam.session</field>
+            <field name="arch" type="xml">
+                <pivot string="إحصائيات فترات الاختبار">
+                    <field name="name" type="row"/>
+                    <field name="exam_code" string="الرمز"/>
+                    <field name="course_id" string="المرحلة"/>
+                    <field name="batch_id" string="الشعبة"/>
+                    <field name="state" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_op_exam_session_calendar_view" model="ir.ui.view">
+            <field name="name">op.exam.session.calender.view</field>
+            <field name="model">op.exam.session</field>
+            <field name="arch" type="xml">
+                <calendar string="جدول فترات الاختبارات" event_open_popup="True"
+                          date_start="start_date" date_stop="end_date" mode="month" quick_create="False"
+                          color="name">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_exam_session_view">
+            <field name="name">فترات وجداول الاختبارات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.exam.session</field>
+            <field name="path">exam-session</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form,calendar,pivot</field>
+            <field name="search_view_id" ref="view_op_exam_session_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_form">
+            <field name="act_window_id" ref="act_open_op_exam_session_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_exam_session_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_tree">
+            <field name="act_window_id" ref="act_open_op_exam_session_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_exam_session_tree"/>
+        </record>
+
+</odoo>

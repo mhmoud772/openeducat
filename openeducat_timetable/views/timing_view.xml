@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="view_op_timing_tree" model="ir.ui.view">
+            <field name="name">op.timing.list</field>
+            <field name="model">op.timing</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <list string="الفترات والحصص" editable="bottom">
+                    <field name="sequence" string="الترتيب"/>
+                    <field name="name" string="مسمى الحصة / الفترة"/>
+                    <field name="hour" string="الساعة"/>
+                    <field name="minute" string="الدقيقة"/>
+                    <field name="am_pm" string="صباحاً / مساءً"/>
+                    <field name="duration" widget="float_time" string="المدة الزمنية"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_op_timing_form" model="ir.ui.view">
+            <field name="name">op.timing.form</field>
+            <field name="model">op.timing</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="الفترة والحصة الدراسية">
+                    <sheet>
+                        <group col="4">
+                            <field name="name" select="1" string="مسمى الحصة" placeholder="مثال: الحصة الأولى"/>
+                            <field name="duration" widget="float_time" string="المدة الزمنية"/>
+                            <field name="hour" string="الساعة"/>
+                            <field name="minute" string="الدقيقة"/>
+                            <field name="am_pm" string="الفترة"/>
+                            <field name="sequence" string="ترتيب الحصة"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_timing_search" model="ir.ui.view">
+            <field name="name">op.timing.search</field>
+            <field name="model">op.timing</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="بحث فترات الحصص">
+                    <field name="name" select="True" string="مسمى الحصة"/>
+                    <field name="duration" string="المدة"/>
+                    <field name="hour" select="True" string="الساعة"/>
+                    <field name="am_pm" select="True" string="الفترة"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_timing_view">
+            <field name="name">أوقات الحصص الدراسية</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.timing</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">list,form</field>
+            <field name="path">timing</field>
+            <field name="search_view_id" ref="view_op_timing_search"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_timing_view_form">
+            <field name="act_window_id" ref="act_open_op_timing_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_timing_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_timing_view_tree">
+            <field name="act_window_id" ref="act_open_op_timing_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_op_timing_tree"/>
+        </record>
+
+</odoo>

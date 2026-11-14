@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar_SY\n"
+
+#. module: openeducat_dashboard
+#: model:ir.actions.client,name:openeducat_dashboard.action_school_dashboard_client
+#: model:ir.ui.menu,name:openeducat_dashboard.menu_school_dashboard
+msgid "School Dashboard"
+msgstr "لوحة المدرسة"
+
+#. module: openeducat_dashboard
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:25
+msgid "Active students"
+msgstr "الطلاب النشطون"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:30
+msgid "Applications in progress"
+msgstr "طلبات القبول قيد الإجراء"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:47
+msgid "Attendance"
+msgstr "الحضور"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:35
+msgid "Attendance sessions today"
+msgstr "جلسات الحضور اليوم"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:40
+msgid "Active courses"
+msgstr "المقررات النشطة"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:45
+msgid "Students"
+msgstr "الطلاب"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:46
+msgid "Admissions"
+msgstr "القبول"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:48
+msgid "Courses"
+msgstr "المقررات"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:65
+msgid "The dashboard could not be loaded. Check your access and try again."
+msgstr "تعذر تحميل لوحة التحكم. تحقق من صلاحياتك ثم حاول مجددًا."
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:14
+msgid "Loading school overview…"
+msgstr "جارٍ تحميل ملخص المدرسة..."
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:15
+msgid "Welcome back"
+msgstr "مرحبًا بعودتك"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:16
+msgid "A quick overview of school operations for today."
+msgstr "نظرة سريعة على سير العمل المدرسي اليوم."
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:17
+msgid "School overview"
+msgstr "ملخص المدرسة"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:18
+msgid "View details"
+msgstr "عرض التفاصيل"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:19
+msgid "Quick access"
+msgstr "الوصول السريع"
+
+#. module: openeducat_dashboard
+#: code:addons/openeducat_dashboard/static/src/js/dashboard.js:20
+msgid "Try again"
+msgstr "إعادة المحاولة"

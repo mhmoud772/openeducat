@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_idcard">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="direction: rtl; font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, sans-serif; padding: 20px 0;">
+                    <style>
+                        .smartedu-id-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            gap: 20px;
+                            margin: 0 auto;
+                        }
+                        .smartedu-card {
+                            width: 350px;
+                            height: 220px;
+                            border-radius: 14px;
+                            overflow: hidden;
+                            position: relative;
+                            box-shadow: 0 4px 15px rgba(10, 25, 47, 0.15);
+                            border: 1.5px solid #D97706;
+                            background: #ffffff;
+                            box-sizing: border-box;
+                            page-break-inside: avoid;
+                        }
+                        .smartedu-card-front {
+                            background: linear-gradient(180deg, #ffffff 0%, #F8FAFC 100%);
+                        }
+                        .smartedu-card-back {
+                            background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+                        }
+                        .smartedu-header-bar {
+                            background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);
+                            border-bottom: 2.5px solid #D97706;
+                            padding: 6px 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                        .smartedu-header-title {
+                            color: #FFFFFF;
+                            font-size: 13px;
+                            font-weight: 800;
+                            line-height: 1.2;
+                            text-align: right;
+                        }
+                        .smartedu-header-sub {
+                            color: #FBBF24;
+                            font-size: 9.5px;
+                            font-weight: 600;
+                            letter-spacing: 0.3px;
+                        }
+                        .smartedu-card-body {
+                            padding: 8px 12px;
+                            display: flex;
+                            gap: 10px;
+                            align-items: center;
+                            height: 122px;
+                        }
+                        .smartedu-photo-box {
+                            width: 78px;
+                            height: 98px;
+                            flex-shrink: 0;
+                            border-radius: 8px;
+                            border: 2px solid #D97706;
+                            overflow: hidden;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+                            background: #F1F5F9;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .smartedu-photo-box img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                        .smartedu-info-col {
+                            flex: 1;
+                            text-align: right;
+                            font-size: 10px;
+                            line-height: 1.4;
+                            color: #1E293B;
+                        }
+                        .smartedu-student-name {
+                            font-size: 12.5px;
+                            font-weight: 800;
+                            color: #0A192F;
+                            margin: 0 0 4px 0;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            border-bottom: 1.5px solid #E2E8F0;
+                            padding-bottom: 2px;
+                        }
+                        .smartedu-info-row {
+                            margin: 2px 0;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .smartedu-label {
+                            color: #64748B;
+                            font-weight: 600;
+                        }
+                        .smartedu-val {
+                            color: #0F172A;
+                            font-weight: 700;
+                        }
+                        .smartedu-barcode-bar {
+                            background: #0A192F;
+                            padding: 3px 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            height: 44px;
+                            border-top: 1px solid #D97706;
+                        }
+                        .smartedu-footer-note {
+                            font-size: 8px;
+                            color: #94A3B8;
+                            text-align: center;
+                            line-height: 1.2;
+                            margin: 4px 0;
+                        }
+                    </style>
+
+                    <div class="smartedu-id-container">
+                        <!-- ================= الوجه الأمامي (Front) ================= -->
+                        <div class="smartedu-card smartedu-card-front">
+                            <!-- الترويسة -->
+                            <div class="smartedu-header-bar">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)"
+                                         style="height: 30px; width: 30px; object-fit: contain; background: white; border-radius: 6px; padding: 2px; border: 1px solid #D97706;"/>
+                                    <div style="text-align: right;">
+                                        <div class="smartedu-header-title"><t t-out="res_company.name or 'سمارت إديو للأنظمة التعليمية'"/></div>
+                                        <div class="smartedu-header-sub">بطاقة طالب | STUDENT IDENTITY CARD</div>
+                                    </div>
+                                </div>
+                                <div style="background: rgba(217,119,6,0.25); border: 1px solid #D97706; border-radius: 6px; padding: 2px 6px; color: #FBBF24; font-size: 9px; font-weight: 700;">
+                                    <t t-if="o.course_detail_ids and o.course_detail_ids[0].academic_years_id">
+                                        <t t-out="o.course_detail_ids[0].academic_years_id.name"/>
+                                    </t>
+                                    <t t-else="">2026-2027</t>
+                                </div>
+                            </div>
+
+                            <!-- جسم البطاقة -->
+                            <div class="smartedu-card-body">
+                                <div class="smartedu-photo-box">
+                                    <img t-if="o.image_1920" t-att-src="image_data_uri(o.image_1920)" alt="Student Photo"/>
+                                    <div t-else="" style="font-size: 9px; color: #94A3B8; text-align: center; font-weight: 600;">
+                                        <i class="fa fa-user fa-2x" style="color: #CBD5E1; display: block; margin-bottom: 2px;"/>
+                                        صورة الطالب
+                                    </div>
+                                </div>
+                                <div class="smartedu-info-col">
+                                    <div class="smartedu-student-name" t-out="o.name"/>
+                                    <div class="smartedu-info-row">
+                                        <span class="smartedu-label">رقم القيد:</span>
+                                        <span class="smartedu-val" style="color: #1E3A8A;"><t t-out="o.gr_no or '—'"/></span>
+                                    </div>
+                                    <div class="smartedu-info-row" t-if="o.id_number">
+                                        <span class="smartedu-label">الهوية/الإقامة:</span>
+                                        <span class="smartedu-val"><t t-out="o.id_number"/></span>
+                                    </div>
+                                    <div class="smartedu-info-row" t-if="o.course_detail_ids">
+                                        <span class="smartedu-label">الصف الدراسي:</span>
+                                        <span class="smartedu-val" style="color: #D97706;"><t t-out="o.course_detail_ids[0].course_id.name"/></span>
+                                    </div>
+                                    <div class="smartedu-info-row" t-if="o.course_detail_ids and o.course_detail_ids[0].batch_id">
+                                        <span class="smartedu-label">الشعبة:</span>
+                                        <span class="smartedu-val"><t t-out="o.course_detail_ids[0].batch_id.name"/></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الباركود السفلي -->
+                            <div class="smartedu-barcode-bar">
+                                <div style="flex: 1; text-align: center;">
+                                    <t t-set="code_val" t-value="o.gr_no or o.id_number or str(o.id)"/>
+                                    <img t-att-src="env['ir.actions.report'].get_barcode_data_uri('Code128', code_val, width=280, height=36)"
+                                         style="max-height: 28px; width: 85%; filter: invert(1); object-fit: contain;"/>
+                                    <div style="font-size: 8px; color: #FBBF24; font-weight: bold; letter-spacing: 1px;"><t t-out="code_val"/></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ================= الوجه الخلفي (Back) ================= -->
+                        <div class="smartedu-card smartedu-card-back">
+                            <!-- الترويسة الخلفية -->
+                            <div style="background: #0A192F; border-bottom: 2px solid #D97706; padding: 5px 12px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #FBBF24; font-size: 10px; font-weight: 700;">بيانات السلامة والطوارئ</span>
+                                <span style="color: #FFFFFF; font-size: 9px;">EMERGENCY &amp; NOTICE</span>
+                            </div>
+
+                            <!-- جسم الوجه الخلفي -->
+                            <div style="padding: 8px 12px; display: flex; gap: 10px; align-items: center; height: 130px;">
+                                <div style="flex: 1; text-align: right; font-size: 9.5px; line-height: 1.5;">
+                                    <div class="smartedu-info-row">
+                                        <span class="smartedu-label">فصيلة الدم:</span>
+                                        <span style="background: #DC2626; color: white; padding: 1px 6px; border-radius: 4px; font-weight: 800; font-size: 10px;">
+                                            <t t-out="o.blood_group or '—'"/>
+                                        </span>
+                                    </div>
+                                    <div class="smartedu-info-row" t-if="o.birth_date">
+                                        <span class="smartedu-label">تاريخ الميلاد:</span>
+                                        <span class="smartedu-val"><span t-esc="o.birth_date" t-options='{"widget":"date"}'/></span>
+                                    </div>
+                                    <div class="smartedu-info-row" t-if="o.phone or (o.emergency_contact and o.emergency_contact.phone)">
+                                        <span class="smartedu-label">هاتف الطوارئ:</span>
+                                        <span class="smartedu-val" dir="ltr" style="color: #1E3A8A;"><t t-out="o.phone or o.emergency_contact.phone"/></span>
+                                    </div>
+                                    <div class="smartedu-info-row" t-if="o.nationality">
+                                        <span class="smartedu-label">الجنسية:</span>
+                                        <span class="smartedu-val"><t t-out="o.nationality.name"/></span>
+                                    </div>
+                                    <div class="smartedu-footer-note" style="border-top: 1px solid #E2E8F0; padding-top: 4px; margin-top: 4px;">
+                                        هذه البطاقة وثيقة رسمية للمدرسة، في حال العثور عليها يرجى إعادتها للإدارة أو الاتصال بالهاتف المدون أدناه.
+                                    </div>
+                                </div>
+
+                                <!-- QR Code للتحقق السريع -->
+                                <div style="width: 70px; text-align: center; flex-shrink: 0;">
+                                    <t t-set="qr_val" t-value="'SMARTEDU:' + (o.gr_no or str(o.id)) + ':' + (o.id_number or '') + ':' + (o.name or '')"/>
+                                    <img t-att-src="env['ir.actions.report'].get_barcode_data_uri('QR', qr_val, width=65, height=65)"
+                                         style="width: 65px; height: 65px; border: 1px solid #CBD5E1; border-radius: 6px; padding: 2px; background: white;"/>
+                                    <div style="font-size: 7.5px; color: #64748B; font-weight: bold; margin-top: 2px;">مسح للتحقق</div>
+                                </div>
+                            </div>
+
+                            <!-- تذييل الوجه الخلفي -->
+                            <div style="background: #F1F5F9; border-top: 1px solid #E2E8F0; padding: 4px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; color: #475569;">
+                                <span><i class="fa fa-phone me-1" style="color: #D97706;"/> <t t-out="res_company.phone or '011-0000000'"/></span>
+                                <span><i class="fa fa-envelope me-1" style="color: #1E3A8A;"/> <t t-out="res_company.email or 'info@smartedu.com'"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

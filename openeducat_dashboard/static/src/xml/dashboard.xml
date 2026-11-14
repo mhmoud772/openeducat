@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="openeducat_dashboard.SchoolDashboard">
+        <main class="o_school_dashboard" dir="auto">
+            <t t-if="state.loading">
+                <section class="o_school_dashboard_loading"
+                         aria-busy="true"
+                         t-att-aria-label="strings.loading">
+                    <span class="fa fa-circle-o-notch fa-spin" aria-hidden="true"/>
+                    <span t-esc="strings.loading"/>
+                </section>
+            </t>
+            <t t-elif="state.error">
+                <section class="o_school_dashboard_error" role="alert">
+                    <p t-esc="state.error"/>
+                    <button class="btn btn-primary"
+                            type="button"
+                            t-on-click="loadDashboard">
+                        <t t-esc="strings.retry"/>
+                    </button>
+                </section>
+            </t>
+            <t t-else="">
+                <header class="o_school_dashboard_header">
+                    <div>
+                        <p class="o_school_dashboard_eyebrow" style="color: #d97706; font-weight: 700; letter-spacing: 1px;">SmartEdu | سمارت إديو</p>
+                        <h1 t-esc="strings.welcome"/>
+                        <p class="o_school_dashboard_subtitle"
+                           t-esc="strings.subtitle"/>
+                    </div>
+                    <div class="o_school_dashboard_company">
+                        <span class="fa fa-university" aria-hidden="true"/>
+                        <span t-esc="state.data.company_name"/>
+                    </div>
+                </header>
+
+                <section class="o_school_dashboard_metrics"
+                         t-att-aria-label="strings.overview">
+                    <t t-foreach="metrics" t-as="metric" t-key="metric.key">
+                        <button class="o_school_dashboard_metric"
+                                type="button"
+                                t-on-click="() => this.openAction(state.data.actions[metric.key])">
+                            <span class="o_school_dashboard_metric_icon"
+                                  aria-hidden="true">
+                                <i t-att-class="'fa ' + metric.icon"/>
+                            </span>
+                            <span class="o_school_dashboard_metric_label"
+                                  t-esc="metric.label"/>
+                            <strong class="o_school_dashboard_metric_value"
+                                    t-esc="state.data.counts[metric.key]"/>
+                            <span class="o_school_dashboard_metric_link">
+                                <t t-esc="strings.viewDetails"/>
+                                <i class="fa fa-arrow-left" aria-hidden="true"/>
+                            </span>
+                        </button>
+                    </t>
+                </section>
+
+                <section class="o_school_dashboard_shortcuts"
+                         aria-labelledby="o_school_dashboard_shortcuts_title">
+                    <div class="o_school_dashboard_section_heading">
+                        <h2 id="o_school_dashboard_shortcuts_title"
+                            t-esc="strings.quickAccess"/>
+                        <span t-esc="state.data.today"/>
+                    </div>
+                    <div class="o_school_dashboard_shortcut_list">
+                        <t t-foreach="shortcuts" t-as="shortcut" t-key="shortcut.key">
+                            <button class="o_school_dashboard_shortcut"
+                                    type="button"
+                                    t-on-click="() => this.openAction(state.data.actions[shortcut.key])">
+                                <i t-att-class="'fa ' + shortcut.icon"
+                                   aria-hidden="true"/>
+                                <span t-esc="shortcut.label"/>
+                                <i class="fa fa-angle-left"
+                                   aria-hidden="true"/>
+                            </button>
+                        </t>
+                    </div>
+                </section>
+            </t>
+        </main>
+    </t>
+</templates>

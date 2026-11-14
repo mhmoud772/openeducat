@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_bonafide">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="direction: rtl; font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, sans-serif; padding: 15px; color: #0F172A;">
+                    <style>
+                        .smartedu-cert-frame {
+                            border: 3px double #1E3A8A;
+                            padding: 24px 30px;
+                            position: relative;
+                            background: #FFFFFF;
+                            box-shadow: inset 0 0 0 1px #D97706, inset 0 0 0 5px #FFFFFF, inset 0 0 0 6.5px #1E3A8A;
+                            min-height: 980px;
+                            box-sizing: border-box;
+                        }
+                        .smartedu-cert-header {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            border-bottom: 2px solid #D97706;
+                            padding-bottom: 16px;
+                            margin-bottom: 24px;
+                        }
+                        .smartedu-cert-title-box {
+                            text-align: center;
+                            margin: 24px 0 32px 0;
+                        }
+                        .smartedu-cert-title {
+                            display: inline-block;
+                            font-size: 24px;
+                            font-weight: 900;
+                            color: #0A192F;
+                            padding: 8px 36px;
+                            background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%);
+                            border: 2px solid #1E3A8A;
+                            border-radius: 30px;
+                            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.12);
+                            letter-spacing: 0.5px;
+                        }
+                        .smartedu-data-box {
+                            background: #F8FAFC;
+                            border: 1px solid #E2E8F0;
+                            border-right: 4px solid #1E3A8A;
+                            border-radius: 10px;
+                            padding: 16px 20px;
+                            margin: 20px 0;
+                            font-size: 14.5px;
+                            line-height: 1.8;
+                        }
+                        .smartedu-cert-body {
+                            font-size: 16px;
+                            line-height: 2.2;
+                            text-align: justify;
+                            color: #1E293B;
+                        }
+                        .smartedu-highlight {
+                            font-weight: 800;
+                            color: #0A192F;
+                            border-bottom: 1.5px dashed #D97706;
+                            padding: 0 4px;
+                        }
+                        .smartedu-cert-footer {
+                            margin-top: 45px;
+                            padding-top: 20px;
+                            border-top: 1px solid #CBD5E1;
+                        }
+                    </style>
+
+                    <div class="smartedu-cert-frame">
+                        <!-- ترويسة الشهادة الرسمية -->
+                        <div class="smartedu-cert-header">
+                            <!-- الجانب الأيمن: الجهة والتبعية -->
+                            <div style="text-align: right; font-size: 13px; line-height: 1.6; color: #1E3A8A; font-weight: 700;">
+                                <div>وزارة التعليم</div>
+                                <div>إدارة التعليم العام</div>
+                                <div style="font-size: 15px; color: #0A192F; font-weight: 800;"><t t-out="res_company.name or 'سمارت إديو للأنظمة التعليمية'"/></div>
+                            </div>
+
+                            <!-- الوسط: الشعار الرسمي -->
+                            <div style="text-align: center;">
+                                <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)"
+                                     style="max-height: 75px; max-width: 130px; object-fit: contain; margin-bottom: 4px;"/>
+                                <div style="font-size: 11px; color: #D97706; font-weight: 700; letter-spacing: 1px;">SmartEdu ERP Suite</div>
+                            </div>
+
+                            <!-- الجانب الأيسر: رقم الشهادة والتاريخ -->
+                            <div style="text-align: left; font-size: 12px; line-height: 1.7; color: #475569;">
+                                <div><strong>رقم الشهادة:</strong> <span style="color: #1E3A8A; font-weight: 800;"><t t-out="o.certificate_number or ('CERT-' + str(o.id).zfill(5))"/></span></div>
+                                <div><strong>التاريخ:</strong> <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget':'date'}"/> م</div>
+                                <div><strong>رقم القيد:</strong> <span style="font-weight: 700;"><t t-out="o.gr_no or '—'"/></span></div>
+                            </div>
+                        </div>
+
+                        <!-- عنوان الشهادة -->
+                        <div class="smartedu-cert-title-box">
+                            <div class="smartedu-cert-title">
+                                شهادة إثبات قيد طالب
+                            </div>
+                            <div style="color: #64748B; font-size: 12px; margin-top: 6px; font-weight: 600;">
+                                CERTIFICATE OF ENROLLMENT (TO WHOM IT MAY CONCERN)
+                            </div>
+                        </div>
+
+                        <!-- نص الشهادة الرسمي الفخم -->
+                        <div class="smartedu-cert-body">
+                            <p>
+                                تشهد إدارة <strong><t t-out="res_company.name or 'المدرسة'"/></strong> بأن الطالب / الطالبة:
+                                <strong><span class="smartedu-highlight" style="font-size: 18px;"><t t-out="o.name"/></span></strong>
+                                المحترم،
+                            </p>
+
+                            <!-- بطاقة البيانات الأكاديمية -->
+                            <div class="smartedu-data-box">
+                                <div class="row">
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• الجنسية: </span>
+                                        <strong><t t-out="o.nationality.name or 'سعودي'"/></strong>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• نوع ورقم الوثيقة: </span>
+                                        <strong style="color: #1E3A8A;"><t t-out="dict(o._fields['id_type'].selection).get(o.id_type, 'هوية وطنية')"/>: <t t-out="o.id_number or '—'"/></strong>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• تاريخ الميلاد: </span>
+                                        <strong><span t-esc="o.birth_date" t-options='{"widget":"date"}'/></strong>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <span style="color: #64748B;">• حالة القيد: </span>
+                                        <span style="background: #10B981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                                            <t t-if="o.course_detail_ids and o.course_detail_ids[0].state == 'running'">منتظم ومقيد حالياً</t>
+                                            <t t-else="">مقيد</t>
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span style="color: #64748B;">• المرحلة والصف: </span>
+                                        <strong style="color: #D97706;">
+                                            <t t-if="o.course_detail_ids"><t t-out="o.course_detail_ids[0].course_id.name"/></t>
+                                            <t t-else="">—</t>
+                                        </strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span style="color: #64748B;">• الشعبة والعام: </span>
+                                        <strong>
+                                            <t t-if="o.course_detail_ids and o.course_detail_ids[0].batch_id"><t t-out="o.course_detail_ids[0].batch_id.name"/> | </t>
+                                            <t t-if="o.course_detail_ids and o.course_detail_ids[0].academic_years_id"><t t-out="o.course_detail_ids[0].academic_years_id.name"/></t>
+                                            <t t-else="">العام الدراسي 2026-2027</t>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p>
+                                منتظم/ـة بالدراسة لدينا بالصف المذكور أعلاه وفقاً للأنظمة واللوائح المعتمدة.
+                                وقد أُعطيت له هذه الشهادة بناءً على طلبه لتقديمها إلى:
+                                <span class="smartedu-highlight"><t t-out="data and data.get('purpose_display') or 'الجهات الرسمية والمعنية (لمن يهمه الأمر)'"/></span>
+                                دون أدنى مسؤولية أو التزام مالي على إدارة المؤسسة تجاه الغير.
+                            </p>
+                        </div>
+
+                        <!-- التوقيعات والختم المعتمد مع QR Code للتحقق -->
+                        <div class="smartedu-cert-footer">
+                            <div class="row align-items-center">
+                                <!-- مسجل شؤون الطلاب -->
+                                <div class="col-4 text-center">
+                                    <div style="font-weight: 800; font-size: 14px; color: #1E3A8A; margin-bottom: 35px;">مسجل شؤون الطلاب</div>
+                                    <div style="font-size: 13px; color: #475569;">التوقيع: ............................</div>
+                                </div>
+
+                                <!-- الختم الرسمي و QR التحقق الإلكتروني -->
+                                <div class="col-4 text-center">
+                                    <t t-set="qr_verify" t-value="'SMARTEDU-CERT:' + (o.certificate_number or str(o.id)) + ':' + (o.id_number or '') + ':' + (o.name or '')"/>
+                                    <img t-att-src="env['ir.actions.report'].get_barcode_data_uri('QR', qr_verify, width=80, height=80)"
+                                         style="width: 80px; height: 80px; border: 1.5px solid #CBD5E1; border-radius: 8px; padding: 3px; background: white; margin-bottom: 4px;"/>
+                                    <div style="font-size: 10px; color: #64748B; font-weight: 700;">رمز التحقق الرقمي</div>
+                                    <div style="border: 2px dashed #CBD5E1; border-radius: 50%; width: 75px; height: 75px; margin: 8px auto 0 auto; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94A3B8;">
+                                        موضع الختم الرسمي
+                                    </div>
+                                </div>
+
+                                <!-- مدير المدرسة -->
+                                <div class="col-4 text-center">
+                                    <div style="font-weight: 800; font-size: 14px; color: #1E3A8A; margin-bottom: 35px;">مدير عام المؤسسة التعليمية</div>
+                                    <div style="font-size: 13px; color: #475569;">التوقيع: ............................</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- تذييل الصفحة -->
+                        <div style="text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 30px; border-top: 1px solid #F1F5F9; padding-top: 8px;">
+                            تم إصدار هذه الوثيقة رسمياً بواسطة نظام سمارت إديو للأنظمة التعليمية • صالحة لمدة 3 أشهر من تاريخ الإصدار
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

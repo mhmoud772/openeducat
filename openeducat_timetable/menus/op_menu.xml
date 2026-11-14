@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem name="الجدول المدرسي"
+        id="menu_op_timetable_root"
+        groups="openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager"
+        web_icon="openeducat_timetable,static/description/icon.png"
+        action="act_open_op_session_view"
+        sequence="280">
+        <menuitem name="الجداول والحصص"
+            id="menu_op_timetable"
+            groups="openeducat_timetable.group_op_timetable_manager,openeducat_timetable.group_op_timetable_user"
+            sequence="10">
+
+            <menuitem name="الحصص والمحاضرات"
+            id="menu_op_sessions"
+            groups="openeducat_timetable.group_op_timetable_manager,openeducat_timetable.group_op_timetable_user"
+            action="act_open_op_session_view_list"
+            sequence="10"/>
+
+             <menuitem id="menu_generate_time_table"
+                name="توليد وتوزيع الجدول المدرسي"
+                groups="openeducat_timetable.group_op_timetable_manager"
+                sequence="20"
+                action="act_open_generate_time_table_view" />
+
+            </menuitem>
+
+        <!-- Reporting Menu -->
+
+        <menuitem name="التقارير"
+            id="menu_op_timetable_reporting"
+            sequence="40"
+            groups="openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager">
+
+            <menuitem id="menu_generate_time_table_report"
+                name="طباعة كشف الجدول المدرسي"
+                groups="openeducat_timetable.group_op_timetable_manager"
+                sequence="30"
+                action="act_open_time_table_report_view" />
+        </menuitem>
+
+        <!-- Configuration Menu -->
+
+        <menuitem name="التهيئة"
+            id="menu_op_timetable_configuration"
+            sequence="50"
+            groups="openeducat_timetable.group_op_timetable_user,openeducat_timetable.group_op_timetable_manager">
+
+            <menuitem id="menu_settings"
+                name="الإعدادات العامة"
+                groups="openeducat_timetable.group_op_timetable_manager"
+                sequence="30"
+                action="openeducat_core.action_openeducat_configuration" />
+
+        </menuitem>
+    </menuitem>
+</odoo>

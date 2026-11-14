@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add My Academic entry to Portal Home -->
+    <template id="portal_my_home_student" inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">سجلي الأكاديمي والجدول الدراسي</t>
+                <t t-set="url" t-value="'/my/academic'"/>
+                <t t-set="placeholder_count" t-value="'student_courses_count'"/>
+                <t t-set="config_card" t-value="{'show_count': True}"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Main Student Academic Portal Page -->
+    <template id="portal_my_student_academic" name="سجلي الأكاديمي">
+        <t t-call="portal.portal_layout">
+            <t t-set="my_details" t-value="False"/>
+            <div class="container py-4">
+                
+                <!-- Page Breadcrumbs -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb bg-light p-2 rounded-3">
+                        <li class="breadcrumb-item"><a href="/my">لوحة التحكم الرئيسية</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">سجلي الأكاديمي</li>
+                    </ol>
+                </nav>
+
+                <t t-if="not student">
+                    <div class="alert alert-info shadow-sm rounded-3 text-center p-5">
+                        <i class="fa fa-user-graduate fa-3x mb-3 text-primary d-block"/>
+                        <h4>لا يوجد ملف طالب مرتبط بحساب المستخدم الحالي</h4>
+                        <p class="text-muted">إذا كنت طالباً مسجلاً، يرجى مراجعة إدارة القبول والتسجيل لربط حسابك برقمك الأكاديمي.</p>
+                        <a href="/my" class="btn btn-primary mt-2">العودة للرئيسية</a>
+                    </div>
+                </t>
+
+                <t t-else="">
+                    <!-- Student Identity Card -->
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-4" style="border-top: 4px solid #14213D !important;">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img t-att-src="image_data_uri(student.image_1920 or student.avatar_128)"
+                                         alt="صورة الطالب"
+                                         class="rounded-circle border p-1 shadow-sm"
+                                         style="width: 95px; height: 95px; object-fit: cover;"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="fw-bold text-dark mb-1" t-esc="student.name"/>
+                                    <div class="d-flex flex-wrap gap-3 text-muted small mt-2">
+                                        <div>
+                                            <strong class="text-primary">الرقم الأكاديمي:</strong>
+                                            <span class="badge bg-light text-dark border ms-1" t-esc="student.gr_no or '—'"/>
+                                        </div>
+                                        <div t-if="student.id_number">
+                                            <strong class="text-primary">رقم الهوية / الإقامة:</strong>
+                                            <span class="badge bg-light text-dark border ms-1" t-esc="student.id_number"/>
+                                        </div>
+                                        <div>
+                                            <strong class="text-primary">الجنسية:</strong>
+                                            <span t-if="student.nationality" t-esc="student.nationality.name"/>
+                                            <span t-else="">—</span>
+                                        </div>
+                                        <div>
+                                            <strong class="text-primary">البريد الإلكتروني:</strong>
+                                            <span t-esc="student.email or '—'"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enrolled Courses & Academic Stages Table -->
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-4">
+                        <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                            <h6 class="fw-bold mb-0 text-dark">
+                                <i class="fa fa-graduation-cap text-primary me-2"/>
+                                السجل الأكاديمي والصفوف المسجلة
+                            </h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <t t-if="student.course_detail_ids">
+                                <!-- Desktop Table View -->
+                                <div class="table-responsive d-none d-md-block">
+                                    <table class="table table-hover align-middle mb-0 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>المرحلة والصف</th>
+                                                <th>الشعبة / الفصل</th>
+                                                <th>رقم الجلوس</th>
+                                                <th>العام الدراسي</th>
+                                                <th>الفصل الدراسي</th>
+                                                <th>حالة القيد</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="student.course_detail_ids" t-as="crs">
+                                                <tr>
+                                                    <td class="fw-bold text-primary"><span t-esc="crs.course_id.name"/></td>
+                                                    <td><span t-esc="crs.batch_id.name"/></td>
+                                                    <td><span t-esc="crs.roll_number or '—'"/></td>
+                                                    <td><span t-esc="crs.academic_years_id.name or '—'"/></td>
+                                                    <td><span t-esc="crs.academic_term_id.name or '—'"/></td>
+                                                    <td>
+                                                        <t t-if="crs.state == 'running'">
+                                                            <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">مستمر (منتظم)</span>
+                                                        </t>
+                                                        <t t-elif="crs.state == 'finished'">
+                                                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">ناجح / متخرج</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span class="badge bg-light text-dark border px-2 py-1" t-esc="crs.state"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Mobile Card View -->
+                                <div class="d-md-none p-3">
+                                    <t t-foreach="student.course_detail_ids" t-as="crs">
+                                        <div class="card border rounded-3 p-3 mb-2 shadow-sm bg-light">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <h6 class="fw-bold text-primary mb-0" t-esc="crs.course_id.name"/>
+                                                <t t-if="crs.state == 'running'">
+                                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">منتظم</span>
+                                                </t>
+                                                <t t-elif="crs.state == 'finished'">
+                                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">متخرج</span>
+                                                </t>
+                                                <t t-else="">
+                                                    <span class="badge bg-light text-dark border px-2 py-1" t-esc="crs.state"/>
+                                                </t>
+                                            </div>
+                                            <div class="row g-2 small text-muted">
+                                                <div class="col-6"><strong>الشعبة:</strong> <span t-esc="crs.batch_id.name"/></div>
+                                                <div class="col-6"><strong>رقم الجلوس:</strong> <span t-esc="crs.roll_number or '—'"/></div>
+                                                <div class="col-6"><strong>العام:</strong> <span t-esc="crs.academic_years_id.name or '—'"/></div>
+                                                <div class="col-6"><strong>الفصل:</strong> <span t-esc="crs.academic_term_id.name or '—'"/></div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <!-- Reassuring Empty State -->
+                                <div class="text-center p-4 p-md-5">
+                                    <div class="mb-3">
+                                        <i class="fa fa-folder-open-o fa-3x text-muted opacity-50"/>
+                                    </div>
+                                    <h5 class="fw-bold text-dark mb-1">لا توجد صفوف دراسية مسجلة حالياً</h5>
+                                    <p class="text-muted small mb-0">جداول المقررات والتسجيلات للفصل القادم ستظهر هنا فور اعتمادها من قبل إدارة القبول والتسجيل.</p>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Summary -->
+                    <h5 class="fw-bold text-dark mb-3">
+                        <i class="fa fa-calendar-check text-primary me-2"/>
+                        ملخص الحضور والغياب الأكاديمي
+                    </h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #10B981 !important;">
+                                <span class="text-muted small fw-bold">أيام الحضور</span>
+                                <h3 class="fw-bold text-success mt-2 mb-0" t-esc="attendance_summary['present']"/>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #EF4444 !important;">
+                                <span class="text-muted small fw-bold">أيام الغياب</span>
+                                <h3 class="fw-bold text-danger mt-2 mb-0" t-esc="attendance_summary['absent']"/>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #F59E0B !important;">
+                                <span class="text-muted small fw-bold">مرات التأخير</span>
+                                <h3 class="fw-bold text-warning mt-2 mb-0" t-esc="attendance_summary['late']"/>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="card border-0 shadow-sm rounded-3 p-3 text-center bg-white" style="border-bottom: 3px solid #3B82F6 !important;">
+                                <span class="text-muted small fw-bold">الاستئذان المبرر</span>
+                                <h3 class="fw-bold text-primary mt-2 mb-0" t-esc="attendance_summary['excused']"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Navigation -->
+                    <div class="card bg-light border-0 rounded-4 p-4 shadow-sm text-center">
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="/my" class="btn btn-primary rounded-pill px-4">
+                                <i class="fa fa-home me-1"/>
+                                العودة للبوابة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
