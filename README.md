@@ -4,8 +4,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/openeducat/openeducat_erp.svg)](https://github.com/openeducat/openeducat_erp/stargazers)
 
 > 📘 **الدليل التعليمي الشامل للنظام (باللغة العربية):**  
-> تم تضمين دليل استخدام مفصل وشامل لجميع موديولات النظام (القبول، الطلاب، المعلمون، الجداول، الكنترول، الرسوم، المكتبة، وبوابات أولياء الأمور) في:  
-> 🔗 **[docs/USER_MANUAL_AR.md](docs/USER_MANUAL_AR.md)**
+> تم تضمين دليل استخدام مفصل وشامل لجميع موديولات النظام (القبول، الطلاب، المعلمون، الجداول، الكنترول، الرسوم، المكتبة، وبوابات أولياء الأمور):  
+> - 📄 **[نسخة المستند Markdown (USER_MANUAL_AR.md)](docs/USER_MANUAL_AR.md)**  
+> - 📕 **[نسخة الكتاب الإلكتروني PDF جاهزة للطباعة (USER_MANUAL_AR.pdf)](docs/USER_MANUAL_AR.pdf)**  
 
 ---
 

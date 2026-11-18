@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>دليل المستخدم الشامل - منظومة سمارت إديو (SmartEdu)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Tajawal, sans-serif',
+                fontSize: '12px',
+                primaryColor: '#eff6ff',
+                primaryTextColor: '#1e3a8a',
+                primaryBorderColor: '#3b82f6',
+                lineColor: '#2563eb',
+                secondaryColor: '#f0fdf4',
+                tertiaryColor: '#fef2f2',
+                mainBkg: '#ffffff',
+                nodeBorder: '#3b82f6',
+                actorBkg: '#eff6ff',
+                actorBorder: '#3b82f6',
+                actorTextColor: '#1e3a8a',
+                signalColor: '#2563eb',
+                signalTextColor: '#1e293b'
+            }
+        });
+    </script>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 18mm 15mm 18mm 15mm;
+            @bottom-left {
+                content: "منظومة سمارت إديو (SmartEdu ERP) - دليل المستخدم";
+                font-family: 'Tajawal', sans-serif;
+                font-size: 8.5pt;
+                color: #64748b;
+            }
+            @bottom-right {
+                content: "صفحة " counter(page) " من " counter(pages);
+                font-family: 'Tajawal', sans-serif;
+                font-size: 8.5pt;
+                color: #1e40af;
+                font-weight: 700;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Noto Sans Arabic', Tahoma, sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+            font-size: 10.5pt;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Banner */
+        .cover-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0284c7 100%);
+            color: white;
+            padding: 28px 24px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
+            text-align: center;
+            page-break-after: avoid;
+        }
+
+        .cover-banner h1 {
+            font-family: 'Cairo', 'Noto Kufi Arabic', sans-serif;
+            font-size: 21pt;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            border: none;
+            padding: 0;
+        }
+
+        .cover-banner .subtitle {
+            font-size: 11.5pt;
+            font-weight: 500;
+            color: #e0f2fe;
+            margin-bottom: 16px;
+        }
+
+        .cover-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 8.5pt;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+        }
+
+        /* Table of Contents Wrapper */
+        .toc-wrapper {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .toc-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 12pt;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 18px;
+            margin: 0;
+            padding-right: 20px;
+            padding-left: 0;
+            font-size: 9.5pt;
+        }
+
+        .toc-grid li {
+            margin-bottom: 4px;
+        }
+
+        .toc-grid a {
+            color: #0369a1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Headings */
+        h1, h2, h3, h4 {
+            font-family: 'Cairo', 'Noto Kufi Arabic', sans-serif;
+            color: #0f172a;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+
+        h2 {
+            font-size: 13pt;
+            color: #1e3a8a;
+            background: #eff6ff;
+            border-right: 5px solid #2563eb;
+            padding: 7px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 26px;
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            font-size: 11pt;
+            color: #0369a1;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 4px;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 0 0 12px 0;
+            padding-right: 22px;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 18px 0;
+            page-break-inside: avoid;
+            break-inside: avoid;
+            font-size: 9.5pt;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        th, td {
+            padding: 8px 11px;
+            border: 1px solid #cbd5e1;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 9.5pt;
+            border-bottom: 2px solid #94a3b8;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* Code & Pre */
+        code {
+            font-family: 'Fira Code', 'DejaVu Sans Mono', Consolas, monospace;
+            background: #f1f5f9;
+            color: #b91c1c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9pt;
+            direction: ltr;
+            display: inline-block;
+            border: 1px solid #e2e8f0;
+        }
+
+        pre {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin: 12px 0;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        pre code {
+            background: transparent;
+            color: #f8fafc;
+            border: none;
+            padding: 0;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            display: block;
+        }
+
+        /* Mermaid Box */
+        .mermaid-container {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            text-align: center;
+            page-break-inside: avoid;
+            break-inside: avoid;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .mermaid {
+            background: transparent !important;
+            margin: 0 auto;
+        }
+
+        .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Callouts / Alerts */
+        .callout {
+            border-right: 4.5px solid #2563eb;
+            background: #f0f9ff;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            page-break-inside: avoid;
+            break-inside: avoid;
+            font-size: 9.5pt;
+        }
+
+        .callout-title {
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 10pt;
+        }
+
+        .callout-body p {
+            margin: 0 0 6px 0;
+        }
+
+        .callout-body p:last-child {
+            margin: 0;
+        }
+
+        .alert-note {
+            border-right-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .alert-tip {
+            border-right-color: #16a34a;
+            background: #f0fdf4;
+        }
+
+        .alert-important {
+            border-right-color: #dc2626;
+            background: #fef2f2;
+        }
+
+        .alert-warning {
+            border-right-color: #d97706;
+            background: #fffbeb;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 22px 0;
+        }
+
+        .footer-note {
+            margin-top: 35px;
+            padding-top: 15px;
+            border-top: 2px dashed #cbd5e1;
+            text-align: center;
+            font-size: 9pt;
+            color: #64748b;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cover-banner">
+        <h1>منظومة سمارت إديو (SmartEdu ERP)</h1>
+        <div class="subtitle">الدليل التعليمي والإرشادي الشامل للمدارس والمجمعات التعليمية الحديثة</div>
+        <div class="cover-badges">
+            <span class="badge">🚀 OpenEduCat 19.0 Core</span>
+            <span class="badge">🇾🇪 مهيأ للمنهج والسلم التعليمي اليمني</span>
+            <span class="badge">🌐 السحابة: openeducat.onrender.com</span>
+            <span class="badge">📅 إصدار 2026</span>
+        </div>
+    </div>
+
+    <div class="toc-wrapper">
+    <div class="toc-title">📌 فهرس محتويات الدليل الشامل</div>
+    <ol class="toc-grid">
+        <li><a href="#1-نظرة-عامة-على-المنظومة-وبيانات-الدخول">نظرة عامة على المنظومة وبيانات الدخول التجريبية</a></li><li><a href="#2-دورة-حياة-القبول-والتسجيل">دورة حياة القبول والتسجيل (Admission & Enrollment)</a></li><li><a href="#3-إدارة-شؤون-الطلاب-والملفات-الأكاديمية">إدارة شؤون الطلاب والملفات الأكاديمية (Students & SIS)</a></li><li><a href="#4-الكادر-التعليمي-والإداري-وتوزيع-المواد">الكادر التعليمي والإداري وتوزيع المواد (Faculty Management)</a></li><li><a href="#5-المراحل-والشعب-والقاعات-الدراسية">المراحل، الشعب، والقاعات الدراسية (Courses & Classrooms)</a></li><li><a href="#6-الجداول-المدرسية-والحصص-الأسبوعية">الجداول المدرسية والحصص الأسبوعية (Timetable & Sessions)</a></li><li><a href="#7-رصد-الحضور-والانضباط-المدرسي">رصد الحضور والانضباط المدرسي (Attendance & Discipline)</a></li><li><a href="#8-الكنترول-المدرسي-وبنك-الاختبارات-والشهادات">الكنترول المدرسي وبنك الاختبارات والشهادات (Exams & Marksheets)</a></li><li><a href="#9-الفواتير-والرسوم-المدرسية-بالريال-اليمني">الفواتير والرسوم المدرسية بالريال اليمني (School Fees & Finance)</a></li><li><a href="#10-المكتبة-المدرسية-ونظام-الإعارة-بالباركود">المكتبة المدرسية ونظام الإعارة بالباركود (Library & Media)</a></li><li><a href="#11-الأنشطة-والمسابقات-الطلابية-اللاصفية">الأنشطة والمسابقات الطلابية اللاصفية (Student Activities)</a></li><li><a href="#12-دليل-بوابة-ولي-الأمر-وبوابة-الطالب">دليل بوابة ولي الأمر وبوابة الطالب (Self-Service Portals)</a></li><li><a href="#13-الإشراف-الفني-وإجراءات-النسخ-الاحتياطي">الإشراف الفني وإجراءات النسخ الاحتياطي (System Administration & Backup)</a></li>
+    </ol>
+</div>
+
+<h2>1. نظرة عامة على المنظومة وبيانات الدخول</h2>
+<p>منظومة <strong>سمارت إديو (SmartEdu)</strong> هي حل مؤسسي سحابي لإدارة كافة العمليات الأكاديمية، الإدارية، والمالية في المدارس الأهلية والنموذجية. تم تكييف النظام ليتطابق مع السلم التعليمي اليمني:
+* <strong>مرحلة التعليم الأساسي (1 - 9):</strong> الصف الأول حتى التاسع (الشهادة الأساسية).
+* <strong>مرحلة التعليم الثانوي (1 - 3):</strong> الأول الثانوي العام، والثاني والثالث الثانوي (علمي وأدبي - الشهادة الثانوية العامة).
+* <strong>التقويم الدراسي:</strong> فصلان دراسيان (الفصل الدراسي الأول والفصل الدراسي الثاني).
+* <strong>العملة الرسمية:</strong> الريال اليمني (<code>ر.ي</code> / <code>YER</code>).</p>
+<h3>روابط المنظومة</h3>
+<ul>
+<li><strong>الرابط السحابي المباشر (Cloud URL):</strong> <a href="https://openeducat.onrender.com">https://openeducat.onrender.com</a></li>
+<li><strong>الرابط المحلي (Local URL):</strong> <a href="http://localhost:8069">http://localhost:8069</a></li>
+</ul>
+<h3>بيانات الدخول التجريبية الجاهزة للاختبار (Demo Accounts)</h3>
+<table>
+<thead>
+<tr>
+<th align="left">الدور الوظيفي</th>
+<th align="left">البريد الإلكتروني (Login)</th>
+<th align="left">كلمة المرور</th>
+<th align="left">الصلاحيات والمهام</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>مدير النظام والكنترول</strong></td>
+<td align="left"><code>admin</code></td>
+<td align="left"><code>SmartEduLocal2026!Master</code></td>
+<td align="left">الصلاحيات الكاملة على كافة الموديولات، الإعدادات، والتقارير</td>
+</tr>
+<tr>
+<td align="left"><strong>ولي أمر</strong></td>
+<td align="left"><code>parent@alnahda.edu.ye</code></td>
+<td align="left"><code>123456</code></td>
+<td align="left">متابعة الأبناء، جداول الحصص، الحضور والغياب، وفواتير الرسوم</td>
+</tr>
+<tr>
+<td align="left"><strong>طالب</strong></td>
+<td align="left"><code>student@alnahda.edu.ye</code></td>
+<td align="left"><code>123456</code></td>
+<td align="left">استعراض السجل الأكاديمي، كشف درجات الكنترول، وجدول الحصص</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. دورة حياة القبول والتسجيل</h2>
+<div class="mermaid-container"><div class="mermaid">
+flowchart LR
+    A["تقديم طلب الالتحاق\n(أونلاين أو يدوي)"] --> B["مراجعة الوثائق\nوالملف الصحي"]
+    B --> C["اختبار القبول\nوالمقابلة الشخصية"]
+    C --> D{"الموافقة والاعتماد؟"}
+    D -- نعم --> E["تأكيد القبول\n(Done / Enroll)"]
+    D -- لا --> F["رفض أو حفظ في قائمة الانتظار"]
+    E --> G["توليد ملف الطالب آلياً\nوتخصيص الرقم الأكاديمي (GR No)"]
+    G --> H["توزيع الطالب على الشعبة\nوتوليد فاتورة القسط الأول"]
+</div></div>
+
+<h3>خطوات العمل داخل النظام:</h3>
+<ol>
+<li>اذهب إلى: <strong>التسجيل (Admission) &gt; طلبات القبول (Admission Registers)</strong>.</li>
+<li>انقر على <strong>جديد (New)</strong> لتسجيل طلب طالب جديد:</li>
+<li><strong>بيانات الطالب:</strong> الاسم الرباعي، تاريخ ومحل الميلاد، الجنس، والديانة.</li>
+<li><strong>المرحلة المستهدفة:</strong> تحديد المرحلة والشعبة (مثال: الثالث الثانوي - علمي).</li>
+<li><strong>بيانات ولي الأمر:</strong> ربطه بولي أمر حالي أو إنشاء ولي أمر جديد برقم هاتفه.</li>
+<li>اضغط <strong>تقديم (Submit)</strong> للانتقال إلى مرحلة المراجعة.</li>
+<li>بعد مراجعة المستندات اضغط <strong>تأكيد القبول (Enroll)</strong>:</li>
+<li>يقوم النظام تلقائياً بإنشاء ملف الطالب داخل موديول الطلاب (<code>op.student</code>).</li>
+<li>يتم منح الطالب رقماً أكاديمياً موحداً (مثل: <code>YEM-2026-101</code>).</li>
+</ol>
+<hr />
+<h2>3. إدارة شؤون الطلاب والملفات الأكاديمية</h2>
+<p>موديول الطلاب هو النواة المركزية التي تتجمع فيها كافة العمليات (الدرجات، الحضور، الرسوم، والأنشطة).</p>
+<h3>الوصول لملف الطالب:</h3>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>الطلاب (Students) &gt; الطلاب (Students)</strong>.</li>
+</ul>
+<h3>محتويات بطاقة الطالب:</h3>
+<ul>
+<li><strong>البيانات الشخصية:</strong> الاسم باللغتين العربية والإنجليزية، الرقم الأكاديمي (<code>GR Number</code>)، الصورة الشخصية، وتاريخ الميلاد.</li>
+<li><strong>الارتباط بولي الأمر:</strong> ربط الطالب بملف ولي الأمر مع تحديد صلة القرابة (أب، أم، وصي).</li>
+<li><strong>السجل الصحي:</strong> فصيلة الدم، الحساسية، والأمراض المزمنة في حال وجودها.</li>
+<li><strong>الأزرار الذكية (Smart Buttons) أعلى الملف:</strong></li>
+<li>عدد أيام الحضور والغياب.</li>
+<li>فواتير الرسوم المدرسية المسددة والمتبقية.</li>
+<li>كشوفات درجات الكنترول والاختبارات.</li>
+<li>بطاقة المكتبة المدرسية والإعارات الحالية.</li>
+</ul>
+<hr />
+<h2>4. الكادر التعليمي والإداري وتوزيع المواد</h2>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>المعلمون (Faculties) &gt; المعلمون (Faculties)</strong>.</li>
+</ul>
+<h3>مهام إدارة المعلمين:</h3>
+<ol>
+<li><strong>تسجيل المعلم الجديد:</strong></li>
+<li>إدخال البيانات الشخصية، المؤهل العلمي، والدرجة التخصصية.</li>
+<li>تعيين القسم الرئيسي (مثال: قسم العلوم الطبيعية والرياضيات).</li>
+<li><strong>ربط المعلم بالمواد (Subjects):</strong></li>
+<li>في تبويب <strong>المواد الدراسية (Subjects)</strong>: تحديد المواد التي يحق للمعلم تدريسها (مثال: د. عبدالله باوزير -&gt; مادة الفيزياء).</li>
+<li><strong>تحديد النصاب والجدول:</strong></li>
+<li>ربط المعلم بالشعب الدراسية والقاعات لتفادي أي تضارب زمني أثناء إعداد الجدول المدرسي.</li>
+</ol>
+<hr />
+<h2>5. المراحل، الشعب، والقاعات الدراسية</h2>
+<p>تم ضبط النظام وفق هيكل التعليم اليمني النموذجي:</p>
+<div class="mermaid-container"><div class="mermaid">
+graph TD
+    A["مدارس النهضة النموذجية الأهلية"] --> B["المرحلة الأساسية (1 - 9)"]
+    A --> C["المرحلة الثانوية (1 - 3)"]
+    B --> B1["الصفوف الأولية (1 - 3)"]
+    B --> B2["الصفوف المتوسطة (4 - 6)"]
+    B --> B3["المرحلة الأساسية العليا (7 - 9)\n(تنتهي بالشهادة الأساسية تاسع)"]
+    C --> C1["الأول الثانوي (عام)"]
+    C --> C2["الثاني الثانوي (علمي / أدبي)"]
+    C --> C3["الثالث الثانوي (علمي / أدبي)\n(تنتهي بالشهادة الثانوية العامة)"]
+</div></div>
+
+<h3>إدارة القاعات والمعامل (Classrooms &amp; Labs):</h3>
+<ul>
+<li>اذهب إلى: <strong>المنشآت والقاعات (Facilities / Classrooms)</strong>.</li>
+<li>تم إعداد قاعات متخصصة مثل:</li>
+<li><strong>قاعة الخوارزمي:</strong> مخصصة لطلاب الثالث الثانوي علمي.</li>
+<li><strong>معمل القدس:</strong> معمل الحاسوب والبرمجة والذكاء الاصطناعي.</li>
+<li><strong>معمل ابن سينا:</strong> معمل الكيمياء والتجارب العملية.</li>
+<li><strong>قاعة المتنبي:</strong> الصف التاسع الأساسي.</li>
+<li><strong>قاعة بلقيس:</strong> الصف الأول الأساسي.</li>
+<li>كل قاعة محدد لها <strong>الطاقة الاستيعابية القصوى (Capacity)</strong> لضمان عدم تجاوز كثافة الطلاب الموصى بها في الفصول.</li>
+</ul>
+<hr />
+<h2>6. الجداول المدرسية والحصص الأسبوعية</h2>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>الجدول المدرسي (Timetable) &gt; الحصص والجلسات (Sessions)</strong>.</li>
+</ul>
+<h3>خطوات جدولة الحصص المدرسية:</h3>
+<ol>
+<li><strong>الجدولة اليدوية للحصة:</strong></li>
+<li>اختر الشعبة (مثال: <code>الثالث الثانوي - علمي</code>).</li>
+<li>اختر المادة الدراسية (مثال: <code>الرياضيات المتقدمة</code>).</li>
+<li>اختر المعلم (مثال: <code>أ. وليد الأهدل</code>).</li>
+<li>اختر القاعة الدراسية (مثال: <code>قاعة الخوارزمي</code>).</li>
+<li>حدد وقت البداية والنهاية (مثال: الأحد من الساعة 08:00 إلى 08:45 صباحاً).</li>
+<li><strong>منع التعارض الذكي:</strong></li>
+<li>يمنع النظام تلقائياً حجز نفس المعلم أو نفس القاعة في نفس الوقت لحصتين مختلفتين، ويعرض تحذيراً فورياً للمشرف الأكاديمي.</li>
+<li><strong>استعراض الجدول:</strong></li>
+<li>يمكن عرض الجدول كتقويم أسبوعي ملون (Calendar View)، أو جدول منظم حسب القاعات أو المعلمين.</li>
+</ol>
+<hr />
+<h2>7. رصد الحضور والانضباط المدرسي</h2>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>الحضور (Attendance) &gt; دفاتر الحضور (Attendance Registers)</strong>.</li>
+</ul>
+<h3>دورة الرصد اليومي:</h3>
+<ol>
+<li>يفتح المشرف أو المعلم دفتر حضور الشعبة (مثال: <code>كشف حضور - الثالث الثانوي علمي</code>).</li>
+<li>يضغط على <strong>إنشاء ورقة حضور يومية (New Sheet)</strong>.</li>
+<li>يحدد تاريخ اليوم، ليقوم النظام تلقائياً بجلب قائمة أسماء كافة الطلاب المسجلين بالشعبة.</li>
+<li>الخيارات المتاحة أمام كل طالب:</li>
+<li><strong>حاضر (Present):</strong> وهو الخيار الافتراضي لسرعة الإنجاز.</li>
+<li><strong>غائب (Absent):</strong> في حال عدم الحضور.</li>
+<li><strong>متأخر (Late):</strong> مع إمكانية كتابة مدة التأخر وسببه في الملاحظات.</li>
+<li><strong>معذور (Excused):</strong> في حال تقديم عذر طبي أو موافقة مسبقة من الإدارة.</li>
+<li>الضغط على <strong>اعتماد (Done)</strong> لحفظ الكشف وإرسال السجلات لبوابة ولي الأمر وإحصائيات الغياب العامة.</li>
+</ol>
+<hr />
+<h2>8. الكنترول المدرسي وبنك الاختبارات والشهادات</h2>
+<p>يدعم النظام دورة عمل الكنترول المدرسي المتوافقة مع معايير وزارة التربية والتعليم:</p>
+<div class="mermaid-container"><div class="mermaid">
+sequenceDiagram
+    participant C as الكنترول المدرسي
+    participant T as معلم المادة
+    participant S as سجلات النظام
+    participant P as بوابة الطالب وولي الأمر
+
+    C->>S: فتح جلسة اختبارات (نصف العام 2026-2027)
+    C->>S: إنشاء مواد الاختبار وتحديد الدرجات العظمى والصغرى
+    T->>S: رصد درجات الاختبار والشفوي والواجبات
+    C->>S: مراجعة الدرجات وإغلاق الرصد (Close Exam)
+    S->>C: توليد كشف الدرجات الرسمي والشهادات مع الـ QR Code
+    S->>P: ظهور الدرجات فورياً في السجل الأكاديمي للطالب وبوابة ولي الأمر
+</div></div>
+
+<h3>مميزات كشف الدرجات والشهادة الرسمية في المنظومة:</h3>
+<ul>
+<li><strong>الدرجات العظمى والصغرى:</strong> الدرجة من 100 مع حد النجاح الأدنى 50.</li>
+<li><strong>حساب النسبة والتقدير العام:</strong> (ممتاز 90%+، جيد جداً 80%+، جيد 65%+، مقبول 50%+، راسب دون 50%).</li>
+<li><strong>رمز التحقق المشفر (QR Code):</strong> تحتوي كل شهادة أو كشف درجات مطبوع على باركود QR ذكي يمكن قراءته بأي هاتف ذكي للتحقق من صحة الوثيقة ومنع التزوير.</li>
+</ul>
+<hr />
+<h2>9. الفواتير والرسوم المدرسية بالريال اليمني</h2>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>الفواتير والرسوم (Invoicing / Fees)</strong>.</li>
+</ul>
+<h3>إدارة الأقساط والرسوم:</h3>
+<ol>
+<li><strong>هياكل الرسوم (Fee Structures):</strong></li>
+<li>تحديد قيمة الرسوم الدراسية للمرحلة (مثال: <code>350,000 ر.ي</code> سنوياً).</li>
+<li>إمكانية تقسيم الرسوم إلى قسطين أو 4 أقساط فصلية.</li>
+<li><strong>إصدار المطالبات والفواتير:</strong></li>
+<li>يتم إصدار الفاتورة باسم ولي الأمر مع تحديد اسم الطالب والشعبة.</li>
+<li>تظهر الفاتورة بالعملة الوطنية: <strong>الريال اليمني (<code>ر.ي</code>)</strong>.</li>
+<li><strong>السداد والتحصيل:</strong></li>
+<li>تسجيل سندات القبض عند استلام المبالغ (نقداً، شيك، أو حوالة بنكية).</li>
+<li>تنعكس الدفعات والمبالغ المتبقية تلقائياً في بوابة ولي الأمر (<code>/my/invoices</code>).</li>
+</ol>
+<hr />
+<h2>10. المكتبة المدرسية ونظام الإعارة بالباركود</h2>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>المكتبة (Library) &gt; الوسائط والكتب (Media)</strong>.</li>
+</ul>
+<h3>آليات إدارة المكتبة:</h3>
+<ul>
+<li><strong>فهرسة الكتب والمراجع:</strong> تصنيف الكتب بحسب الموضوع (تاريخ وأنساب اليمن، فيزياء، لغة عربية، حاسوب وبرمجة).</li>
+<li><strong>إدارة المؤلفين ودور النشر:</strong> مثل كتب الهمداني وابن سينا.</li>
+<li><strong>تتبع النسخ بالباركود (Media Units):</strong> لكل نسخة مادية من الكتاب باركود فريد يطبع ويوضع على غلاف الكتاب.</li>
+<li><strong>عمليات الإعارة والاسترجاع (Issue &amp; Return):</strong></li>
+<li>مسح باركود بطاقة الطالب.</li>
+<li>مسح باركود الكتاب.</li>
+<li>تحديد تاريخ الاسترجاع المتوقع وتتبع الكتب المتأخرة آلياً.</li>
+</ul>
+<hr />
+<h2>11. الأنشطة والمسابقات الطلابية اللاصفية</h2>
+<ul>
+<li>القائمة الرئيسية &gt; <strong>الأنشطة المدرسية (Student Activities)</strong>.</li>
+</ul>
+<h3>التوثيق الأكاديمي للأنشطة:</h3>
+<ul>
+<li>توثيق مشاركات الطلاب في المسابقات القرآنية السنوية، دوريات كرة القدم، المعارض العلمية، ومسابقات الخط العربي.</li>
+<li>رصد جوائز ومراكز الطلاب (مثل: حصول الطالب على المركز الأول في حفظ 15 جزءاً برواية حفص).</li>
+<li>إدراج سجل الأنشطة والتميز السلوكي ضمن شهادة التخرج والسجل التراكمي للطالب.</li>
+</ul>
+<hr />
+<h2>12. دليل بوابة ولي الأمر وبوابة الطالب</h2>
+<p>بوابات الخدمة الذاتية تتيح التواصل المباشر مع الأسرة والطلاب على مدار 24 ساعة عبر أي متصفح أو هاتف ذكي:</p>
+<h3>1. بوابة ولي الأمر (<code>https://openeducat.onrender.com/my/child</code>):</h3>
+<ul>
+<li>تسجيل الدخول: <code>parent@alnahda.edu.ye</code> / <code>123456</code>.</li>
+<li><strong>لوحة متابعة الأبناء:</strong> استعراض بطاقات الأبناء المسجلين في المدرسة بنقرة واحدة (أسامة، مريم، إلخ).</li>
+<li><strong>كشف الحضور والغياب:</strong> الاطلاع الفوري على حالات التأخير أو الغياب وتواريخها.</li>
+<li><strong>النتائج والتقارير:</strong> استعراض الدرجات الفصلية وشهادات التقدير فور اعتمادها من الكنترول.</li>
+<li><strong>الفواتير المدرسية (<code>/my/invoices</code>):</strong> كشف حساب مالي يوضح الأقساط المعتمدة والمدفوعات والمتبقي بالريال اليمني.</li>
+</ul>
+<h3>2. بوابة السجل الأكاديمي للطالب (<code>https://openeducat.onrender.com/my/academic</code>):</h3>
+<ul>
+<li>تسجيل الدخول: <code>student@alnahda.edu.ye</code> / <code>123456</code>.</li>
+<li><strong>الرقم الأكاديمي:</strong> بطاقة تعريفية بالرقم الموحد (<code>YEM-2026-101</code>) والشعبة المسجل بها.</li>
+<li><strong>جدول الحصص الأسبوعي:</strong> استعراض الحصص اليومية، القاعات، وأسماء المعلمين.</li>
+<li><strong>المقررات والنتائج:</strong> درجات الاختبارات النصفية والنهائية فور إعلانها.</li>
+</ul>
+<hr />
+<h2>13. الإشراف الفني وإجراءات النسخ الاحتياطي</h2>
+<h3>سكربتات الصيانة والنسخ الاحتياطي (الموجودة في المجلد <code>scripts/</code>):</h3>
+<ol>
+<li><strong>أخذ نسخة احتياطية كاملة (Backup):</strong></li>
+</ol>
+<pre><code class="language-bash">   bash scripts/backup.sh
+</code></pre>
+<p>يقوم بإنشاء ملف مضغوط يجمع قاعدة البيانات كاملة والمرفقات والصور (<code>filestore</code>) مع تاريخ ووقت العملية.</p>
+<ol>
+<li><strong>استعادة النظام (Restore):</strong></li>
+</ol>
+<pre><code class="language-bash">   bash scripts/restore.sh /path/to/backup_file.tar.gz
+</code></pre>
+<ol>
+<li><strong>إعادة توليد البيانات التجريبية الشاملة:</strong></li>
+</ol>
+<pre><code class="language-bash">   python3 scripts/create_yemen_demo_data.py
+</code></pre>
+<hr />
+<div class="callout alert-tip"><div class="callout-title" style="color: #16a34a;">⭐ نصيحة وإرشاد</div><div class="callout-body"><p><strong>نصيحة للإداريين الجدد:</strong>
+ينصح دائماً بالبدء بإنشاء <strong>العام الدراسي والفصلين</strong>، ثم <strong>القاعات</strong>، ثم <strong>المواد والمعلمين</strong>، وأخيراً <strong>الشعب الدراسية</strong> قبل البدء في تسجيل الطلاب لتسهيل ربط البيانات بسلاسة.</p></div></div>
+
+    <div class="footer-note">
+        <strong>سمارت إديو - SmartEdu ERP 19.0</strong> | كافة الحقوق محفوظة © 2026 | مخصص للمدارس النموذجية والأهلية بالجمهورية اليمنية
+    </div>
+
+</body>
+</html>
