@@ -1,7 +1,13 @@
-# OpenEduCat Community Edition 🎓
+# OpenEduCat Community Edition 🎓 | سمارت إديو (SmartEdu ERP)
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/openeducat/openeducat_erp.svg)](https://github.com/openeducat/openeducat_erp/stargazers)
+
+> 📘 **الدليل التعليمي الشامل للنظام (باللغة العربية):**  
+> تم تضمين دليل استخدام مفصل وشامل لجميع موديولات النظام (القبول، الطلاب، المعلمون، الجداول، الكنترول، الرسوم، المكتبة، وبوابات أولياء الأمور) في:  
+> 🔗 **[docs/USER_MANUAL_AR.md](docs/USER_MANUAL_AR.md)**
+
+---
 
 ## Introduction 🚀
 
