@@ -20,3 +20,6 @@ Thumbs.db
 *.sqlite3
 *.dump
 *.sql
+
+# Official downloaded documentation mirror (260MB+)
+docs/official_openeducat_docs/
