@@ -3,10 +3,12 @@
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/openeducat/openeducat_erp.svg)](https://github.com/openeducat/openeducat_erp/stargazers)
 
-> 📘 **الدليل التعليمي الشامل للنظام (باللغة العربية):**  
-> تم تضمين دليل استخدام مفصل وشامل لجميع موديولات النظام (القبول، الطلاب، المعلمون، الجداول، الكنترول، الرسوم، المكتبة، وبوابات أولياء الأمور):  
-> - 📄 **[نسخة المستند Markdown (USER_MANUAL_AR.md)](docs/USER_MANUAL_AR.md)**  
-> - 📕 **[نسخة الكتاب الإلكتروني PDF جاهزة للطباعة (USER_MANUAL_AR.pdf)](docs/USER_MANUAL_AR.pdf)**  
+> 📘 **أدلة التوثيق الرسمية والتعليمية للنظام (باللغة العربية):**  
+> 1. **دليل مستخدم منظومة سمارت إديو الشامل (مهيأ للسلم التعليمي اليمني):**  
+>    - 📕 [نسخة PDF جاهزة للطباعة (USER_MANUAL_AR.pdf)](docs/USER_MANUAL_AR.pdf) | [نسخة Markdown](docs/USER_MANUAL_AR.md)  
+> 2. **الدليل الرسمي لمنظومة OpenEduCat 19.0 (البدء السريع وتوزيع الواجبات المدرسية):**  
+>    - 📕 [نسخة PDF جاهزة للطباعة (OPENEDUCAT_OFFICIAL_GUIDE.pdf)](docs/OPENEDUCAT_OFFICIAL_GUIDE.pdf) | [نسخة Markdown](docs/OPENEDUCAT_OFFICIAL_GUIDE.md)  
+> 3. **الموقع التوثيقي الرسمي الكامل غير المتصل (708 صفحة + وسائط):** في المجلد المحلي `docs/official_openeducat_docs/` عبر [بوابة التصفح (index_offline_portal.html)](docs/official_openeducat_docs/index_offline_portal.html).  
 
 ---
 

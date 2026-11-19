@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الدليل الرسمي - OpenEduCat 19.0 - البدء السريع وتوزيع الواجبات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Tajawal, sans-serif',
+                fontSize: '12px',
+                primaryColor: '#eff6ff',
+                primaryTextColor: '#1e3a8a',
+                primaryBorderColor: '#3b82f6',
+                lineColor: '#2563eb',
+                secondaryColor: '#f0fdf4',
+                tertiaryColor: '#fef2f2',
+                mainBkg: '#ffffff',
+                nodeBorder: '#3b82f6',
+                actorBkg: '#eff6ff',
+                actorBorder: '#3b82f6',
+                actorTextColor: '#1e3a8a',
+                signalColor: '#2563eb',
+                signalTextColor: '#1e293b'
+            }
+        });
+    </script>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 18mm 15mm 18mm 15mm;
+            @bottom-left {
+                content: "OpenEduCat 19.0 - Official Getting Started & Assignments Guide";
+                font-family: 'Tajawal', sans-serif;
+                font-size: 8.5pt;
+                color: #64748b;
+            }
+            @bottom-right {
+                content: "صفحة " counter(page) " من " counter(pages);
+                font-family: 'Tajawal', sans-serif;
+                font-size: 8.5pt;
+                color: #1e40af;
+                font-weight: 700;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Noto Sans Arabic', Tahoma, sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+            font-size: 10.5pt;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cover-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 50%, #0d9488 100%);
+            color: white;
+            padding: 28px 24px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(3, 105, 161, 0.15);
+            text-align: center;
+            page-break-after: avoid;
+        }
+
+        .cover-banner h1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 20pt;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            border: none;
+            padding: 0;
+        }
+
+        .cover-banner .subtitle {
+            font-size: 11.5pt;
+            font-weight: 500;
+            color: #e0f2fe;
+            margin-bottom: 16px;
+        }
+
+        .cover-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 8.5pt;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+        }
+
+        .toc-wrapper {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+
+        .toc-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 12pt;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 18px;
+            margin: 0;
+            padding-right: 20px;
+            padding-left: 0;
+            font-size: 9pt;
+        }
+
+        .toc-grid li {
+            margin-bottom: 4px;
+        }
+
+        .toc-grid a {
+            color: #0369a1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cairo', sans-serif;
+            color: #0f172a;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 13pt;
+            color: #1e3a8a;
+            background: #f0fdfa;
+            border-right: 5px solid #0d9488;
+            padding: 7px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 26px;
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            font-size: 11pt;
+            color: #0284c7;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 4px;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 0 0 12px 0;
+            padding-right: 22px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 18px 0;
+            page-break-inside: avoid;
+            font-size: 9.5pt;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        th, td {
+            padding: 8px 11px;
+            border: 1px solid #cbd5e1;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            border-bottom: 2px solid #94a3b8;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background: #f1f5f9;
+            color: #b91c1c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9pt;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .mermaid-container {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            text-align: center;
+            page-break-inside: avoid;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        .footer-note {
+            margin-top: 35px;
+            padding-top: 15px;
+            border-top: 2px dashed #cbd5e1;
+            text-align: center;
+            font-size: 9pt;
+            color: #64748b;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cover-banner">
+        <h1>الدليل الرسمي لمنظومة OpenEduCat 19.0</h1>
+        <div class="subtitle">دليل البدء السريع، دورة التهيئة الشاملة، وإدارة وتوزيع الواجبات المدرسية</div>
+        <div class="cover-badges">
+            <span class="badge">📖 التوثيق الرسمي: doc.openeducat.org/19.0</span>
+            <span class="badge">📝 Allocating & Grading Assignments</span>
+            <span class="badge">🎯 إصدار 19.0 الرسمي</span>
+        </div>
+    </div>
+
+    <div class="toc-wrapper">
+    <div class="toc-title">📌 فهرس المراحل الـ 27 لدليل البدء السريع والواجبات المدرسية</div>
+    <ol class="toc-grid">
+        <li><a href="#1-الحصول-على-كود-المصدر">الحصول على كود المصدر (Getting Source Code)</a></li><li><a href="#2-إنشاء-قاعدة-البيانات">إنشاء قاعدة البيانات (Create Database)</a></li><li><a href="#3-إعداد-المنشأة-والشركة">إعداد المنشأة والشركة (Setting up Company)</a></li><li><a href="#4-التهيئة-المحاسبية-والمالية">التهيئة المحاسبية والمالية (Accounting Setup)</a></li><li><a href="#5-تثبيت-تطبيقات-openeducat">تثبيت حزم وتطبيقات OpenEduCat (Install OpenEduCat)</a></li><li><a href="#6-ضبط-وتهيئة-الموقع-الإلكتروني">ضبط وتهيئة الموقع الإلكتروني (Configure Website)</a></li><li><a href="#7-تفعيل-الميزات-والخيارات-المتقدمة">تفعيل الميزات والخيارات المتقدمة (Configuring in Features)</a></li><li><a href="#8-إنشاء-الأعوام-الدراسية">إنشاء الأعوام الدراسية (Create Academic Year)</a></li><li><a href="#9-إنشاء-المراحل-والصفوف-الدراسية">إنشاء المراحل والصفوف الدراسية (Create Course)</a></li><li><a href="#10-إنشاء-المواد-الدراسية-والمناهج">إنشاء المواد الدراسية والمناهج (Create Subject)</a></li><li><a href="#11-إنشاء-الدفع-والشعب-الصفية">إنشاء الدفع والشعب الصفية (Create Batch)</a></li><li><a href="#12-تسجيل-الكادر-التعليمي-والمعلمين">تسجيل الكادر التعليمي والمعلمين (Create Faculty)</a></li><li><a href="#13-إعداد-خادم-البريد-الصادر">إعداد خادم البريد الصادر (Setting up Outgoing Email)</a></li><li><a href="#14-ربط-المعلم-بحساب-مستخدم-النظام">ربط المعلم بحساب مستخدم النظام (User of Faculty)</a></li><li><a href="#15-إنشاء-مستخدمي-الإدارة-والكنترول">إنشاء مستخدمي الإدارة والكنترول (Create User For Backoffice Admin)</a></li><li><a href="#16-إعداد-هياكل-وأقساط-الرسوم-المدرسية">إعداد هياكل وأقساط الرسوم المدرسية (Setting of Fees and Fees Terms)</a></li><li><a href="#17-إنشاء-سجلات-القبول-والتسجيل">إنشاء سجلات القبول والتسجيل (Create Admission Register)</a></li><li><a href="#18-إنشاء-وتفعيل-حسابات-الطلاب">إنشاء وتفعيل حسابات الطلاب (Create Student User)</a></li><li><a href="#19-إعداد-القاعات-الدراسية-والمعامل">إعداد القاعات الدراسية والمعامل (Setup Classroom)</a></li><li><a href="#20-إعداد-وتوليد-الجداول-المدرسية">إعداد وتوليد الجداول المدرسية (Setting Up TimeTable)</a></li><li><a href="#21-توزيع-وإدارة-الواجبات-المدرسية-allocating-assignments">⭐ **توزيع وإدارة الواجبات المدرسية (Allocating Assignments)**</a></li><li><a href="#22-تقييم-ورصد-درجات-الواجبات-grading-assignments">⭐ **تقييم ورصد درجات الواجبات (Grading Assignments)**</a></li><li><a href="#23-ملفات-أولياء-الأمور-وبوابة-المتابعة">ملفات أولياء الأمور وبوابة المتابعة (Parent Information)</a></li><li><a href="#24-تهيئة-نظام-إدارة-التعلم-الإلكتروني-lms">تهيئة نظام إدارة التعلم الإلكتروني (LMS Setup)</a></li><li><a href="#25-إعداد-الاختبارات-وبنك-الأسئلة">إعداد الاختبارات وبنك الأسئلة (Quiz Setup)</a></li><li><a href="#26-ضبط-إعدادات-التعريب-والترجمة">ضبط إعدادات التعريب والترجمة (Setting of Translation)</a></li><li><a href="#27-الفيديو-الإرشادي-الرسمي">الفيديو الإرشادي الرسمي لإنشاء مدرسة نموذجية (Official Video Guide)</a></li>
+    </ol>
+</div>
+
+<h2>21. توزيع وإدارة الواجبات المدرسية (Allocating Assignments)</h2>
+<p>يعد موديول الواجبات المدرسية (<code>op_assignment</code>) أحد أهم الأدوات التعليمية لربط المعلم بالطلاب، حيث يتيح للمعلم إسناد الواجبات، تحديد مواعيد التسليم، تحديد عدد المحاولات، واستقبال ملفات الحلول رقمياً.</p>
+<div class="mermaid-container"><div class="mermaid">
+flowchart LR
+    A["1. إنشاء تصنيف الواجب\n(Assignment Type)"] --> B["2. إنشاء بطاقة الواجب\n(Assignments)"]
+    B --> C["3. تحديد المادة والشعبة\n(Course, Batch, Subject)"]
+    C --> D["4. تخصيص المستهدفين\n(Allocation: All or Specific)"]
+    D --> E["5. نشر الواجب للطلاب\n(Publish)"]
+    E --> F["6. استقبال الحلول\n(Student Submissions)"]
+    F --> G["7. إغلاق التسليم\n(Finish Gate)"]
+</div></div>
+
+<h3>أ) خطوات تهيئة أنواع وتصنيفات الواجبات (Assignment Types):</h3>
+<ol>
+<li>انتقل من القائمة الرئيسية إلى: <strong>الواجبات (Assignments) &gt; التهيئة (Configuration) &gt; أنواع الواجبات (Assignment Types)</strong>.</li>
+<li>انقر على <strong>جديد (New)</strong> وأدخل البيانات:</li>
+<li><strong>الاسم (Name):</strong> اسم التصنيف (مثال: واجب منزلي، بحث علمي، تقرير مختبري، نشاط فصلي).</li>
+<li><strong>الكود (Code):</strong> رمز تعريفي مختصر (مثال: <code>HW</code> للواجبات، <code>PRJ</code> للمشاريع).</li>
+<li><strong>الشركة / المدرسة (Company):</strong> لتحديد المدرسة التابع لها التصنيف في حال تعدد الفروع.</li>
+<li>اضغط <strong>حفظ (Save)</strong>.</li>
+</ol>
+<hr />
+<h3>ب) خطوات إنشاء وتوزيع الواجب على الطلاب (Assignments Form):</h3>
+<p>انتقل إلى: <strong>الواجبات (Assignments) &gt; الواجبات (Assignments) &gt; انقر جديد (New)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="left">الحقل (Field)</th>
+<th align="left">الوصف والاستخدام</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>اسم الواجب (Name)</strong></td>
+<td align="left">عنوان الواجب الموجه للطالب (مثال: واجب الرياضيات - حل تمارين التكامل ص 45).</td>
+</tr>
+<tr>
+<td align="left"><strong>المرحلة الدراسية (Course)</strong></td>
+<td align="left">اختيار الصف الدراسي (مثال: الثالث الثانوي - علمي).</td>
+</tr>
+<tr>
+<td align="left"><strong>الشعبة (Batch)</strong></td>
+<td align="left">الشعبة المستهدفة (مثال: شعبة أ - بنين).</td>
+</tr>
+<tr>
+<td align="left"><strong>المادة (Subject)</strong></td>
+<td align="left">المادة التعليمية التابع لها الواجب (مثال: الرياضيات المتقدمة).</td>
+</tr>
+<tr>
+<td align="left"><strong>المعلم (Faculty)</strong></td>
+<td align="left">المعلم المسؤول عن إعداد الواجب ومتابعته (مثال: أ. وليد الأهدل).</td>
+</tr>
+<tr>
+<td align="left"><strong>نوع الواجب (Assignment Type)</strong></td>
+<td align="left">التصنيف الذي تم إنشاؤه مسبقاً (واجب منزلي / مشروع).</td>
+</tr>
+<tr>
+<td align="left"><strong>المراجع / المصحح (Reviewer)</strong></td>
+<td align="left">المعلم أو المشرف المكلف بتصحيح وتدقيق إجابات الطلاب.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>جـ) إعدادات التسليم والمحاولات (Basic Information Tab):</h3>
+<ul>
+<li><strong>تاريخ الإصدار (Issued Date):</strong> موعد بدء ظهور الواجب للطلاب في بواباتهم.</li>
+<li><strong>تاريخ وموعد التسليم النهائي (Submission Date):</strong> الموعد الأخير لقبول الحلول.</li>
+<li><strong>عدد المحاولات (Number Of Attempt):</strong></li>
+<li><strong>محاولة واحدة (Single Attempt):</strong> يسمح للطالب برفع ملف الإجابة مرة واحدة فقط ولا يمكنه التعديل بعد الإرسال.</li>
+<li><strong>محاولات متعددة (Multiple Attempt):</strong> يتيح للنظام إظهار حقل <strong>الحد الأقصى للمحاولات (Max Attempt)</strong> (مثلاً: 2 أو 3 محاولات لتحسين الدرجة).</li>
+</ul>
+<hr />
+<h3>د) استهداف الطلاب وتوزيع الواجب (Allocation Information):</h3>
+<ul>
+<li><strong>التوزيع التلقائي على الشعبة كاملة:</strong> إذا تُرِك جدول الطلاب فارغاً، يقوم النظام آلياً بتخصيص الواجب لجميع الطلاب النشطين والمقيدين في الشعبة المحددة.</li>
+<li><strong>تخصيص الواجب لطلاب محددين (Individual Allocation):</strong> يمكنك النقر على <strong>إضافة سطر (Add a line)</strong> واختيار أسماء طلاب معينين (للواجبات الإثرائية أو خطط الدعم للطلاب المتعثرين).</li>
+<li><strong>منح محاولات إضافية لطالب محدد (Student Additional Attempt):</strong> في حال رغب المعلم بمنح طالب فرصة إضافية دون فتح المحاولات للجميع، يمكن إضافة اسم الطالب وعدد المحاولات الإضافية الممنوحة له.</li>
+</ul>
+<hr />
+<h3>هـ) دورة حياة الواجب وبوابة الاعتماد (Workflow &amp; Submission Gate):</h3>
+<ol>
+<li><strong>مسودة (Draft):</strong> مرحلة الإعداد وصياغة الأسئلة ورفع المرفقات.</li>
+<li><strong>نشر (Publish):</strong> بالضغط على زر <strong>نشر (Publish)</strong>، يصبح الواجب مرئياً فوراً في بوابة الطالب (<code>/my/academic</code>) وبوابة ولي الأمر.</li>
+<li><strong>متابعة غير المسلمين (Missing Submissions Tab):</strong></li>
+<li>يظهر النظام تنبيهاً أصفر (<strong>Warning Alert Banner</strong>) يوضح عدد الطلاب الذين لم يسلموا إجاباتهم بعد قبل انتهاء المهلة.</li>
+<li>عند انتهاء المهلة دون تسليم، يتحول التنبيه إلى أحمر (<strong>Danger Alert Banner</strong>).</li>
+<li><strong>إنهاء واعتماد الواجب (Finish &amp; Submission Gate):</strong></li>
+<li>يمنع النظام الإغلاق غير المنضبط؛ حيث يشترط زر <strong>إنهاء (Finish)</strong> إما:<ol>
+<li>تسليم جميع الطلاب المطلوبين لإجاباتهم.</li>
+<li>أو مرور وانتهاء الموعد النهائي للتسليم (<code>Submission Date Passed</code>).</li>
+</ol>
+</li>
+</ol>
+<hr />
+<h2>22. تقييم ورصد درجات الواجبات (Grading Assignments)</h2>
+<p>بعد استلام حلول الطلاب عبر البوابة، يتم تقييم الواجب ورصد درجاته من خلال موديول سجل الدرجات الأكاديمي (<code>Grade Book</code>):</p>
+<div class="mermaid-container"><div class="mermaid">
+sequenceDiagram
+    participant F as المعلم / المصحح
+    participant S as سجل الدرجات (Grade Book)
+    participant P as بوابة الطالب وولي الأمر
+
+    F->>S: فتح الواجب التقييمي (Grade Book -> Grading Assignment)
+    F->>S: بدء التقييم (Click Start Grading)
+    S-->>F: عرض قائمة الطلاب المسجلين للشعبة
+    F->>S: إدخال درجات الواجب وملاحظات التقييم لكل طالب
+    F->>S: إغلاق التقييم (Grading Closed)
+    F->>S: نشر الدرجات (Grades Published)
+    S->>P: ظهور نتيجة الواجب فورياً في السجل الأكاديمي للطلاب وأولياء الأمور
+</div></div>
+
+<h3>خطوات رصد الدرجات عملياً:</h3>
+<ol>
+<li>اذهب إلى: <strong>سجل الدرجات (Grade Book) &gt; تقييم الواجبات (Grading Assignment)</strong>.</li>
+<li>انقر على <strong>جديد (New)</strong> وحدد:</li>
+<li><strong>السنة الدراسية (Academic Year).</strong></li>
+<li><strong>المرحلة والشعبة (Course &amp; Batch).</strong></li>
+<li><strong>المادة (Subject).</strong></li>
+<li><strong>الدرجة العظمى للواجب (Total Marks):</strong> (مثال: 20 درجة).</li>
+<li><strong>وزن الواجب في المعدل (Weightage).</strong></li>
+<li>انقر على زر <strong>نشر (Publish)</strong> ثم <strong>بدء التقييم (Grading Started)</strong>.</li>
+<li>انقر على <strong>رصد الدرجات (Start Grading)</strong>:</li>
+<li>سينقلك النظام إلى جدول كشف درجات الطلاب (<code>Grade Book Line</code>).</li>
+<li>أدخل درجة كل طالب بناءً على الملف الذي رفعه في البوابة.</li>
+<li>يمكنك كتابة ملاحظات المعلم التوجيهية لكل طالب.</li>
+<li>انقر على <strong>إغلاق التقييم (Grading Closed)</strong> ثم <strong>نشر النتائج (Grades Published)</strong>.</li>
+<li>بالضغط على <strong>احتساب المعدل النهائي (Generate Final Grade)</strong>، تنعكس درجات الواجبات تلقائياً في السجل الأكاديمي الموحد وشهادة نصف ونهاية العام.</li>
+</ol>
+<hr />
+<h2>ملخص المراحل الـ 27 لبناء المدرسة في المنظومة</h2>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">المرحلة</th>
+<th align="left">المسار في النظام</th>
+<th align="left">المخرجات الرئيسية</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>1</strong></td>
+<td align="left"><strong>كود المصدر</strong></td>
+<td align="left">Git Clone / Docker</td>
+<td align="left">تثبيت نواة النظام 19.0 والموديولات الـ 14</td>
+</tr>
+<tr>
+<td align="center"><strong>2</strong></td>
+<td align="left"><strong>قاعدة البيانات</strong></td>
+<td align="left">Database Manager</td>
+<td align="left">إنشاء وتأمين قاعدة بيانات المدرسة (<code>openeducat</code>)</td>
+</tr>
+<tr>
+<td align="center"><strong>3</strong></td>
+<td align="left"><strong>بيانات المنشأة</strong></td>
+<td align="left">الإعدادات &gt; الشركات</td>
+<td align="left">اسم المدرسة، الشعار، العنوان، الهاتف، والعملة (<code>ر.ي</code>)</td>
+</tr>
+<tr>
+<td align="center"><strong>4</strong></td>
+<td align="left"><strong>التهيئة المالية</strong></td>
+<td align="left">المحاسبة &gt; التكوين</td>
+<td align="left">شجرة الحسابات، فترات الفوترة، ودفاتر اليومية</td>
+</tr>
+<tr>
+<td align="center"><strong>5</strong></td>
+<td align="left"><strong>تثبيت الموديولات</strong></td>
+<td align="left">التطبيقات (Apps)</td>
+<td align="left">تثبيت حزم القبول، الطلاب، الكادر، الجداول، الرسوم</td>
+</tr>
+<tr>
+<td align="center"><strong>6</strong></td>
+<td align="left"><strong>الموقع الإلكتروني</strong></td>
+<td align="left">الموقع الإلكتروني</td>
+<td align="left">تصميم الواجهة الرئيسية، أرقام التواصل، ونموذج التسجيل</td>
+</tr>
+<tr>
+<td align="center"><strong>7</strong></td>
+<td align="left"><strong>الميزات المتقدمة</strong></td>
+<td align="left">الإعدادات العامة</td>
+<td align="left">تفعيل الحضور اليومي، الباركود، والاختبارات</td>
+</tr>
+<tr>
+<td align="center"><strong>8</strong></td>
+<td align="left"><strong>العام الدراسي</strong></td>
+<td align="left">التهيئة &gt; الأعوام</td>
+<td align="left">إنشاء العام الدراسي 2026-2027 والفصلين الأول والثاني</td>
+</tr>
+<tr>
+<td align="center"><strong>9</strong></td>
+<td align="left"><strong>المراحل الدراسية</strong></td>
+<td align="left">الكورسات (Courses)</td>
+<td align="left">تعريف مراحل التعليم الأساسي (1-9) والثانوي (1-3)</td>
+</tr>
+<tr>
+<td align="center"><strong>10</strong></td>
+<td align="left"><strong>المواد والمناهج</strong></td>
+<td align="left">المواد (Subjects)</td>
+<td align="left">إضافة القرآن، الرياضيات، الفيزياء، العربي، وغيرها</td>
+</tr>
+<tr>
+<td align="center"><strong>11</strong></td>
+<td align="left"><strong>الشعب الصفية</strong></td>
+<td align="left">الشعب (Batches)</td>
+<td align="left">تقسيم الطلاب على شعب (أ، ب، ج) وتحديد سعة الصف</td>
+</tr>
+<tr>
+<td align="center"><strong>12</strong></td>
+<td align="left"><strong>الكادر التعليمي</strong></td>
+<td align="left">المعلمون (Faculties)</td>
+<td align="left">إدخال بيانات المعلمين وتخصصاتهم وربطهم بالأقسام</td>
+</tr>
+<tr>
+<td align="center"><strong>13</strong></td>
+<td align="left"><strong>خادم البريد</strong></td>
+<td align="left">الإعدادات &gt; البريد الصادر</td>
+<td align="left">ربط خادم SMTP لإرسال الإشعارات وكلمات المرور آلياً</td>
+</tr>
+<tr>
+<td align="center"><strong>14</strong></td>
+<td align="left"><strong>حسابات المعلمين</strong></td>
+<td align="left">المستخدمون &gt; الشركاء</td>
+<td align="left">منح المعلم حساباً للرصد وتسجيل الحضور بالصلاحيات</td>
+</tr>
+<tr>
+<td align="center"><strong>15</strong></td>
+<td align="left"><strong>حسابات الإدارة</strong></td>
+<td align="left">المستخدمون والصلاحيات</td>
+<td align="left">تعيين مدراء الكنترول، شؤون الطلاب، ومسؤولي التسجيل</td>
+</tr>
+<tr>
+<td align="center"><strong>16</strong></td>
+<td align="left"><strong>الرسوم والأقساط</strong></td>
+<td align="left">الرسوم (Fees Terms)</td>
+<td align="left">تحديد الرسوم السنوية والأقساط وتوليد المطالبات</td>
+</tr>
+<tr>
+<td align="center"><strong>17</strong></td>
+<td align="left"><strong>سجلات القبول</strong></td>
+<td align="left">القبول والتسجيل</td>
+<td align="left">فتح باب التسجيل الإلكتروني واستقبال ملفات المستجدين</td>
+</tr>
+<tr>
+<td align="center"><strong>18</strong></td>
+<td align="left"><strong>حسابات الطلاب</strong></td>
+<td align="left">الطلاب (Students)</td>
+<td align="left">توليد الرقم الأكاديمي (<code>GR No</code>) وتفعيل بوابة الطالب</td>
+</tr>
+<tr>
+<td align="center"><strong>19</strong></td>
+<td align="left"><strong>القاعات والمعامل</strong></td>
+<td align="left">المنشآت (Facilities)</td>
+<td align="left">ترقيم القاعات وتحديد الطاقة الاستيعابية لكل فصل</td>
+</tr>
+<tr>
+<td align="center"><strong>20</strong></td>
+<td align="left"><strong>الجداول المدرسية</strong></td>
+<td align="left">الجداول (Timetables)</td>
+<td align="left">جدول الحصص الأسبوعي، منع التعارض، وجداول الحصص</td>
+</tr>
+<tr>
+<td align="center"><strong>21</strong></td>
+<td align="left"><strong>توزيع الواجبات</strong></td>
+<td align="left">الواجبات (Assignments)</td>
+<td align="left">تكليف الطلاب بالواجبات وتحديد المواعيد والمحاولات</td>
+</tr>
+<tr>
+<td align="center"><strong>22</strong></td>
+<td align="left"><strong>تقييم الواجبات</strong></td>
+<td align="left">سجل الدرجات (Grade Book)</td>
+<td align="left">تصحيح الواجبات ورصد الدرجات وإصدار التقارير</td>
+</tr>
+<tr>
+<td align="center"><strong>23</strong></td>
+<td align="left"><strong>أولياء الأمور</strong></td>
+<td align="left">أولياء الأمور (Parents)</td>
+<td align="left">ربط الأبناء بملف الأب وتفعيل تطبيق وبوابة ولي الأمر</td>
+</tr>
+<tr>
+<td align="center"><strong>24</strong></td>
+<td align="left"><strong>نظام LMS</strong></td>
+<td align="left">التعلم الإلكتروني</td>
+<td align="left">رفع الدروس المسجلة، عروض البوربوينت، والمصادر</td>
+</tr>
+<tr>
+<td align="center"><strong>25</strong></td>
+<td align="left"><strong>بنك الاختبارات</strong></td>
+<td align="left">الاختبارات والامتحانات</td>
+<td align="left">بنك الأسئلة، الاختبارات التحريرية، والشهادات بالباركود</td>
+</tr>
+<tr>
+<td align="center"><strong>26</strong></td>
+<td align="left"><strong>التعريب واللغات</strong></td>
+<td align="left">الترجمة (Translations)</td>
+<td align="left">واجهة عربية كاملة RTL ومصطلحات تعليمية دقيقة</td>
+</tr>
+<tr>
+<td align="center"><strong>27</strong></td>
+<td align="left"><strong>الصيانة والنسخ</strong></td>
+<td align="left">المجلد <code>scripts/</code></td>
+<td align="left">أوامر النسخ الاحتياطي الآلي واستعادة البيانات</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>🌐 الروابط والمراجع الرسمية:</h3>
+<ul>
+<li><strong>التوثيق السحابي الأصلي:</strong> <a href="https://doc.openeducat.org/19.0/">https://doc.openeducat.org/19.0/</a></li>
+<li><strong>قسم توزيع الواجبات المباشر:</strong> <a href="https://doc.openeducat.org/19.0/getting-started/getting-started.html#allocating-assignments">Allocating Assignments</a></li>
+<li><strong>دليل التقييم وسجل الدرجات:</strong> <a href="https://doc.openeducat.org/19.0/applications/Gradebook/grading-assignment.html">Grading Assignments</a></li>
+<li><strong>المستودع المحلي للمشروع:</strong> تم حفظ هذا المستند كملف PDF رسمي وملف Markdown داخل مجلد <code>docs/</code> بالمشروع.</li>
+</ul>
+
+    <div class="footer-note">
+        <strong>OpenEduCat 19.0 Documentation Guide</strong> | مستخرج ومترجم ومحفوظ للمشروع محلياً وسحابياً © 2026
+    </div>
+
+</body>
+</html>
