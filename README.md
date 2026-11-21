@@ -4,11 +4,14 @@
 [![GitHub stars](https://img.shields.io/github/stars/openeducat/openeducat_erp.svg)](https://github.com/openeducat/openeducat_erp/stargazers)
 
 > 📘 **أدلة التوثيق الرسمية والتعليمية للنظام (باللغة العربية):**  
-> 1. **دليل مستخدم منظومة سمارت إديو الشامل (مهيأ للسلم التعليمي اليمني):**  
+> 1. **وثيقة التوثيق الرسمي لمنظومة OpenEduCat 19.0 (مستند Word قابل للمراجعة والتحرير + PDF):**  
+>    - 📄 [نسخة مايكروسوفت وورد Word (.docx)](docs/OpenEduCat_19_Arabic_Documentation.docx) — *منسقة بالكامل باللغة العربية RTL وجداول وصناديق تنبيه للمراجعة والقراءة والطباعة*.  
+>    - 📕 [نسخة PDF المقابلة للطباعة والقراءة الفورية](docs/OpenEduCat_19_Arabic_Documentation.pdf)  
+> 2. **دليل مستخدم منظومة سمارت إديو الشامل (مهيأ للسلم التعليمي اليمني):**  
 >    - 📕 [نسخة PDF جاهزة للطباعة (USER_MANUAL_AR.pdf)](docs/USER_MANUAL_AR.pdf) | [نسخة Markdown](docs/USER_MANUAL_AR.md)  
-> 2. **الدليل الرسمي لمنظومة OpenEduCat 19.0 (البدء السريع وتوزيع الواجبات المدرسية):**  
+> 3. **الدليل الرسمي لمنظومة OpenEduCat 19.0 (البدء السريع وتوزيع الواجبات المدرسية):**  
 >    - 📕 [نسخة PDF جاهزة للطباعة (OPENEDUCAT_OFFICIAL_GUIDE.pdf)](docs/OPENEDUCAT_OFFICIAL_GUIDE.pdf) | [نسخة Markdown](docs/OPENEDUCAT_OFFICIAL_GUIDE.md)  
-> 3. **الموقع التوثيقي الرسمي الكامل غير المتصل (708 صفحة + وسائط):** في المجلد المحلي `docs/official_openeducat_docs/` عبر [بوابة التصفح (index_offline_portal.html)](docs/official_openeducat_docs/index_offline_portal.html).  
+> 4. **الموقع التوثيقي الرسمي الكامل غير المتصل (708 صفحة + وسائط):** في المجلد المحلي `docs/official_openeducat_docs/` عبر [بوابة التصفح (index_offline_portal.html)](docs/official_openeducat_docs/index_offline_portal.html).  
 
 ---
 
